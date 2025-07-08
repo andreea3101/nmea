@@ -26,7 +26,7 @@ class PositionGenerator:
     """Generates realistic GPS position data."""
     
     def __init__(self, initial_position: Position, initial_speed: float = 0.0, 
-                 initial_heading: float = 0.0):
+                 initial_heading: float = 0.0, start_time: Optional[datetime] = None):
         """
         Initialize position generator.
         
@@ -34,9 +34,11 @@ class PositionGenerator:
             initial_position: Starting position
             initial_speed: Initial speed in knots
             initial_heading: Initial heading in degrees true
+            start_time: Optional start time of the simulation. Defaults to datetime.now().
         """
         self.initial_position = initial_position
         self.current_position = initial_position
+        # current_speed and current_heading are the speed/heading for the *next* interval
         self.current_speed = Speed(initial_speed, SpeedUnit.KNOTS)
         self.current_heading = Bearing(initial_heading, BearingType.TRUE)
         
@@ -46,7 +48,16 @@ class PositionGenerator:
         self.position_noise = 0.00001  # degrees (about 1 meter)
         
         # Track history
-        self.position_history: List[PositionState] = []
+        self.initial_timestamp = start_time or datetime.now()
+        initial_state = PositionState(
+            position=self.initial_position,
+            # Speed and heading in the state are those *at* this timestamp.
+            # For the initial state, these are the provided initial speed/heading.
+            speed=Speed(initial_speed, SpeedUnit.KNOTS),
+            heading=Bearing(initial_heading, BearingType.TRUE),
+            timestamp=self.initial_timestamp
+        )
+        self.position_history: List[PositionState] = [initial_state]
         
         # Random number generator
         self.random = random.Random()
@@ -168,29 +179,38 @@ class PositionGenerator:
     
     def get_distance_traveled(self) -> float:
         """Get total distance traveled in meters."""
+        # Needs at least two states (e.g., initial and one updated state) to calculate distance.
         if len(self.position_history) < 2:
             return 0.0
         
         total_distance = 0.0
-        for i in range(1, len(self.position_history)):
-            prev_pos = self.position_history[i-1].position
-            curr_pos = self.position_history[i].position
+        # Iterate through segments: (pos_hist[0] to pos_hist[1]), (pos_hist[1] to pos_hist[2]), ...
+        for i in range(len(self.position_history) - 1):
+            prev_pos = self.position_history[i].position
+            curr_pos = self.position_history[i+1].position
             total_distance += prev_pos.distance_to(curr_pos)
         
         return total_distance
     
     def get_average_speed(self) -> float:
-        """Get average speed in knots."""
+        """Get average speed in knots over the entire history."""
+        # Needs at least two states (e.g., initial and one updated state)
         if len(self.position_history) < 2:
             return 0.0
         
+        # Total time from the timestamp of the initial state to the timestamp of the last recorded state.
         total_time = (self.position_history[-1].timestamp - 
-                     self.position_history[0].timestamp).total_seconds()
+                      self.position_history[0].timestamp).total_seconds()
         
+        # If total_time is zero (or negative, though unlikely), average speed is undefined or zero.
+        # This could happen if only one update occurred with elapsed_seconds = 0.
         if total_time <= 0:
+            # If distance is also zero, speed is 0. If distance > 0 and time = 0, speed is infinite.
+            # For practical purposes, if no time elapsed, average speed can be considered 0
+            # or based on the speed of the first state if only one state exists (handled by len < 2).
             return 0.0
         
-        distance_m = self.get_distance_traveled()
+        distance_m = self.get_distance_traveled()  # This now uses the corrected distance logic
         speed_ms = distance_m / total_time
         speed_knots = speed_ms / 0.514444  # Convert m/s to knots
         

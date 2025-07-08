@@ -31,8 +31,11 @@ def demonstrate_position_calculation():
     print(f"   Speed: {initial_speed} knots")
     print(f"   Heading: {initial_heading}° True")
     
+    # Simulation start time
+    simulation_start_time = datetime.now()
+
     # Create position generator
-    generator = PositionGenerator(start_position, initial_speed, initial_heading)
+    generator = PositionGenerator(start_position, initial_speed, initial_heading, start_time=simulation_start_time)
     
     # Set movement parameters for demonstration
     generator.set_movement_parameters(
@@ -51,33 +54,41 @@ def demonstrate_position_calculation():
     print(f"   {'Time':<8} {'Latitude':<12} {'Longitude':<13} {'Speed':<8} {'Heading':<8} {'Distance':<10}")
     print(f"   {'-'*8} {'-'*12} {'-'*13} {'-'*8} {'-'*8} {'-'*10}")
     
-    current_time = datetime.now()
-    total_distance = 0.0
+    # Initial state (t=0) is already in generator.position_history[0]
+    # We will print the state at t=0 as the first line, then loop for 10 updates.
+
+    initial_state_display = generator.position_history[0]
+    print(f"   {0:<8} {initial_state_display.position.latitude:<12.6f} {initial_state_display.position.longitude:<13.6f} "
+          f"{initial_state_display.speed.value:<8.2f} {initial_state_display.heading.value:<8.1f} {0.0:<10.2f}")
+
+    manual_total_distance = 0.0 # For verification against generator's total
     
-    for i in range(10):
-        # Update position (1 second intervals)
+    for i in range(10):  # This loop will generate 10 new states, from t=1 to t=10
         elapsed_time = 1.0
-        current_time += timedelta(seconds=elapsed_time)
         
-        # Get previous position for distance calculation
-        prev_position = generator.current_position
+        # The timestamp for the new state will be the last known timestamp + elapsed_time
+        new_timestamp = generator.position_history[-1].timestamp + timedelta(seconds=elapsed_time)
         
-        # Update position
-        state = generator.update_position(elapsed_time, current_time)
+        # Update position. state is the state *after* the update.
+        state = generator.update_position(elapsed_time, new_timestamp)
         
-        # Calculate distance moved
-        if i > 0:
-            distance_moved = prev_position.distance_to(state.position)
-            total_distance += distance_moved
-        else:
-            distance_moved = 0.0
+        # Distance moved in this step. History has initial_state + (i+1) updated states.
+        # e.g., i=0: history has [s0, s1]. dist is s0 to s1. Indices are -2, -1.
+        distance_moved_this_step = 0.0
+        if len(generator.position_history) >= 2:
+            distance_moved_this_step = generator.position_history[-2].position.distance_to(
+                                           generator.position_history[-1].position
+                                       )
+        manual_total_distance += distance_moved_this_step
         
-        # Display results
+        # Display results for state at t = i+1
         print(f"   {i+1:<8} {state.position.latitude:<12.6f} {state.position.longitude:<13.6f} "
-              f"{state.speed.value:<8.2f} {state.heading.value:<8.1f} {distance_moved:<10.2f}")
+              f"{state.speed.value:<8.2f} {state.heading.value:<8.1f} {distance_moved_this_step:<10.2f}")
     
     print(f"\n4. SUMMARY:")
-    print(f"   Total distance traveled: {total_distance:.2f} meters")
+    # Total distance from generator should now be over the full 10 steps from t=0 to t=10
+    print(f"   Total distance traveled (generator): {generator.get_distance_traveled():.2f} meters")
+    print(f"   Total distance traveled (manual sum): {manual_total_distance:.2f} meters") # Verification
     print(f"   Average speed: {generator.get_average_speed():.2f} knots")
     print(f"   Final position: {generator.current_position}")
 
