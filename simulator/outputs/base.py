@@ -21,8 +21,8 @@ class OutputHandler(ABC):
         pass
     
     @abstractmethod
-    def close(self) -> None:
-        """Close the output handler and release resources."""
+    def stop(self) -> None:
+        """Stop the output handler."""
         pass
     
     @abstractmethod
@@ -64,4 +64,4 @@ class OutputHandler(ABC):
     
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Context manager exit."""
-        self.close()
+        self.stop()

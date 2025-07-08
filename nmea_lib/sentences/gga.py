@@ -4,8 +4,7 @@ from typing import Optional
 from dataclasses import dataclass
 from ..base import Sentence, TalkerId, SentenceId, GpsFixQuality, PositionSentence, TimeSentence
 from ..parser import SentenceParser, SentenceBuilder
-from ..types import Position, Distance, DistanceUnit # NMEATime removed from here for specific import
-from ..types.datetime import NMEATime # Specific import for NMEATime
+from ..types import Position, NMEATime, Distance, DistanceUnit
 
 
 @dataclass
@@ -187,13 +186,16 @@ class GGASentence(PositionSentence, TimeSentence):
         return builder.build()
     
     # Property accessors
-    def get_time(self) -> Optional[NMEATime]: # Return NMEATime object
-        """Get time as NMEATime object."""
-        return self._time
+    def get_time(self) -> Optional[str]:
+        """Get time in HHMMSS.SSS format."""
+        return self._time.to_nmea() if self._time else None
     
-    def set_time(self, time_obj: Optional[NMEATime]) -> None: # Accept NMEATime object or None
-        """Set time using NMEATime object."""
-        self._time = time_obj
+    def set_time(self, time_str: str) -> None:
+        """Set time in HHMMSS.SSS format."""
+        if time_str:
+            self._time = NMEATime.from_nmea(time_str)
+        else:
+            self._time = None
     
     def get_latitude(self) -> Optional[float]:
         """Get latitude in decimal degrees."""

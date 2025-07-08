@@ -4,8 +4,7 @@ from typing import Optional
 from dataclasses import dataclass
 from ..base import Sentence, TalkerId, SentenceId, PositionSentence, TimeSentence, DateSentence
 from ..parser import SentenceParser, SentenceBuilder
-from ..types import Position, Speed, Bearing, SpeedUnit, BearingType # NMEATime, NMEADate removed
-from ..types.datetime import NMEATime, NMEADate # Specific imports
+from ..types import Position, NMEATime, NMEADate, Speed, Bearing, SpeedUnit, BearingType
 from ..types.enums import DataStatus, ModeIndicator, CompassPoint
 
 
@@ -203,21 +202,27 @@ class RMCSentence(PositionSentence, TimeSentence, DateSentence):
         return builder.build()
     
     # Property accessors
-    def get_time(self) -> Optional[NMEATime]: # Return NMEATime object
-        """Get time as NMEATime object."""
-        return self._time
+    def get_time(self) -> Optional[str]:
+        """Get time in HHMMSS.SSS format."""
+        return self._time.to_nmea() if self._time else None
     
-    def set_time(self, time_obj: Optional[NMEATime]) -> None: # Accept NMEATime object or None
-        """Set time using NMEATime object."""
-        self._time = time_obj
+    def set_time(self, time_str: str) -> None:
+        """Set time in HHMMSS.SSS format."""
+        if time_str:
+            self._time = NMEATime.from_nmea(time_str)
+        else:
+            self._time = None
     
-    def get_date(self) -> Optional[NMEADate]: # Return NMEADate object
-        """Get date as NMEADate object."""
-        return self._date
+    def get_date(self) -> Optional[str]:
+        """Get date in DDMMYY format."""
+        return self._date.to_nmea() if self._date else None
     
-    def set_date(self, date_obj: Optional[NMEADate]) -> None: # Accept NMEADate object or None
-        """Set date using NMEADate object."""
-        self._date = date_obj
+    def set_date(self, date_str: str) -> None:
+        """Set date in DDMMYY format."""
+        if date_str:
+            self._date = NMEADate.from_nmea(date_str)
+        else:
+            self._date = None
     
     def get_latitude(self) -> Optional[float]:
         """Get latitude in decimal degrees."""

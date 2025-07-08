@@ -119,8 +119,8 @@ def main():
             'type': 'file',
             'config': {
                 'filename': 'logs/nmea_ais_output.log',
-                'rotation_size_mb': 10,
-                'max_files': 3
+                'max_size_mb': 10,
+                'backup_count': 3
             }
         },
         {
@@ -142,19 +142,50 @@ def main():
     ]
     
     print("Setting up output handlers:")
-    for output_config in output_configs:
+    # Import specific output config types
+    from simulator.outputs.file import FileOutputConfig
+    from simulator.outputs.tcp import TCPOutputConfig
+    from simulator.outputs.udp import UDPOutputConfig
+    # Alias OutputConfig from parser to avoid name clash if needed, or ensure distinct usage
+    from simulator.config.parser import OutputConfig as ParserOutputConfig
+
+    for output_setting in output_configs: # Renamed for clarity
         try:
-            from simulator.config.parser import OutputConfig
-            config_obj = OutputConfig(
-                type=output_config['type'],
-                enabled=True,
-                config=output_config['config']
-            )
-            handler = OutputFactory.create_output_handler(config_obj)
-            engine.add_output_handler(handler)
-            print(f"  ✅ {output_config['type'].upper()}: {handler}")
+            specific_config_dict = output_setting['config']
+            output_type = output_setting['type']
+
+            typed_config = None
+            if output_type == 'file':
+                typed_config = FileOutputConfig(
+                    file_path=specific_config_dict['filename'], # Corrected field name
+                    rotation_size_mb=specific_config_dict.get('max_size_mb'),
+                    max_files=specific_config_dict.get('backup_count', 10),
+                    append_mode=True,
+                    auto_flush=True
+                )
+            elif output_type == 'tcp':
+                typed_config = TCPOutputConfig(**specific_config_dict)
+            elif output_type == 'udp':
+                typed_config = UDPOutputConfig(
+                    host=specific_config_dict['host'],
+                    port=specific_config_dict['port'],
+                    broadcast=specific_config_dict.get('broadcast', True),
+                    multicast_group=specific_config_dict.get('multicast_group')
+                )
+
+            if typed_config:
+                parser_config_obj = ParserOutputConfig(
+                    type=output_type,
+                    enabled=True,
+                    config=typed_config # Assign the typed config object
+                )
+                handler = OutputFactory.create_output_handler(parser_config_obj)
+                engine.add_output_handler(handler)
+                print(f"  ✅ {output_setting['type'].upper()}: {handler}")
+            else:
+                print(f"  ⚠️ {output_setting['type'].upper()}: Could not create typed config, skipping.")
         except Exception as e:
-            print(f"  ❌ {output_config['type'].upper()}: {e}")
+            print(f"  ❌ {output_setting['type'].upper()}: {e}")
     
     print()
     
