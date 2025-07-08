@@ -119,8 +119,8 @@ def main():
             'type': 'file',
             'config': {
                 'filename': 'logs/nmea_ais_output.log',
-                'max_size_mb': 10,
-                'backup_count': 3
+                'rotation_size_mb': 10,
+                'max_files': 3
             }
         },
         {
