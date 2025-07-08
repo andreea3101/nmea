@@ -7,17 +7,17 @@ from typing import Optional
 class SentenceValidator:
     """Validates NMEA sentence format and checksum."""
     
-    # NMEA sentence pattern: $TALKERID,field1,field2,...*CHECKSUM\r\n
-    NMEA_PATTERN = re.compile(r'^\$[A-Z]{2}[A-Z]{3},[^*]*\*[0-9A-F]{2}(?:\r\n|\r|\n)?$')
+    # NMEA sentence pattern: $ or ! + TALKERID,field1,field2,...*CHECKSUM\r\n
+    NMEA_PATTERN = re.compile(r'^[\$\!][A-Z]{2}[A-Z]{3},[^*]*\*[0-9A-F]{2}(?:\r\n|\r|\n)?$')
     
     @staticmethod
     def is_valid_format(sentence: str) -> bool:
-        """Check if sentence matches NMEA format."""
+        """Check if sentence matches NMEA format (allowing $ or !)."""
         if not sentence:
             return False
         
         # Basic format check
-        if not sentence.startswith('$'):
+        if not (sentence.startswith('$') or sentence.startswith('!')):
             return False
         
         if '*' not in sentence:

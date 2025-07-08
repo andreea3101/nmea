@@ -231,34 +231,46 @@ class AISMessageGenerator:
         return generators[message_type](vessel_data, channel)
 
 
+from nmea_lib.validator import SentenceValidator # Added import
+
 # Utility functions for testing and validation
 def validate_aivdm_sentence(sentence: str) -> bool:
-    """Validate an AIVDM sentence string."""
+    """Validate an AIVDM sentence string, including NMEA checksum."""
     try:
-        # Parse sentence
-        if not sentence.startswith('!AIVDM,'):
+        # First, validate NMEA format and checksum
+        if not SentenceValidator.is_valid(sentence): # Use SentenceValidator.is_valid
             return False
-        
-        # Basic format check
-        if '*' not in sentence:
+
+        # Parse sentence
+        if not sentence.startswith('!AIVDM,'): # This check is somewhat redundant due to SentenceValidator but good for clarity
             return False
         
         # Parse fields
-        parts = sentence.split(',')
-        if len(parts) < 7:
+        # We know the sentence has a '*' from SentenceValidator.is_valid
+        main_part, _ = sentence.split('*', 1)
+        parts = main_part.split(',') # main_part starts with !AIVDM
+
+        if len(parts) < 7: # Example: !AIVDM,1,1,,A,payload,0
             return False
         
         # Validate AIVDM-specific fields
         total_sentences = int(parts[1])
         sentence_number = int(parts[2])
+        # parts[3] is sequential_message_id, can be empty
         channel = parts[4]
         payload = parts[5]
-        fill_bits = int(parts[6].split('*')[0])
+        fill_bits = int(parts[6]) # Checksum has been removed
         
-        # Create AIVDM object for validation
-        aivdm = AIVDMSentence(total_sentences, sentence_number, parts[3], 
-                             channel, payload, fill_bits)
-        return aivdm.validate()
+        # Create AIVDM object for AIVDM-specific validation logic
+        aivdm = AIVDMSentence(
+            total_sentences=total_sentences,
+            sentence_number=sentence_number,
+            sequential_message_id=parts[3],
+            channel=channel,
+            payload=payload,
+            fill_bits=fill_bits
+        )
+        return aivdm.validate() # This checks AIVDM content rules
         
     except (ValueError, IndexError):
         return False
