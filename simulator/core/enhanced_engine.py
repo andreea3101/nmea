@@ -15,7 +15,8 @@ from nmea_lib.sentences.gga import GGASentence
 from nmea_lib.sentences.rmc import RMCSentence
 from nmea_lib.sentences.aivdm import AISMessageGenerator
 from nmea_lib.types.vessel import VesselState, BaseStationData, AidToNavigationData
-from nmea_lib.types import Position, NMEATime, NMEADate
+from nmea_lib.types import Position, NMEATime, NMEADate, Speed, Bearing, Distance, SpeedUnit, BearingType, DistanceUnit
+from nmea_lib.types.enums import GpsFixQuality, DataStatus, MagneticVariationDirection
 
 
 @dataclass
@@ -359,9 +360,6 @@ class EnhancedSimulationEngine:
             self.logger.error(f"Error generating AIS message type {message_type} for vessel {vessel_mmsi}: {e}")
             self.stats['errors'] += 1
     
-from nmea_lib.types import Position, NMEATime, NMEADate, Speed, Bearing, Distance, SpeedUnit, BearingType, DistanceUnit
-from nmea_lib.types.enums import GpsFixQuality, DataStatus, MagneticVariationDirection # Assuming MagVarDirection exists or using CompassPoint
-
     def _create_gga_sentence(self, vessel_state: VesselState, current_time: datetime) -> GGASentence:
         """Create GGA sentence from vessel state."""
         nav = vessel_state.navigation_data
