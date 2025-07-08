@@ -11,17 +11,13 @@ from simulator.core.time_manager import TimeManager
 from simulator.core.ais_scheduler import AISMessageScheduler
 from simulator.generators.vessel import EnhancedVesselGenerator
 from simulator.outputs.base import OutputHandler
-from nmea_lib.base import GpsFixQuality # Added GpsFixQuality
-from nmea_lib.base import GpsFixQuality
 from nmea_lib.sentences.gga import GGASentence
 from nmea_lib.sentences.rmc import RMCSentence
 from nmea_lib.sentences.aivdm import AISMessageGenerator
 from nmea_lib.types.vessel import VesselState, BaseStationData, AidToNavigationData
-from nmea_lib.types import ( # Grouped imports
-    Position, NMEATime, NMEADate, Distance, DistanceUnit,
-    Speed, SpeedUnit, Bearing, BearingType, CompassPoint,
-    DataStatus, ModeIndicator # Added DataStatus and ModeIndicator
-)
+from nmea_lib.types import Position, NMEATime, NMEADate, Speed, Bearing, Distance, SpeedUnit, BearingType, DistanceUnit
+from nmea_lib.base import GpsFixQuality # Corrected import
+from nmea_lib.types.enums import DataStatus # Corrected import
 
 
 @dataclass
@@ -54,7 +50,8 @@ class EnhancedSimulationEngine:
     def __init__(self, config: SimulationConfig):
         """Initialize enhanced simulation engine."""
         self.config = config
-        self.time_manager = TimeManager(time_factor=config.time_factor) # Correctly pass time_factor
+        # Correctly initialize TimeManager using keyword argument for time_factor
+        self.time_manager = TimeManager(time_factor=config.time_factor)
         self.ais_scheduler = AISMessageScheduler()
         self.ais_generator = AISMessageGenerator()
         
@@ -164,6 +161,14 @@ class EnhancedSimulationEngine:
         # Initialize time manager (no start method needed)
         # Time manager automatically tracks time from initialization
         
+        # Start output handlers
+        for handler in self.output_handlers:
+            try:
+                handler.start()
+                self.logger.info(f"Started output handler: {type(handler).__name__}")
+            except Exception as e:
+                self.logger.error(f"Failed to start output handler {type(handler).__name__}: {e}")
+
         # Start simulation threads
         if self.config.enable_gps:
             self.gps_thread = threading.Thread(target=self._gps_loop, daemon=True)
@@ -201,12 +206,13 @@ class EnhancedSimulationEngine:
         if self.ais_thread and self.ais_thread.is_alive():
             self.ais_thread.join(timeout=5.0)
         
-        # Close output handlers
+        # Stop output handlers
         for handler in self.output_handlers:
             try:
-                handler.close()
+                handler.stop()
+                self.logger.info(f"Stopped output handler: {type(handler).__name__}")
             except Exception as e:
-                self.logger.error(f"Error closing output handler: {e}")
+                self.logger.error(f"Error stopping output handler {type(handler).__name__}: {e}")
         
         self.logger.info("Simulation engine stopped")
     
@@ -242,18 +248,28 @@ class EnhancedSimulationEngine:
     
     def _gps_loop(self):
         """GPS sentence generation loop."""
-        last_gps_update = datetime.now()
+        # Initialize last_gps_update to ensure the first update occurs if needed,
+        # or handle the first run explicitly. Using None and checking is cleaner.
+        last_gps_update: Optional[datetime] = None
         
         while self.running:
             try:
-                current_time = datetime.now()
+                # Use simulation time for GPS scheduling
+                sim_current_time = self.time_manager.get_current_time()
                 
-                # Check if it's time for GPS update
-                if (current_time - last_gps_update).total_seconds() >= self.config.gps_update_interval:
-                    self._generate_gps_sentences(current_time)
-                    last_gps_update = current_time
+                # Check if it's time for GPS update based on simulation time
+                if last_gps_update is None or \
+                   (sim_current_time - last_gps_update).total_seconds() >= self.config.gps_update_interval:
+                    self._generate_gps_sentences(sim_current_time)
+                    last_gps_update = sim_current_time
                 
-                time.sleep(0.1)  # Check every 100ms
+                # Sleep based on a fraction of GPS interval or a fixed small duration,
+                # ensuring responsiveness without excessive CPU load.
+                # This sleep is in real-time, so it should be small.
+                # Consider the time_factor if very precise real-time alignment of this loop is needed,
+                # but typically, this loop just needs to check periodically.
+                sleep_duration = min(0.1, self.config.gps_update_interval / (self.time_manager.time_factor if self.time_manager.time_factor > 0 else 1.0) / 2)
+                time.sleep(max(0.01, sleep_duration)) # Ensure a minimum sleep
                 
             except Exception as e:
                 self.logger.error(f"Error in GPS loop: {e}")
@@ -308,11 +324,11 @@ class EnhancedSimulationEngine:
                 
                 # Generate GGA sentence
                 gga_sentence = self._create_gga_sentence(vessel_state, current_time)
-                self._send_sentence(str(gga_sentence), 'GPS')
+                self._send_sentence(gga_sentence.to_sentence(), 'GPS')
                 
                 # Generate RMC sentence
                 rmc_sentence = self._create_rmc_sentence(vessel_state, current_time)
-                self._send_sentence(str(rmc_sentence), 'GPS')
+                self._send_sentence(rmc_sentence.to_sentence(), 'GPS')
                 
                 self.stats['gps_sentences'] += 2
                 
@@ -350,14 +366,14 @@ class EnhancedSimulationEngine:
             
             # Trace logging
             if self.config.enable_trace_logging and self.trace_callback:
-                # Directly call with keyword arguments matching AISTraceLogger.log_message_generation
+                # Directly call the trace_callback (AISTraceLogger.log_message_generation)
+                # with the required arguments.
+                # processing_time_ms is not readily available here, so it defaults to None.
                 self.trace_callback(
                     vessel_mmsi=vessel_mmsi,
                     message_type=message_type,
                     sentences=sentences,
                     input_data=input_data
-                    # processing_time_ms can be added here if available, e.g.,
-                    # processing_time_ms=calculated_processing_time
                 )
             
             self.stats['ais_sentences'] += len(sentences)
@@ -372,21 +388,13 @@ class EnhancedSimulationEngine:
         
         # Create GGA sentence
         gga = GGASentence()
-        # Set primary fields using existing setters
-        gga.set_time(NMEATime.from_datetime(current_time))
+        gga.set_time(NMEATime.from_datetime(current_time).to_nmea()) # Pass NMEA string
         gga.set_position(nav.position.latitude, nav.position.longitude)
-        gga.set_fix_quality(GpsFixQuality.GPS)
-
-        # Set other fields by assigning to internal attributes
-        gga._satellites_in_use = 8
-        gga._horizontal_dilution = 1.2
-        gga._altitude = Distance(0.0, DistanceUnit.METERS) # This setter exists, but for consistency with others, direct assign is also an option
-        gga._geoidal_height = Distance(19.6, DistanceUnit.METERS) # This setter also exists
-
-        # Ensure altitude and geoidal height also update the raw fields list if necessary,
-        # or that their .to_sentence() method correctly uses these _attributes.
-        # The GGASentence.to_sentence() uses _altitude and _geoidal_height directly, so this is fine.
-        # It also uses _satellites_in_use and _horizontal_dilution directly.
+        gga.set_fix_quality(GpsFixQuality.GPS)  # Corrected Enum member
+        gga.set_satellites_in_use(8) # Corrected method name
+        gga.set_horizontal_dilution(1.2) # Corrected method name
+        gga.set_altitude(Distance(0.0, DistanceUnit.METERS)) # Use Distance type
+        gga.set_geoidal_height(Distance(19.6, DistanceUnit.METERS)) # Corrected method name
         
         return gga
     
@@ -396,27 +404,15 @@ class EnhancedSimulationEngine:
         
         # Create RMC sentence
         rmc = RMCSentence()
-        # Set primary fields using existing setters
-        rmc.set_time(NMEATime.from_datetime(current_time))
-        rmc.set_status(DataStatus.ACTIVE) # Use DataStatus enum
+        rmc.set_time(NMEATime.from_datetime(current_time).to_nmea()) # Pass NMEA string
+        rmc.set_status(DataStatus.ACTIVE)  # Use Enum
         rmc.set_position(nav.position.latitude, nav.position.longitude)
-        rmc.set_date(NMEADate.from_datetime(current_time))
-
-        # Set other fields by assigning to internal attributes
-        rmc._speed = Speed(nav.sog, SpeedUnit.KNOTS)
-        rmc._course = Bearing(nav.cog, BearingType.TRUE)
-        rmc._magnetic_variation = 0.0
-        rmc._variation_direction = CompassPoint.EAST
-        # The RMC sentence's to_sentence() method uses _speed, _course,
-        # _magnetic_variation, and _variation_direction directly.
-
-        # Mode indicator can be defaulted or set if needed, e.g.
-        # rmc._mode_indicator = ModeIndicator.AUTONOMOUS
-        # For now, will rely on default in RMCSentence init (NOT_VALID) or its to_sentence logic.
-        # The example RMC sentence had 'A' (Autonomous) for mode indicator.
-        # Let's set it to Autonomous as it's common for GPS.
-        rmc._mode_indicator = ModeIndicator.AUTONOMOUS
-
+        rmc.set_speed(Speed(nav.sog, SpeedUnit.KNOTS)) # Use Speed type
+        rmc.set_course(Bearing(nav.cog, BearingType.TRUE)) # Use Bearing type
+        rmc.set_date(NMEADate.from_date(current_time.date()).to_nmea()) # Pass NMEA string
+        rmc.set_magnetic_variation(0.0) # Mag variation direction derived from sign or default E
+        # For explicit E/W, the RMCSentence might need adjustment or use CompassPoint if available
+        # Example: if hasattr(rmc, 'set_magnetic_variation_direction'): rmc.set_magnetic_variation_direction(CompassPoint.EAST)
 
         return rmc
     
