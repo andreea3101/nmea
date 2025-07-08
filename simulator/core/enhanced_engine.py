@@ -359,6 +359,9 @@ class EnhancedSimulationEngine:
             self.logger.error(f"Error generating AIS message type {message_type} for vessel {vessel_mmsi}: {e}")
             self.stats['errors'] += 1
     
+from nmea_lib.types import Position, NMEATime, NMEADate, Speed, Bearing, Distance, SpeedUnit, BearingType, DistanceUnit
+from nmea_lib.types.enums import GpsFixQuality, DataStatus, MagneticVariationDirection # Assuming MagVarDirection exists or using CompassPoint
+
     def _create_gga_sentence(self, vessel_state: VesselState, current_time: datetime) -> GGASentence:
         """Create GGA sentence from vessel state."""
         nav = vessel_state.navigation_data
@@ -367,11 +370,11 @@ class EnhancedSimulationEngine:
         gga = GGASentence()
         gga.set_time(NMEATime.from_datetime(current_time))
         gga.set_position(nav.position.latitude, nav.position.longitude)
-        gga.set_fix_quality(1)  # GPS fix
+        gga.set_fix_quality(GpsFixQuality.GPS_FIX)  # Use Enum
         gga.set_satellites_used(8)
         gga.set_hdop(1.2)
-        gga.set_altitude(0.0)
-        gga.set_geoid_height(19.6)
+        gga.set_altitude(Distance(0.0, DistanceUnit.METERS)) # Use Distance type
+        gga.set_geoid_height(Distance(19.6, DistanceUnit.METERS)) # Use Distance type
         
         return gga
     
@@ -382,12 +385,14 @@ class EnhancedSimulationEngine:
         # Create RMC sentence
         rmc = RMCSentence()
         rmc.set_time(NMEATime.from_datetime(current_time))
-        rmc.set_status('A')  # Active
+        rmc.set_status(DataStatus.ACTIVE)  # Use Enum
         rmc.set_position(nav.position.latitude, nav.position.longitude)
-        rmc.set_speed(nav.sog)
-        rmc.set_course(nav.cog)
+        rmc.set_speed(Speed(nav.sog, SpeedUnit.KNOTS)) # Use Speed type
+        rmc.set_course(Bearing(nav.cog, BearingType.TRUE)) # Use Bearing type
         rmc.set_date(NMEADate.from_date(current_time.date()))
-        rmc.set_magnetic_variation(0.0, 'E')
+        rmc.set_magnetic_variation(0.0) # Mag variation direction derived from sign or default E
+        # For explicit E/W, the RMCSentence might need adjustment or use CompassPoint if available
+        # Example: if hasattr(rmc, 'set_magnetic_variation_direction'): rmc.set_magnetic_variation_direction(CompassPoint.EAST)
         
         return rmc
     
