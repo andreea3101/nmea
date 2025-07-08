@@ -111,8 +111,8 @@ class TCPOutput(OutputHandler):
                 self.server_socket = None
             raise RuntimeError(f"Failed to start TCP server: {e}")
     
-    def stop(self) -> None:
-        """Stop TCP server."""
+    def close(self) -> None:
+        """Stop TCP server and close all connections."""
         if not self.is_running:
             return
         
@@ -138,7 +138,35 @@ class TCPOutput(OutputHandler):
             self.client_manager_thread.join(timeout=5.0)
         
         print("TCP server stopped")
-    
+
+    def close(self) -> None:
+        """Stop TCP server and close all connections."""
+        if not self.is_running:
+            return
+
+        self.is_running = False
+        self.stop_event.set()
+
+        # Close all client connections
+        with self.clients_lock:
+            for client in self.clients:
+                client.close()
+            self.clients.clear()
+
+        # Close server socket
+        if self.server_socket:
+            self.server_socket.close()
+            self.server_socket = None
+
+        # Wait for threads to finish
+        if self.server_thread:
+            self.server_thread.join(timeout=5.0)
+
+        if self.client_manager_thread:
+            self.client_manager_thread.join(timeout=5.0)
+
+        print("TCP server stopped")
+
     def send_sentence(self, sentence: str) -> bool:
         """Send NMEA sentence to all connected clients."""
         if not self.is_running:

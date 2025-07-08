@@ -11,11 +11,17 @@ from simulator.core.time_manager import TimeManager
 from simulator.core.ais_scheduler import AISMessageScheduler
 from simulator.generators.vessel import EnhancedVesselGenerator
 from simulator.outputs.base import OutputHandler
+from nmea_lib.base import GpsFixQuality # Added GpsFixQuality
+from nmea_lib.base import GpsFixQuality
 from nmea_lib.sentences.gga import GGASentence
 from nmea_lib.sentences.rmc import RMCSentence
 from nmea_lib.sentences.aivdm import AISMessageGenerator
 from nmea_lib.types.vessel import VesselState, BaseStationData, AidToNavigationData
-from nmea_lib.types import Position, NMEATime, NMEADate
+from nmea_lib.types import ( # Grouped imports
+    Position, NMEATime, NMEADate, Distance, DistanceUnit,
+    Speed, SpeedUnit, Bearing, BearingType, CompassPoint,
+    DataStatus, ModeIndicator # Added DataStatus and ModeIndicator
+)
 
 
 @dataclass
@@ -48,7 +54,7 @@ class EnhancedSimulationEngine:
     def __init__(self, config: SimulationConfig):
         """Initialize enhanced simulation engine."""
         self.config = config
-        self.time_manager = TimeManager(config.time_factor)
+        self.time_manager = TimeManager(time_factor=config.time_factor) # Correctly pass time_factor
         self.ais_scheduler = AISMessageScheduler()
         self.ais_generator = AISMessageGenerator()
         
@@ -344,14 +350,15 @@ class EnhancedSimulationEngine:
             
             # Trace logging
             if self.config.enable_trace_logging and self.trace_callback:
-                trace_data = {
-                    'timestamp': current_time.isoformat(),
-                    'vessel_mmsi': vessel_mmsi,
-                    'message_type': message_type,
-                    'sentences': sentences,
-                    'input_data': input_data
-                }
-                self.trace_callback('ais_message_generated', trace_data)
+                # Directly call with keyword arguments matching AISTraceLogger.log_message_generation
+                self.trace_callback(
+                    vessel_mmsi=vessel_mmsi,
+                    message_type=message_type,
+                    sentences=sentences,
+                    input_data=input_data
+                    # processing_time_ms can be added here if available, e.g.,
+                    # processing_time_ms=calculated_processing_time
+                )
             
             self.stats['ais_sentences'] += len(sentences)
             
@@ -365,13 +372,21 @@ class EnhancedSimulationEngine:
         
         # Create GGA sentence
         gga = GGASentence()
+        # Set primary fields using existing setters
         gga.set_time(NMEATime.from_datetime(current_time))
         gga.set_position(nav.position.latitude, nav.position.longitude)
-        gga.set_fix_quality(1)  # GPS fix
-        gga.set_satellites_used(8)
-        gga.set_hdop(1.2)
-        gga.set_altitude(0.0)
-        gga.set_geoid_height(19.6)
+        gga.set_fix_quality(GpsFixQuality.GPS)
+
+        # Set other fields by assigning to internal attributes
+        gga._satellites_in_use = 8
+        gga._horizontal_dilution = 1.2
+        gga._altitude = Distance(0.0, DistanceUnit.METERS) # This setter exists, but for consistency with others, direct assign is also an option
+        gga._geoidal_height = Distance(19.6, DistanceUnit.METERS) # This setter also exists
+
+        # Ensure altitude and geoidal height also update the raw fields list if necessary,
+        # or that their .to_sentence() method correctly uses these _attributes.
+        # The GGASentence.to_sentence() uses _altitude and _geoidal_height directly, so this is fine.
+        # It also uses _satellites_in_use and _horizontal_dilution directly.
         
         return gga
     
@@ -381,14 +396,28 @@ class EnhancedSimulationEngine:
         
         # Create RMC sentence
         rmc = RMCSentence()
+        # Set primary fields using existing setters
         rmc.set_time(NMEATime.from_datetime(current_time))
-        rmc.set_status('A')  # Active
+        rmc.set_status(DataStatus.ACTIVE) # Use DataStatus enum
         rmc.set_position(nav.position.latitude, nav.position.longitude)
-        rmc.set_speed(nav.sog)
-        rmc.set_course(nav.cog)
         rmc.set_date(NMEADate.from_datetime(current_time))
-        rmc.set_magnetic_variation(0.0, 'E')
-        
+
+        # Set other fields by assigning to internal attributes
+        rmc._speed = Speed(nav.sog, SpeedUnit.KNOTS)
+        rmc._course = Bearing(nav.cog, BearingType.TRUE)
+        rmc._magnetic_variation = 0.0
+        rmc._variation_direction = CompassPoint.EAST
+        # The RMC sentence's to_sentence() method uses _speed, _course,
+        # _magnetic_variation, and _variation_direction directly.
+
+        # Mode indicator can be defaulted or set if needed, e.g.
+        # rmc._mode_indicator = ModeIndicator.AUTONOMOUS
+        # For now, will rely on default in RMCSentence init (NOT_VALID) or its to_sentence logic.
+        # The example RMC sentence had 'A' (Autonomous) for mode indicator.
+        # Let's set it to Autonomous as it's common for GPS.
+        rmc._mode_indicator = ModeIndicator.AUTONOMOUS
+
+
         return rmc
     
     def _send_sentence(self, sentence: str, sentence_type: str):

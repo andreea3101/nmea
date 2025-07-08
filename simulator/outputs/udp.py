@@ -70,8 +70,8 @@ class UDPOutput(OutputHandler):
                 self.socket = None
             raise RuntimeError(f"Failed to start UDP output: {e}")
     
-    def stop(self) -> None:
-        """Stop UDP output."""
+    def close(self) -> None:
+        """Close UDP output and release resources."""
         if not self.is_running:
             return
         

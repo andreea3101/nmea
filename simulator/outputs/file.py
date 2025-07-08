@@ -64,8 +64,8 @@ class FileOutput(OutputHandler):
         except Exception as e:
             raise RuntimeError(f"Failed to start file output: {e}")
     
-    def stop(self) -> None:
-        """Stop file output."""
+    def close(self) -> None:
+        """Close file output and release resources."""
         if not self.is_running:
             return
         
