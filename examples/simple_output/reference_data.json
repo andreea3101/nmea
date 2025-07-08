@@ -1,0 +1,5465 @@
+{
+  "generation_info": {
+    "timestamp": "2025-07-04T09:50:35.815440",
+    "vessel_count": 2,
+    "total_messages": 320
+  },
+  "vessels": [
+    {
+      "mmsi": 367001234,
+      "name": "EVER FORWARD",
+      "call_sign": "TEST123",
+      "ship_type": 70,
+      "vessel_class": "A"
+    },
+    {
+      "mmsi": 367002345,
+      "name": "PACIFIC DAWN",
+      "call_sign": "FISH01",
+      "ship_type": 30,
+      "vessel_class": "A"
+    }
+  ],
+  "messages": [
+    {
+      "timestamp": "2025-07-04T09:50:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095039.790,3748.0431,N,12224.0431,W,1,08,1.2,0.0,M,19.6,M,,*4C",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.80071764937999,
+          "longitude": -122.40071764938
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095039.790,A,3748.0431,N,12224.0431,W,15.5,90.0,040725,0.0,E*71",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.80071764937999,
+          "longitude": -122.40071764938
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095039.790,3744.9772,N,12226.9772,W,1,08,1.2,0.0,M,19.6,M,,*42",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.749620340328,
+          "longitude": -122.44962034032801
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095039.790,A,3744.9772,N,12226.9772,W,8.2,180.0,040725,0.0,E*74",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.749620340328,
+          "longitude": -122.44962034032801
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095044.790,3748.1938,N,12224.1938,W,1,08,1.2,0.0,M,19.6,M,,*46",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.803229422209995,
+          "longitude": -122.40322942220998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095044.790,A,3748.1938,N,12224.1938,W,15.5,90.0,040725,0.0,E*7B",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.803229422209995,
+          "longitude": -122.40322942220998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095044.790,3744.8975,N,12226.8975,W,1,08,1.2,0.0,M,19.6,M,,*48",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.748291531476,
+          "longitude": -122.44829153147602
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095044.790,A,3744.8975,N,12226.8975,W,8.2,180.0,040725,0.0,E*7E",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.748291531476,
+          "longitude": -122.44829153147602
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:44.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.803229422209995,
+          "longitude": -122.40322942220998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:44.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.748291531476,
+          "longitude": -122.44829153147602
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095049.790,3748.4521,N,12224.4521,W,1,08,1.2,0.0,M,19.6,M,,*4B",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.80753531848999,
+          "longitude": -122.40753531848999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095049.790,A,3748.4521,N,12224.4521,W,15.5,90.0,040725,0.0,E*76",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.80753531848999,
+          "longitude": -122.40753531848999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095049.790,3744.7608,N,12226.7608,W,1,08,1.2,0.0,M,19.6,M,,*45",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.746013573443996,
+          "longitude": -122.446013573444
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095049.790,A,3744.7608,N,12226.7608,W,8.2,180.0,040725,0.0,E*73",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.746013573443996,
+          "longitude": -122.446013573444
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095054.790,3748.8181,N,12224.8181,W,1,08,1.2,0.0,M,19.6,M,,*47",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.813635338219996,
+          "longitude": -122.41363533822
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095054.790,A,3748.8181,N,12224.8181,W,15.5,90.0,040725,0.0,E*7A",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.813635338219996,
+          "longitude": -122.41363533822
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095054.790,3744.5672,N,12226.5672,W,1,08,1.2,0.0,M,19.6,M,,*49",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.742786466232,
+          "longitude": -122.44278646623201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095054.790,A,3744.5672,N,12226.5672,W,8.2,180.0,040725,0.0,E*7F",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.742786466232,
+          "longitude": -122.44278646623201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:54.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.813635338219996,
+          "longitude": -122.41363533822
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:54.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.742786466232,
+          "longitude": -122.44278646623201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095059.790,3749.2918,N,12225.2918,W,1,08,1.2,0.0,M,19.6,M,,*4A",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.82152948139999,
+          "longitude": -122.4215294814
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095059.790,A,3749.2918,N,12225.2918,W,15.5,90.0,040725,0.0,E*77",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.82152948139999,
+          "longitude": -122.4215294814
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095059.790,3744.3166,N,12226.3166,W,1,08,1.2,0.0,M,19.6,M,,*44",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.73861020984,
+          "longitude": -122.43861020984001
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:50:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095059.790,A,3744.3166,N,12226.3166,W,8.2,180.0,040725,0.0,E*72",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.73861020984,
+          "longitude": -122.43861020984001
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095104.790,3749.8731,N,12225.8731,W,1,08,1.2,0.0,M,19.6,M,,*43",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.83121774802999,
+          "longitude": -122.43121774802998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095104.790,A,3749.8731,N,12225.8731,W,15.5,90.0,040725,0.0,E*7E",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.83121774802999,
+          "longitude": -122.43121774802998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095104.790,3744.0091,N,12226.0091,W,1,08,1.2,0.0,M,19.6,M,,*4D",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.733484804267995,
+          "longitude": -122.433484804268
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095104.790,A,3744.0091,N,12226.0091,W,8.2,180.0,040725,0.0,E*7B",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.733484804267995,
+          "longitude": -122.433484804268
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:04.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.83121774802999,
+          "longitude": -122.43121774802998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:04.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.733484804267995,
+          "longitude": -122.433484804268
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095109.790,3750.5620,N,12226.5620,W,1,08,1.2,0.0,M,19.6,M,,*45",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.84270013810999,
+          "longitude": -122.44270013810998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095109.790,A,3750.5620,N,12226.5620,W,15.5,90.0,040725,0.0,E*78",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.84270013810999,
+          "longitude": -122.44270013810998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095109.790,3743.6446,N,12225.6446,W,1,08,1.2,0.0,M,19.6,M,,*44",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.727410249516,
+          "longitude": -122.427410249516
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095109.790,A,3743.6446,N,12225.6446,W,8.2,180.0,040725,0.0,E*72",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.727410249516,
+          "longitude": -122.427410249516
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095114.790,3751.3586,N,12227.3586,W,1,08,1.2,0.0,M,19.6,M,,*49",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.85597665163999,
+          "longitude": -122.45597665164
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095114.790,A,3751.3586,N,12227.3586,W,15.5,90.0,040725,0.0,E*74",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.85597665163999,
+          "longitude": -122.45597665164
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095114.790,3743.2232,N,12225.2232,W,1,08,1.2,0.0,M,19.6,M,,*48",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.72038654558399,
+          "longitude": -122.42038654558401
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095114.790,A,3743.2232,N,12225.2232,W,8.2,180.0,040725,0.0,E*7E",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.72038654558399,
+          "longitude": -122.42038654558401
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:14.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.85597665163999,
+          "longitude": -122.45597665164
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:14.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.72038654558399,
+          "longitude": -122.42038654558401
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095119.790,3752.2628,N,12228.2628,W,1,08,1.2,0.0,M,19.6,M,,*48",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.87104728861999,
+          "longitude": -122.47104728862
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095119.790,A,3752.2628,N,12228.2628,W,15.5,90.0,040725,0.0,E*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.87104728861999,
+          "longitude": -122.47104728862
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095119.790,3742.7448,N,12224.7448,W,1,08,1.2,0.0,M,19.6,M,,*45",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.712413692472,
+          "longitude": -122.412413692472
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095119.790,A,3742.7448,N,12224.7448,W,8.2,180.0,040725,0.0,E*73",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.712413692472,
+          "longitude": -122.412413692472
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095124.790,3753.2747,N,12229.2747,W,1,08,1.2,0.0,M,19.6,M,,*46",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.887912049049994,
+          "longitude": -122.48791204904998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095124.790,A,3753.2747,N,12229.2747,W,15.5,90.0,040725,0.0,E*7B",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.887912049049994,
+          "longitude": -122.48791204904998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095124.790,3742.2095,N,12224.2095,W,1,08,1.2,0.0,M,19.6,M,,*4B",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.703491690179995,
+          "longitude": -122.40349169018
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095124.790,A,3742.2095,N,12224.2095,W,8.2,180.0,040725,0.0,E*7D",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.703491690179995,
+          "longitude": -122.40349169018
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:24.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.887912049049994,
+          "longitude": -122.48791204904998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:24.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.703491690179995,
+          "longitude": -122.40349169018
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095129.790,3754.3943,N,12230.3943,W,1,08,1.2,0.0,M,19.6,M,,*44",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.906570932929995,
+          "longitude": -122.50657093292998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095129.790,A,3754.3943,N,12230.3943,W,15.5,90.0,040725,0.0,E*79",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.906570932929995,
+          "longitude": -122.50657093292998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095129.790,3741.6172,N,12223.6172,W,1,08,1.2,0.0,M,19.6,M,,*42",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.693620538708,
+          "longitude": -122.393620538708
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095129.790,A,3741.6172,N,12223.6172,W,8.2,180.0,040725,0.0,E*74",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.693620538708,
+          "longitude": -122.393620538708
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095134.790,3755.6214,N,12231.6214,W,1,08,1.2,0.0,M,19.6,M,,*48",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.92702394025999,
+          "longitude": -122.52702394026
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095134.790,A,3755.6214,N,12231.6214,W,15.5,90.0,040725,0.0,E*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.92702394025999,
+          "longitude": -122.52702394026
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095134.790,3740.9680,N,12222.9680,W,1,08,1.2,0.0,M,19.6,M,,*4E",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.682800238056,
+          "longitude": -122.382800238056
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095134.790,A,3740.9680,N,12222.9680,W,8.2,180.0,040725,0.0,E*78",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.682800238056,
+          "longitude": -122.382800238056
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.92702394025999,
+          "longitude": -122.52702394026
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.682800238056,
+          "longitude": -122.382800238056
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,1,1,A,53HOI:000003BG?A59>bnjL3JG?>F`2j6fD3BG=60000040HlELhKP9\\,0*61",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.92702394025999,
+          "longitude": -122.52702394026
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,2,1,A,XKXjLhk`0000008,2*23",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.92702394025999,
+          "longitude": -122.52702394026
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,1,1,A,53HOI:000003BG?A59>bnjL3JG?>F`2j6fD3BG=60000040HlELhKP9\\,0*61",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.682800238056,
+          "longitude": -122.382800238056
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,2,1,A,XKXjLhk`0000008,2*23",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.682800238056,
+          "longitude": -122.382800238056
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095139.790,3756.9563,N,12232.9563,W,1,08,1.2,0.0,M,19.6,M,,*45",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.949271071039995,
+          "longitude": -122.54927107104
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095139.790,A,3756.9563,N,12232.9563,W,15.5,90.0,040725,0.0,E*78",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.949271071039995,
+          "longitude": -122.54927107104
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095139.790,3740.2618,N,12222.2618,W,1,08,1.2,0.0,M,19.6,M,,*43",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.671030788223995,
+          "longitude": -122.371030788224
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095139.790,A,3740.2618,N,12222.2618,W,8.2,180.0,040725,0.0,E*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.671030788223995,
+          "longitude": -122.371030788224
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095144.790,3758.3987,N,12234.3987,W,1,08,1.2,0.0,M,19.6,M,,*47",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.973312325269994,
+          "longitude": -122.57331232526998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095144.790,A,3758.3987,N,12234.3987,W,15.5,90.0,040725,0.0,E*7A",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.973312325269994,
+          "longitude": -122.57331232526998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095144.790,3739.4987,N,12221.4987,W,1,08,1.2,0.0,M,19.6,M,,*44",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.658312189212,
+          "longitude": -122.35831218921201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095144.790,A,3739.4987,N,12221.4987,W,8.2,180.0,040725,0.0,E*72",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.658312189212,
+          "longitude": -122.35831218921201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:44.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.973312325269994,
+          "longitude": -122.57331232526998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:44.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.658312189212,
+          "longitude": -122.35831218921201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095149.790,3759.9489,N,12235.9489,W,1,08,1.2,0.0,M,19.6,M,,*4A",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.99914770295,
+          "longitude": -122.59914770294996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095149.790,A,3759.9489,N,12235.9489,W,15.5,90.0,040725,0.0,E*77",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 37.99914770295,
+          "longitude": -122.59914770294996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095149.790,3738.6787,N,12220.6787,W,1,08,1.2,0.0,M,19.6,M,,*49",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.64464444102,
+          "longitude": -122.34464444102001
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095149.790,A,3738.6787,N,12220.6787,W,8.2,180.0,040725,0.0,E*7F",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.64464444102,
+          "longitude": -122.34464444102001
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095154.790,3801.6066,N,12237.6066,W,1,08,1.2,0.0,M,19.6,M,,*46",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.02677720407999,
+          "longitude": -122.62677720407999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095154.790,A,3801.6066,N,12237.6066,W,15.5,90.0,040725,0.0,E*7B",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.02677720407999,
+          "longitude": -122.62677720407999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095154.790,3737.8017,N,12219.8017,W,1,08,1.2,0.0,M,19.6,M,,*40",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.630027543648,
+          "longitude": -122.330027543648
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095154.790,A,3737.8017,N,12219.8017,W,8.2,180.0,040725,0.0,E*76",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.630027543648,
+          "longitude": -122.330027543648
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:54.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.02677720407999,
+          "longitude": -122.62677720407999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:54.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.630027543648,
+          "longitude": -122.330027543648
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095159.790,3803.3720,N,12239.3720,W,1,08,1.2,0.0,M,19.6,M,,*47",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.056200828659996,
+          "longitude": -122.65620082865999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095159.790,A,3803.3720,N,12239.3720,W,15.5,90.0,040725,0.0,E*7A",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.056200828659996,
+          "longitude": -122.65620082865999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095159.790,3736.8677,N,12218.8677,W,1,08,1.2,0.0,M,19.6,M,,*4D",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.614461497095995,
+          "longitude": -122.314461497096
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:51:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095159.790,A,3736.8677,N,12218.8677,W,8.2,180.0,040725,0.0,E*7B",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.614461497095995,
+          "longitude": -122.314461497096
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095204.790,3805.2451,N,12241.2451,W,1,08,1.2,0.0,M,19.6,M,,*45",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.08741857668999,
+          "longitude": -122.68741857668998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095204.790,A,3805.2451,N,12241.2451,W,15.5,90.0,040725,0.0,E*78",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.08741857668999,
+          "longitude": -122.68741857668998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095204.790,3735.8768,N,12217.8768,W,1,08,1.2,0.0,M,19.6,M,,*4A",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.597946301364,
+          "longitude": -122.29794630136401
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095204.790,A,3735.8768,N,12217.8768,W,8.2,180.0,040725,0.0,E*7C",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.597946301364,
+          "longitude": -122.29794630136401
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:04.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.08741857668999,
+          "longitude": -122.68741857668998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:04.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.597946301364,
+          "longitude": -122.29794630136401
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095209.790,3807.2258,N,12243.2258,W,1,08,1.2,0.0,M,19.6,M,,*48",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.12043044817,
+          "longitude": -122.72043044816996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095209.790,A,3807.2258,N,12243.2258,W,15.5,90.0,040725,0.0,E*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.12043044817,
+          "longitude": -122.72043044816996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095209.790,3734.8289,N,12216.8289,W,1,08,1.2,0.0,M,19.6,M,,*47",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.580481956452,
+          "longitude": -122.28048195645201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095209.790,A,3734.8289,N,12216.8289,W,8.2,180.0,040725,0.0,E*71",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.580481956452,
+          "longitude": -122.28048195645201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095214.790,3809.3142,N,12245.3142,W,1,08,1.2,0.0,M,19.6,M,,*4C",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.15523644309999,
+          "longitude": -122.75523644309999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095214.790,A,3809.3142,N,12245.3142,W,15.5,90.0,040725,0.0,E*71",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.15523644309999,
+          "longitude": -122.75523644309999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095214.790,3733.7241,N,12215.7241,W,1,08,1.2,0.0,M,19.6,M,,*4F",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.56206846236,
+          "longitude": -122.26206846236
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095214.790,A,3733.7241,N,12215.7241,W,8.2,180.0,040725,0.0,E*79",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.56206846236,
+          "longitude": -122.26206846236
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:14.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.15523644309999,
+          "longitude": -122.75523644309999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:14.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.56206846236,
+          "longitude": -122.26206846236
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095219.790,3811.5102,N,12247.5102,W,1,08,1.2,0.0,M,19.6,M,,*4A",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.191836561479995,
+          "longitude": -122.79183656148
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095219.790,A,3811.5102,N,12247.5102,W,15.5,90.0,040725,0.0,E*77",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.191836561479995,
+          "longitude": -122.79183656148
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095219.790,3732.5623,N,12214.5623,W,1,08,1.2,0.0,M,19.6,M,,*42",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.542705819088,
+          "longitude": -122.242705819088
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095219.790,A,3732.5623,N,12214.5623,W,8.2,180.0,040725,0.0,E*74",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.542705819088,
+          "longitude": -122.242705819088
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095224.790,3813.8138,N,12249.8138,W,1,08,1.2,0.0,M,19.6,M,,*48",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.230230803309986,
+          "longitude": -122.83023080330999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095224.790,A,3813.8138,N,12249.8138,W,15.5,90.0,040725,0.0,E*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.230230803309986,
+          "longitude": -122.83023080330999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095224.790,3731.3436,N,12213.3436,W,1,08,1.2,0.0,M,19.6,M,,*48",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.522394026636,
+          "longitude": -122.222394026636
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095224.790,A,3731.3436,N,12213.3436,W,8.2,180.0,040725,0.0,E*7E",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.522394026636,
+          "longitude": -122.222394026636
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:24.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.230230803309986,
+          "longitude": -122.83023080330999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:24.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.522394026636,
+          "longitude": -122.222394026636
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095229.790,3816.2252,N,12252.2252,W,1,08,1.2,0.0,M,19.6,M,,*4A",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.270419168589996,
+          "longitude": -122.87041916858996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095229.790,A,3816.2252,N,12252.2252,W,15.5,90.0,040725,0.0,E*77",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.270419168589996,
+          "longitude": -122.87041916858996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095229.790,3730.0680,N,12212.0680,W,1,08,1.2,0.0,M,19.6,M,,*45",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.501133085004,
+          "longitude": -122.201133085004
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095229.790,A,3730.0680,N,12212.0680,W,8.2,180.0,040725,0.0,E*73",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.501133085004,
+          "longitude": -122.201133085004
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095234.790,3818.7441,N,12254.7441,W,1,08,1.2,0.0,M,19.6,M,,*4E",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.31240165731999,
+          "longitude": -122.91240165731999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095234.790,A,3818.7441,N,12254.7441,W,15.5,90.0,040725,0.0,E*73",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.31240165731999,
+          "longitude": -122.91240165731999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095234.790,3728.7354,N,12210.7354,W,1,08,1.2,0.0,M,19.6,M,,*42",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.478922994192,
+          "longitude": -122.178922994192
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095234.790,A,3728.7354,N,12210.7354,W,8.2,180.0,040725,0.0,E*74",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.478922994192,
+          "longitude": -122.178922994192
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.31240165731999,
+          "longitude": -122.91240165731999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.478922994192,
+          "longitude": -122.178922994192
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,1,1,A,53HOI:000003BG?A59>bnjL3JG?>F`2j6fD3BG=60000040HlELhKP9\\,0*61",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.31240165731999,
+          "longitude": -122.91240165731999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,2,1,A,XKXjLhk`0000008,2*23",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.31240165731999,
+          "longitude": -122.91240165731999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,1,1,A,53HOI:000003BG?A59>bnjL3JG?>F`2j6fD3BG=60000040HlELhKP9\\,0*61",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.478922994192,
+          "longitude": -122.178922994192
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,2,1,A,XKXjLhk`0000008,2*23",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.478922994192,
+          "longitude": -122.178922994192
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095239.790,3821.3707,N,12257.3707,W,1,08,1.2,0.0,M,19.6,M,,*4A",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.3561782695,
+          "longitude": -122.9561782695
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095239.790,A,3821.3707,N,12257.3707,W,15.5,90.0,040725,0.0,E*77",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.3561782695,
+          "longitude": -122.9561782695
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095239.790,3727.3458,N,12209.3458,W,1,08,1.2,0.0,M,19.6,M,,*48",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.4557637542,
+          "longitude": -122.1557637542
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095239.790,A,3727.3458,N,12209.3458,W,8.2,180.0,040725,0.0,E*7E",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.4557637542,
+          "longitude": -122.1557637542
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095244.790,3824.1049,N,12300.1049,W,1,08,1.2,0.0,M,19.6,M,,*46",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.40174900512999,
+          "longitude": -123.00174900513
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095244.790,A,3824.1049,N,12300.1049,W,15.5,90.0,040725,0.0,E*7B",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.40174900512999,
+          "longitude": -123.00174900513
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095244.790,3725.8993,N,12207.8993,W,1,08,1.2,0.0,M,19.6,M,,*4E",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.431655365028,
+          "longitude": -122.131655365028
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095244.790,A,3725.8993,N,12207.8993,W,8.2,180.0,040725,0.0,E*78",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.431655365028,
+          "longitude": -122.131655365028
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:44.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.40174900512999,
+          "longitude": -123.00174900513
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:44.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.431655365028,
+          "longitude": -122.131655365028
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095249.790,3826.9468,N,12302.9468,W,1,08,1.2,0.0,M,19.6,M,,*4B",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.44911386421,
+          "longitude": -123.04911386420997
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095249.790,A,3826.9468,N,12302.9468,W,15.5,90.0,040725,0.0,E*76",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.44911386421,
+          "longitude": -123.04911386420997
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095249.790,3724.3959,N,12206.3959,W,1,08,1.2,0.0,M,19.6,M,,*43",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.406597826676,
+          "longitude": -122.10659782667601
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095249.790,A,3724.3959,N,12206.3959,W,8.2,180.0,040725,0.0,E*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.406597826676,
+          "longitude": -122.10659782667601
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095254.790,3829.8964,N,12305.8964,W,1,08,1.2,0.0,M,19.6,M,,*4F",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.498272846739994,
+          "longitude": -123.09827284673999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095254.790,A,3829.8964,N,12305.8964,W,15.5,90.0,040725,0.0,E*72",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.498272846739994,
+          "longitude": -123.09827284673999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095254.790,3722.8355,N,12204.8355,W,1,08,1.2,0.0,M,19.6,M,,*4B",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.380591139143995,
+          "longitude": -122.080591139144
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095254.790,A,3722.8355,N,12204.8355,W,8.2,180.0,040725,0.0,E*7D",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.380591139143995,
+          "longitude": -122.080591139144
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:54.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.498272846739994,
+          "longitude": -123.09827284673999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:54.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.380591139143995,
+          "longitude": -122.080591139144
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095259.790,3832.9536,N,12308.9536,W,1,08,1.2,0.0,M,19.6,M,,*45",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.54922595272,
+          "longitude": -123.14922595272
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095259.790,A,3832.9536,N,12308.9536,W,15.5,90.0,040725,0.0,E*78",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.54922595272,
+          "longitude": -123.14922595272
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095259.790,3721.2181,N,12203.2181,W,1,08,1.2,0.0,M,19.6,M,,*42",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.353635302432,
+          "longitude": -122.053635302432
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:52:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095259.790,A,3721.2181,N,12203.2181,W,8.2,180.0,040725,0.0,E*74",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.353635302432,
+          "longitude": -122.053635302432
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095304.790,3836.1184,N,12312.1184,W,1,08,1.2,0.0,M,19.6,M,,*43",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.60197318215,
+          "longitude": -123.20197318215
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095304.790,A,3836.1184,N,12312.1184,W,15.5,90.0,040725,0.0,E*7E",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.60197318215,
+          "longitude": -123.20197318215
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095304.790,3719.5438,N,12201.5438,W,1,08,1.2,0.0,M,19.6,M,,*42",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.325730316539996,
+          "longitude": -122.02573031654
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095304.790,A,3719.5438,N,12201.5438,W,8.2,180.0,040725,0.0,E*74",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.325730316539996,
+          "longitude": -122.02573031654
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:04.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.60197318215,
+          "longitude": -123.20197318215
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:04.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.325730316539996,
+          "longitude": -122.02573031654
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095309.790,3839.3909,N,12315.3909,W,1,08,1.2,0.0,M,19.6,M,,*46",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.65651453503,
+          "longitude": -123.25651453502998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095309.790,A,3839.3909,N,12315.3909,W,15.5,90.0,040725,0.0,E*7B",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.65651453503,
+          "longitude": -123.25651453502998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095309.790,3717.8126,N,12159.8126,W,1,08,1.2,0.0,M,19.6,M,,*4F",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.296876181468,
+          "longitude": -121.996876181468
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095309.790,A,3717.8126,N,12159.8126,W,8.2,180.0,040725,0.0,E*79",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.296876181468,
+          "longitude": -121.996876181468
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095314.790,3842.7710,N,12318.7710,W,1,08,1.2,0.0,M,19.6,M,,*4B",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.71285001136,
+          "longitude": -123.31285001135998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095314.790,A,3842.7710,N,12318.7710,W,15.5,90.0,040725,0.0,E*76",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.71285001136,
+          "longitude": -123.31285001135998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095314.790,3716.0244,N,12158.0244,W,1,08,1.2,0.0,M,19.6,M,,*43",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.267072897215996,
+          "longitude": -121.967072897216
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095314.790,A,3716.0244,N,12158.0244,W,8.2,180.0,040725,0.0,E*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.267072897215996,
+          "longitude": -121.967072897216
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:14.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.71285001136,
+          "longitude": -123.31285001135998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:14.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.267072897215996,
+          "longitude": -121.967072897216
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095319.790,3846.2588,N,12322.2588,W,1,08,1.2,0.0,M,19.6,M,,*4B",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.77097961114,
+          "longitude": -123.37097961114
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095319.790,A,3846.2588,N,12322.2588,W,15.5,90.0,040725,0.0,E*76",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.77097961114,
+          "longitude": -123.37097961114
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095319.790,3714.1792,N,12156.1792,W,1,08,1.2,0.0,M,19.6,M,,*42",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.236320463784,
+          "longitude": -121.936320463784
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095319.790,A,3714.1792,N,12156.1792,W,8.2,180.0,040725,0.0,E*74",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.236320463784,
+          "longitude": -121.936320463784
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095324.790,3849.8542,N,12325.8542,W,1,08,1.2,0.0,M,19.6,M,,*4D",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.83090333437,
+          "longitude": -123.43090333437
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095324.790,A,3849.8542,N,12325.8542,W,15.5,90.0,040725,0.0,E*70",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.83090333437,
+          "longitude": -123.43090333437
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095324.790,3712.2771,N,12154.2771,W,1,08,1.2,0.0,M,19.6,M,,*48",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.204618881171996,
+          "longitude": -121.904618881172
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095324.790,A,3712.2771,N,12154.2771,W,8.2,180.0,040725,0.0,E*7E",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.204618881171996,
+          "longitude": -121.904618881172
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:24.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.83090333437,
+          "longitude": -123.43090333437
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:24.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.204618881171996,
+          "longitude": -121.904618881172
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095329.790,3853.5573,N,12329.5573,W,1,08,1.2,0.0,M,19.6,M,,*47",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.892621181049996,
+          "longitude": -123.49262118104998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095329.790,A,3853.5573,N,12329.5573,W,15.5,90.0,040725,0.0,E*7A",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.892621181049996,
+          "longitude": -123.49262118104998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095329.790,3710.3181,N,12152.3181,W,1,08,1.2,0.0,M,19.6,M,,*41",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.17196814938,
+          "longitude": -121.87196814938
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095329.790,A,3710.3181,N,12152.3181,W,8.2,180.0,040725,0.0,E*77",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.17196814938,
+          "longitude": -121.87196814938
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095334.790,3857.3680,N,12333.3680,W,1,08,1.2,0.0,M,19.6,M,,*44",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.95613315118,
+          "longitude": -123.55613315117998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095334.790,A,3857.3680,N,12333.3680,W,15.5,90.0,040725,0.0,E*79",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.95613315118,
+          "longitude": -123.55613315117998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095334.790,3708.3021,N,12150.3021,W,1,08,1.2,0.0,M,19.6,M,,*46",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.138368268408,
+          "longitude": -121.838368268408
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095334.790,A,3708.3021,N,12150.3021,W,8.2,180.0,040725,0.0,E*70",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.138368268408,
+          "longitude": -121.838368268408
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.95613315118,
+          "longitude": -123.55613315117998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.138368268408,
+          "longitude": -121.838368268408
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,1,1,A,53HOI:000003BG?A59>bnjL3JG?>F`2j6fD3BG=60000040HlELhKP9\\,0*61",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.95613315118,
+          "longitude": -123.55613315117998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,2,1,A,XKXjLhk`0000008,2*23",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 38.95613315118,
+          "longitude": -123.55613315117998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,1,1,A,53HOI:000003BG?A59>bnjL3JG?>F`2j6fD3BG=60000040HlELhKP9\\,0*61",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.138368268408,
+          "longitude": -121.838368268408
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,2,1,A,XKXjLhk`0000008,2*23",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.138368268408,
+          "longitude": -121.838368268408
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095339.790,3901.2864,N,12337.2864,W,1,08,1.2,0.0,M,19.6,M,,*4F",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.021439244759996,
+          "longitude": -123.62143924476
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095339.790,A,3901.2864,N,12337.2864,W,15.5,90.0,040725,0.0,E*72",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.021439244759996,
+          "longitude": -123.62143924476
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095339.790,3706.2292,N,12148.2292,W,1,08,1.2,0.0,M,19.6,M,,*4C",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.103819238256,
+          "longitude": -121.80381923825601
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095339.790,A,3706.2292,N,12148.2292,W,8.2,180.0,040725,0.0,E*7A",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.103819238256,
+          "longitude": -121.80381923825601
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095344.790,3905.3124,N,12341.3124,W,1,08,1.2,0.0,M,19.6,M,,*40",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.08853946179,
+          "longitude": -123.68853946179
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095344.790,A,3905.3124,N,12341.3124,W,15.5,90.0,040725,0.0,E*7D",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.08853946179,
+          "longitude": -123.68853946179
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095344.790,3704.0993,N,12146.0993,W,1,08,1.2,0.0,M,19.6,M,,*4A",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.068321058924,
+          "longitude": -121.768321058924
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095344.790,A,3704.0993,N,12146.0993,W,8.2,180.0,040725,0.0,E*7C",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.068321058924,
+          "longitude": -121.768321058924
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:44.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.08853946179,
+          "longitude": -123.68853946179
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:44.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.068321058924,
+          "longitude": -121.768321058924
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095349.790,3909.4460,N,12345.4460,W,1,08,1.2,0.0,M,19.6,M,,*45",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.15743380226999,
+          "longitude": -123.75743380226999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095349.790,A,3909.4460,N,12345.4460,W,15.5,90.0,040725,0.0,E*78",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.15743380226999,
+          "longitude": -123.75743380226999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095349.790,3701.9124,N,12143.9124,W,1,08,1.2,0.0,M,19.6,M,,*47",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.031873730411995,
+          "longitude": -121.731873730412
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095349.790,A,3701.9124,N,12143.9124,W,8.2,180.0,040725,0.0,E*71",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 37.031873730411995,
+          "longitude": -121.731873730412
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095354.790,3913.6873,N,12349.6873,W,1,08,1.2,0.0,M,19.6,M,,*4E",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.228122266199996,
+          "longitude": -123.82812226619997
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095354.790,A,3913.6873,N,12349.6873,W,15.5,90.0,040725,0.0,E*73",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.228122266199996,
+          "longitude": -123.82812226619997
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095354.790,3659.6686,N,12141.6686,W,1,08,1.2,0.0,M,19.6,M,,*45",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.994477252719996,
+          "longitude": -121.69447725272
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095354.790,A,3659.6686,N,12141.6686,W,8.2,180.0,040725,0.0,E*73",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.994477252719996,
+          "longitude": -121.69447725272
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:54.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.228122266199996,
+          "longitude": -123.82812226619997
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:54.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.994477252719996,
+          "longitude": -121.69447725272
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095359.790,3918.0363,N,12354.0363,W,1,08,1.2,0.0,M,19.6,M,,*44",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.30060485357999,
+          "longitude": -123.90060485357999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095359.790,A,3918.0363,N,12354.0363,W,15.5,90.0,040725,0.0,E*79",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.30060485357999,
+          "longitude": -123.90060485357999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095359.790,3657.3679,N,12139.3679,W,1,08,1.2,0.0,M,19.6,M,,*49",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.956131625847995,
+          "longitude": -121.656131625848
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:53:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095359.790,A,3657.3679,N,12139.3679,W,8.2,180.0,040725,0.0,E*7F",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.956131625847995,
+          "longitude": -121.656131625848
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095404.790,3922.4929,N,12358.4929,W,1,08,1.2,0.0,M,19.6,M,,*4E",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.374881564409996,
+          "longitude": -123.97488156441
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095404.790,A,3922.4929,N,12358.4929,W,15.5,90.0,040725,0.0,E*73",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.374881564409996,
+          "longitude": -123.97488156441
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095404.790,3655.0102,N,12137.0102,W,1,08,1.2,0.0,M,19.6,M,,*4A",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.916836849796,
+          "longitude": -121.616836849796
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095404.790,A,3655.0102,N,12137.0102,W,8.2,180.0,040725,0.0,E*7C",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.916836849796,
+          "longitude": -121.616836849796
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:04.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.374881564409996,
+          "longitude": -123.97488156441
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:04.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.916836849796,
+          "longitude": -121.616836849796
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095409.790,3927.0571,N,12403.0571,W,1,08,1.2,0.0,M,19.6,M,,*4F",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.45095239868999,
+          "longitude": -124.05095239868999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095409.790,A,3927.0571,N,12403.0571,W,15.5,90.0,040725,0.0,E*72",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.45095239868999,
+          "longitude": -124.05095239868999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095409.790,3652.5956,N,12134.5956,W,1,08,1.2,0.0,M,19.6,M,,*43",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.876592924563994,
+          "longitude": -121.57659292456401
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095409.790,A,3652.5956,N,12134.5956,W,8.2,180.0,040725,0.0,E*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.876592924563994,
+          "longitude": -121.57659292456401
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095414.790,3931.7290,N,12407.7290,W,1,08,1.2,0.0,M,19.6,M,,*40",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.52881735642,
+          "longitude": -124.12881735641996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095414.790,A,3931.7290,N,12407.7290,W,15.5,90.0,040725,0.0,E*7D",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.52881735642,
+          "longitude": -124.12881735641996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095414.790,3650.1240,N,12132.1240,W,1,08,1.2,0.0,M,19.6,M,,*4B",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.835399850151994,
+          "longitude": -121.535399850152
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095414.790,A,3650.1240,N,12132.1240,W,8.2,180.0,040725,0.0,E*7D",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.835399850151994,
+          "longitude": -121.535399850152
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:14.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.52881735642,
+          "longitude": -124.12881735641996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:14.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.835399850151994,
+          "longitude": -121.535399850152
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095419.790,3936.5086,N,12412.5086,W,1,08,1.2,0.0,M,19.6,M,,*4E",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.60847643759999,
+          "longitude": -124.20847643759998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095419.790,A,3936.5086,N,12412.5086,W,15.5,90.0,040725,0.0,E*73",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.60847643759999,
+          "longitude": -124.20847643759998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095419.790,3647.5955,N,12129.5955,W,1,08,1.2,0.0,M,19.6,M,,*4A",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.79325762655999,
+          "longitude": -121.49325762656001
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095419.790,A,3647.5955,N,12129.5955,W,8.2,180.0,040725,0.0,E*7C",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.79325762655999,
+          "longitude": -121.49325762656001
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095424.790,3941.3958,N,12417.3958,W,1,08,1.2,0.0,M,19.6,M,,*45",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.68992964223,
+          "longitude": -124.28992964222999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095424.790,A,3941.3958,N,12417.3958,W,15.5,90.0,040725,0.0,E*78",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.68992964223,
+          "longitude": -124.28992964222999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095424.790,3645.0100,N,12127.0100,W,1,08,1.2,0.0,M,19.6,M,,*48",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.750166253787995,
+          "longitude": -121.45016625378801
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095424.790,A,3645.0100,N,12127.0100,W,8.2,180.0,040725,0.0,E*7E",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.750166253787995,
+          "longitude": -121.45016625378801
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:24.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.68992964223,
+          "longitude": -124.28992964222999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:24.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.750166253787995,
+          "longitude": -121.45016625378801
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095429.790,3946.3906,N,12422.3906,W,1,08,1.2,0.0,M,19.6,M,,*49",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.77317697030999,
+          "longitude": -124.37317697030998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095429.790,A,3946.3906,N,12422.3906,W,15.5,90.0,040725,0.0,E*74",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.77317697030999,
+          "longitude": -124.37317697030998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095429.790,3642.3675,N,12124.3675,W,1,08,1.2,0.0,M,19.6,M,,*41",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.706125731835996,
+          "longitude": -121.406125731836
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095429.790,A,3642.3675,N,12124.3675,W,8.2,180.0,040725,0.0,E*77",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.706125731835996,
+          "longitude": -121.406125731836
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095434.790,3951.4931,N,12427.4931,W,1,08,1.2,0.0,M,19.6,M,,*46",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.85821842184,
+          "longitude": -124.45821842183996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095434.790,A,3951.4931,N,12427.4931,W,15.5,90.0,040725,0.0,E*7B",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.85821842184,
+          "longitude": -124.45821842183996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095434.790,3639.6682,N,12121.6682,W,1,08,1.2,0.0,M,19.6,M,,*44",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.661136060703996,
+          "longitude": -121.361136060704
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095434.790,A,3639.6682,N,12121.6682,W,8.2,180.0,040725,0.0,E*72",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.661136060703996,
+          "longitude": -121.361136060704
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.85821842184,
+          "longitude": -124.45821842183996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.661136060703996,
+          "longitude": -121.361136060704
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,1,1,A,53HOI:000003BG?A59>bnjL3JG?>F`2j6fD3BG=60000040HlELhKP9\\,0*61",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.85821842184,
+          "longitude": -124.45821842183996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,2,1,A,XKXjLhk`0000008,2*23",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.85821842184,
+          "longitude": -124.45821842183996
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,1,1,A,53HOI:000003BG?A59>bnjL3JG?>F`2j6fD3BG=60000040HlELhKP9\\,0*61",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.661136060703996,
+          "longitude": -121.361136060704
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,2,1,A,XKXjLhk`0000008,2*23",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.661136060703996,
+          "longitude": -121.361136060704
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095439.790,3956.7032,N,12432.7032,W,1,08,1.2,0.0,M,19.6,M,,*48",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.94505399681999,
+          "longitude": -124.54505399681999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095439.790,A,3956.7032,N,12432.7032,W,15.5,90.0,040725,0.0,E*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 39.94505399681999,
+          "longitude": -124.54505399681999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095439.790,3636.9118,N,12118.9118,W,1,08,1.2,0.0,M,19.6,M,,*4C",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.61519724039199,
+          "longitude": -121.31519724039201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:39.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095439.790,A,3636.9118,N,12118.9118,W,8.2,180.0,040725,0.0,E*7A",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.61519724039199,
+          "longitude": -121.31519724039201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095444.790,4002.0210,N,12438.0210,W,1,08,1.2,0.0,M,19.6,M,,*47",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.03368369525,
+          "longitude": -124.63368369525
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095444.790,A,4002.0210,N,12438.0210,W,15.5,90.0,040725,0.0,E*7A",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.03368369525,
+          "longitude": -124.63368369525
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095444.790,3634.0986,N,12116.0986,W,1,08,1.2,0.0,M,19.6,M,,*4A",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.568309270899995,
+          "longitude": -121.2683092709
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:44.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095444.790,A,3634.0986,N,12116.0986,W,8.2,180.0,040725,0.0,E*7C",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.568309270899995,
+          "longitude": -121.2683092709
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:44.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.03368369525,
+          "longitude": -124.63368369525
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:44.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.568309270899995,
+          "longitude": -121.2683092709
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095449.790,4007.4465,N,12443.4465,W,1,08,1.2,0.0,M,19.6,M,,*43",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.12410751712999,
+          "longitude": -124.72410751713
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095449.790,A,4007.4465,N,12443.4465,W,15.5,90.0,040725,0.0,E*7E",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.12410751712999,
+          "longitude": -124.72410751713
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095449.790,3631.2283,N,12113.2283,W,1,08,1.2,0.0,M,19.6,M,,*47",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.520472152227995,
+          "longitude": -121.220472152228
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:49.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095449.790,A,3631.2283,N,12113.2283,W,8.2,180.0,040725,0.0,E*71",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.520472152227995,
+          "longitude": -121.220472152228
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095454.790,4012.9795,N,12448.9795,W,1,08,1.2,0.0,M,19.6,M,,*40",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.21632546246,
+          "longitude": -124.81632546245997
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095454.790,A,4012.9795,N,12448.9795,W,15.5,90.0,040725,0.0,E*7D",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.21632546246,
+          "longitude": -124.81632546245997
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095454.790,3628.3012,N,12110.3012,W,1,08,1.2,0.0,M,19.6,M,,*40",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.471685884375994,
+          "longitude": -121.171685884376
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:54.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095454.790,A,3628.3012,N,12110.3012,W,8.2,180.0,040725,0.0,E*76",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.471685884375994,
+          "longitude": -121.171685884376
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:54.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.21632546246,
+          "longitude": -124.81632546245997
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:54.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.471685884375994,
+          "longitude": -121.171685884376
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095459.790,4018.6203,N,12454.6203,W,1,08,1.2,0.0,M,19.6,M,,*4A",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.310337531239995,
+          "longitude": -124.91033753123999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095459.790,A,4018.6203,N,12454.6203,W,15.5,90.0,040725,0.0,E*77",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.310337531239995,
+          "longitude": -124.91033753123999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095459.790,3625.3170,N,12107.3170,W,1,08,1.2,0.0,M,19.6,M,,*46",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.421950467344,
+          "longitude": -121.121950467344
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:54:59.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095459.790,A,3625.3170,N,12107.3170,W,8.2,180.0,040725,0.0,E*70",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.421950467344,
+          "longitude": -121.121950467344
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095504.790,4024.3686,N,12500.3686,W,1,08,1.2,0.0,M,19.6,M,,*4C",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.406143723469995,
+          "longitude": -125.00614372347
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095504.790,A,4024.3686,N,12500.3686,W,15.5,90.0,040725,0.0,E*71",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.406143723469995,
+          "longitude": -125.00614372347
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095504.790,3622.2760,N,12104.2760,W,1,08,1.2,0.0,M,19.6,M,,*4B",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.37126590113199,
+          "longitude": -121.07126590113201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:04.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095504.790,A,3622.2760,N,12104.2760,W,8.2,180.0,040725,0.0,E*7D",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.37126590113199,
+          "longitude": -121.07126590113201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:04.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.406143723469995,
+          "longitude": -125.00614372347
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:04.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.37126590113199,
+          "longitude": -121.07126590113201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095509.790,4030.2246,N,12506.2246,W,1,08,1.2,0.0,M,19.6,M,,*42",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.50374403914999,
+          "longitude": -125.10374403915
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095509.790,A,4030.2246,N,12506.2246,W,15.5,90.0,040725,0.0,E*7F",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.50374403914999,
+          "longitude": -125.10374403915
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095509.790,3619.1779,N,12101.1779,W,1,08,1.2,0.0,M,19.6,M,,*4B",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.31963218574,
+          "longitude": -121.01963218574001
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:09.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095509.790,A,3619.1779,N,12101.1779,W,8.2,180.0,040725,0.0,E*7D",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.31963218574,
+          "longitude": -121.01963218574001
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095514.790,4036.1883,N,12512.1883,W,1,08,1.2,0.0,M,19.6,M,,*4D",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.603138478279995,
+          "longitude": -125.20313847827998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095514.790,A,4036.1883,N,12512.1883,W,15.5,90.0,040725,0.0,E*70",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.603138478279995,
+          "longitude": -125.20313847827998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095514.790,3616.0230,N,12058.0230,W,1,08,1.2,0.0,M,19.6,M,,*45",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.267049321167995,
+          "longitude": -120.967049321168
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:14.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095514.790,A,3616.0230,N,12058.0230,W,8.2,180.0,040725,0.0,E*73",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.267049321167995,
+          "longitude": -120.967049321168
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:14.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.603138478279995,
+          "longitude": -125.20313847827998
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:14.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.267049321167995,
+          "longitude": -120.967049321168
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095519.790,4042.2596,N,12518.2596,W,1,08,1.2,0.0,M,19.6,M,,*49",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.704327040859994,
+          "longitude": -125.30432704085999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095519.790,A,4042.2596,N,12518.2596,W,15.5,90.0,040725,0.0,E*74",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.704327040859994,
+          "longitude": -125.30432704085999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095519.790,3612.8110,N,12054.8110,W,1,08,1.2,0.0,M,19.6,M,,*40",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.213517307416,
+          "longitude": -120.913517307416
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:19.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095519.790,A,3612.8110,N,12054.8110,W,8.2,180.0,040725,0.0,E*76",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.213517307416,
+          "longitude": -120.913517307416
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095524.790,4048.4386,N,12524.4386,W,1,08,1.2,0.0,M,19.6,M,,*42",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.80730972689,
+          "longitude": -125.40730972689
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095524.790,A,4048.4386,N,12524.4386,W,15.5,90.0,040725,0.0,E*7F",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.80730972689,
+          "longitude": -125.40730972689
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095524.790,3609.5422,N,12051.5422,W,1,08,1.2,0.0,M,19.6,M,,*41",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.159036144484,
+          "longitude": -120.85903614448401
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:24.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095524.790,A,3609.5422,N,12051.5422,W,8.2,180.0,040725,0.0,E*77",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.159036144484,
+          "longitude": -120.85903614448401
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:24.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.80730972689,
+          "longitude": -125.40730972689
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:24.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.159036144484,
+          "longitude": -120.85903614448401
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095529.790,4054.7252,N,12530.7252,W,1,08,1.2,0.0,M,19.6,M,,*47",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.91208653637,
+          "longitude": -125.51208653637
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095529.790,A,4054.7252,N,12530.7252,W,15.5,90.0,040725,0.0,E*7A",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 40.91208653637,
+          "longitude": -125.51208653637
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095529.790,3606.2163,N,12048.2163,W,1,08,1.2,0.0,M,19.6,M,,*4B",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.103605832372,
+          "longitude": -120.80360583237201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:29.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095529.790,A,3606.2163,N,12048.2163,W,8.2,180.0,040725,0.0,E*7D",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.103605832372,
+          "longitude": -120.80360583237201
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095534.790,4101.1194,N,12537.1194,W,1,08,1.2,0.0,M,19.6,M,,*4D",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 41.018657469299995,
+          "longitude": -125.61865746929999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095534.790,A,4101.1194,N,12537.1194,W,15.5,90.0,040725,0.0,E*70",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 41.018657469299995,
+          "longitude": -125.61865746929999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPGGA,095534.790,3602.8336,N,12044.8336,W,1,08,1.2,0.0,M,19.6,M,,*4F",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.047226371079994,
+          "longitude": -120.74722637108
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:34.790544",
+      "message_type": "GPS",
+      "sentence": "$GPRMC,095534.790,A,3602.8336,N,12044.8336,W,8.2,180.0,040725,0.0,E*79",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": null,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.047226371079994,
+          "longitude": -120.74722637108
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 41.018657469299995,
+          "longitude": -125.61865746929999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,1,1,,A,13HOI:0P1kG?Vl@EWFk3NReh0000,0*75",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 1,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.047226371079994,
+          "longitude": -120.74722637108
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,1,1,A,53HOI:000003BG?A59>bnjL3JG?>F`2j6fD3BG=60000040HlELhKP9\\,0*61",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 41.018657469299995,
+          "longitude": -125.61865746929999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,2,1,A,XKXjLhk`0000008,2*23",
+      "vessel_mmsi": 367001234,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "EVER FORWARD",
+        "position": {
+          "latitude": 41.018657469299995,
+          "longitude": -125.61865746929999
+        },
+        "sog": 15.5,
+        "cog": 90.0,
+        "heading": 92
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,1,1,A,53HOI:000003BG?A59>bnjL3JG?>F`2j6fD3BG=60000040HlELhKP9\\,0*61",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.047226371079994,
+          "longitude": -120.74722637108
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    },
+    {
+      "timestamp": "2025-07-04T09:55:34.790544",
+      "message_type": "AIS",
+      "sentence": "!AIVDM,2,2,1,A,XKXjLhk`0000008,2*23",
+      "vessel_mmsi": 367002345,
+      "ais_message_type": 5,
+      "vessel_data": {
+        "name": "PACIFIC DAWN",
+        "position": {
+          "latitude": 36.047226371079994,
+          "longitude": -120.74722637108
+        },
+        "sog": 8.2,
+        "cog": 180.0,
+        "heading": 185
+      }
+    }
+  ]
+}

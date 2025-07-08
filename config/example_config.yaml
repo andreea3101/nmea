@@ -1,0 +1,31 @@
+# Example NMEA Simulator Configuration
+
+simulation:
+  duration: 300  # 5 minutes
+  time_factor: 1.0  # Real-time
+  start_time: null  # Use current time
+
+vessel:
+  name: "Example Vessel"
+  initial_position:
+    latitude: 37.7749   # San Francisco Bay
+    longitude: -122.4194
+  initial_speed: 8.0    # knots
+  initial_heading: 45.0 # degrees true
+
+movement:
+  speed_variation: 2.0     # knots
+  course_variation: 10.0   # degrees
+  position_noise: 0.00001  # degrees (~1 meter)
+
+sentences:
+  - type: GGA
+    talker_id: GP
+    rate: 1.0  # Hz
+    enabled: true
+  
+  - type: RMC
+    talker_id: GP
+    rate: 1.0  # Hz
+    enabled: true
+

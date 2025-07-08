@@ -1,0 +1,123 @@
+# Multi-Vessel AIS Simulation Scenarios
+
+# San Francisco Bay Scenario
+name: san_francisco_bay_enhanced
+description: "Enhanced multi-vessel simulation in San Francisco Bay with AIS and GPS"
+duration: 1800  # 30 minutes
+area:
+  lat_min: 37.7
+  lat_max: 37.9
+  lon_min: -122.5
+  lon_max: -122.3
+
+vessels:
+  - template: container_ship
+    mmsi: 367001234
+    name: "EVER FORWARD"
+    callsign: "EVRF123"
+    position:
+      latitude: 37.8
+      longitude: -122.4
+    initial_heading: 90
+    initial_speed: 15.0
+    ship_type: 70  # Cargo ship
+    dimensions:
+      to_bow: 200
+      to_stern: 40
+      to_port: 15
+      to_starboard: 15
+    voyage_data:
+      destination: "OAKLAND"
+      draught: 12.5
+      eta_month: 7
+      eta_day: 15
+      eta_hour: 14
+      eta_minute: 30
+
+  - template: tanker
+    mmsi: 367005678
+    name: "CHEVRON STAR"
+    callsign: "CHEV456"
+    position:
+      latitude: 37.75
+      longitude: -122.45
+    initial_heading: 270
+    initial_speed: 12.0
+    ship_type: 80  # Tanker
+    dimensions:
+      to_bow: 150
+      to_stern: 30
+      to_port: 12
+      to_starboard: 12
+    voyage_data:
+      destination: "RICHMOND"
+      draught: 10.2
+
+  - template: fishing_vessel
+    mmsi: 367009012
+    name: "PACIFIC DAWN"
+    callsign: "PACD789"
+    position:
+      latitude: 37.85
+      longitude: -122.35
+    initial_heading: 180
+    initial_speed: 8.0
+    ship_type: 30  # Fishing
+    movement:
+      pattern: random_walk
+      bounds:
+        lat_min: 37.8
+        lat_max: 37.9
+        lon_min: -122.4
+        lon_max: -122.3
+
+  - template: pilot_vessel
+    mmsi: 367003456
+    name: "SF PILOT 1"
+    callsign: "SFPL001"
+    position:
+      latitude: 37.82
+      longitude: -122.42
+    initial_heading: 0
+    initial_speed: 20.0
+    ship_type: 50  # Pilot vessel
+    movement:
+      pattern: circular
+      circle:
+        center:
+          latitude: 37.82
+          longitude: -122.42
+        radius: 500
+
+  - template: pleasure_craft
+    mmsi: 367007890
+    name: "WEEKEND WARRIOR"
+    callsign: "WKND123"
+    vessel_class: B  # Class B vessel
+    position:
+      latitude: 37.78
+      longitude: -122.38
+    initial_heading: 45
+    initial_speed: 15.0
+    ship_type: 37  # Pleasure craft
+
+base_stations:
+  - mmsi: 003669999
+    name: "SF_BASE_1"
+    position:
+      latitude: 37.8
+      longitude: -122.4
+
+aids_to_navigation:
+  - mmsi: 993669001
+    name: "ALCATRAZ_LIGHT"
+    position:
+      latitude: 37.8267
+      longitude: -122.4233
+    aid_type: 1  # Reference point
+    dimensions:
+      to_bow: 0
+      to_stern: 0
+      to_port: 0
+      to_starboard: 0
+

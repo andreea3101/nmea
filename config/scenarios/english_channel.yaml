@@ -1,0 +1,197 @@
+# English Channel High-Density Shipping Scenario
+
+name: english_channel_traffic
+description: "High-density shipping simulation in English Channel with multiple vessel types"
+duration: 3600  # 1 hour
+area:
+  lat_min: 50.5
+  lat_max: 51.0
+  lon_min: 1.0
+  lon_max: 2.0
+
+vessels:
+  # Eastbound traffic
+  - template: container_ship
+    mmsi: 235001234
+    name: "MAERSK ESSEX"
+    callsign: "MAES123"
+    position:
+      latitude: 50.7
+      longitude: 1.2
+    initial_heading: 60
+    initial_speed: 20.0
+    ship_type: 70
+    dimensions:
+      to_bow: 220
+      to_stern: 50
+      to_port: 18
+      to_starboard: 18
+    voyage_data:
+      destination: "ROTTERDAM"
+      draught: 14.2
+
+  - template: container_ship
+    mmsi: 255005678
+    name: "CMA CGM MARCO POLO"
+    callsign: "CGMP456"
+    position:
+      latitude: 50.8
+      longitude: 1.8
+    initial_heading: 240
+    initial_speed: 18.0
+    ship_type: 70
+    dimensions:
+      to_bow: 200
+      to_stern: 45
+      to_port: 16
+      to_starboard: 16
+    voyage_data:
+      destination: "LE HAVRE"
+      draught: 13.8
+
+  # Westbound traffic
+  - template: tanker
+    mmsi: 235009012
+    name: "BRITISH EMERALD"
+    callsign: "BREM789"
+    position:
+      latitude: 50.6
+      longitude: 1.5
+    initial_heading: 90
+    initial_speed: 14.0
+    ship_type: 80
+    dimensions:
+      to_bow: 180
+      to_stern: 35
+      to_port: 14
+      to_starboard: 14
+    voyage_data:
+      destination: "MILFORD HAVEN"
+      draught: 11.5
+
+  # Cross-channel ferry
+  - template: cargo_ship
+    mmsi: 235003456
+    name: "PRIDE OF DOVER"
+    callsign: "PRID123"
+    position:
+      latitude: 50.9
+      longitude: 1.4
+    initial_heading: 180
+    initial_speed: 22.0
+    ship_type: 60  # Passenger ship
+    dimensions:
+      to_bow: 120
+      to_stern: 25
+      to_port: 10
+      to_starboard: 10
+    movement:
+      pattern: waypoint
+      waypoints:
+        - latitude: 50.9
+          longitude: 1.4
+        - latitude: 50.7
+          longitude: 1.6
+        - latitude: 50.9
+          longitude: 1.4
+
+  # Fishing vessels
+  - template: fishing_vessel
+    mmsi: 235007890
+    name: "DOVER SOLE"
+    callsign: "DSOL456"
+    position:
+      latitude: 50.65
+      longitude: 1.3
+    initial_heading: 270
+    initial_speed: 6.0
+    ship_type: 30
+    movement:
+      pattern: random_walk
+      bounds:
+        lat_min: 50.6
+        lat_max: 50.7
+        lon_min: 1.2
+        lon_max: 1.4
+
+  - template: fishing_vessel
+    mmsi: 250001111
+    name: "BOULOGNE FISHER"
+    callsign: "BOUL789"
+    position:
+      latitude: 50.75
+      longitude: 1.7
+    initial_heading: 45
+    initial_speed: 7.0
+    ship_type: 30
+
+  # Pilot vessels
+  - template: pilot_vessel
+    mmsi: 235002222
+    name: "DOVER PILOT 1"
+    callsign: "DPIL001"
+    position:
+      latitude: 50.85
+      longitude: 1.35
+    initial_heading: 0
+    initial_speed: 18.0
+    ship_type: 50
+    movement:
+      pattern: circular
+      circle:
+        center:
+          latitude: 50.85
+          longitude: 1.35
+        radius: 1000
+
+  - template: pilot_vessel
+    mmsi: 227003333
+    name: "CALAIS PILOT 1"
+    callsign: "CPIL001"
+    position:
+      latitude: 50.95
+      longitude: 1.85
+    initial_heading: 180
+    initial_speed: 16.0
+    ship_type: 50
+
+  # Tugs
+  - template: tug
+    mmsi: 235004444
+    name: "DOVER TUG 1"
+    callsign: "DTUG001"
+    position:
+      latitude: 50.88
+      longitude: 1.32
+    initial_heading: 90
+    initial_speed: 8.0
+    ship_type: 52
+
+base_stations:
+  - mmsi: 002320001
+    name: "DOVER_COASTGUARD"
+    position:
+      latitude: 50.85
+      longitude: 1.35
+
+  - mmsi: 002270001
+    name: "CALAIS_TRAFFIC"
+    position:
+      latitude: 50.95
+      longitude: 1.85
+
+aids_to_navigation:
+  - mmsi: 992320001
+    name: "DOVER_BREAKWATER"
+    position:
+      latitude: 50.84
+      longitude: 1.34
+    aid_type: 5  # Special mark
+
+  - mmsi: 992270001
+    name: "CALAIS_APPROACH"
+    position:
+      latitude: 50.96
+      longitude: 1.87
+    aid_type: 1  # Reference point
+
