@@ -142,7 +142,7 @@ def test_6bit_encoding():
     test_cases = [
         ("000001", "1"),  # Simple case
         ("000001000010000011", "123"),  # Multiple characters
-        ("111111", "?"),  # Maximum value (63)
+        ("111111", "w"),  # Maximum value (63) should be 'w' for AIVDM payload armoring
         ("000000", "0"),  # Minimum value (0)
     ]
     

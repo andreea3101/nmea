@@ -239,16 +239,26 @@ AIS_MESSAGE_LENGTHS: Dict[int, int] = {
     24: 168,  # Type 24: Static Data Report Class B (Part A)
 }
 
-# 6-bit ASCII encoding table for AIS
+# 6-bit ASCII encoding table for AIVDM/AIVDO payload armoring
+# As described in https://gpsd.gitlab.io/gpsd/AIVDM.html#_aivdmaivdo_payload_armoring (Table 2)
+# This table maps 6-bit binary values (0-63) to the ASCII characters used in the AIVDM sentence payload.
 AIS_6BIT_ASCII: List[str] = [
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?',
-    '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
-    'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\\', ']', '^', '_',
-    '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?',  # 0-15
+    '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',  # 16-31
+    'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',                                     # 32-39
+    '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',  # 40-55
+    'p', 'q', 'r', 's', 't', 'u', 'v', 'w'                                      # 56-63
 ]
 
 # Reverse lookup for 6-bit ASCII decoding
 AIS_ASCII_6BIT: Dict[str, int] = {char: idx for idx, char in enumerate(AIS_6BIT_ASCII)}
+
+# Note: The ITU-R M.1371 standard (e.g., Table 45 in Annex 8 of M.1371-5) defines a different
+# 6-bit ASCII table used for encoding text fields *within* the binary AIS message body (e.g., ship name).
+# That table is: @A-Z[\]^_space!"#$%&'()*+,-./0-9:;<=>?
+# This library currently only uses the AIVDM payload armoring table above for encoding/decoding operations
+# performed by AIS6BitEncoder. If internal text field encoding/decoding is added, a separate constant
+# for that table would be required.
 
 # Default MMSI ranges
 MMSI_RANGES = {
