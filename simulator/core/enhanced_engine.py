@@ -16,7 +16,8 @@ from nmea_lib.sentences.rmc import RMCSentence
 from nmea_lib.sentences.aivdm import AISMessageGenerator
 from nmea_lib.types.vessel import VesselState, BaseStationData, AidToNavigationData
 from nmea_lib.types import Position, NMEATime, NMEADate, Speed, Bearing, Distance, SpeedUnit, BearingType, DistanceUnit
-from nmea_lib.types.enums import GpsFixQuality, DataStatus, MagneticVariationDirection
+from nmea_lib.base import GpsFixQuality # Corrected import
+from nmea_lib.types.enums import DataStatus # Corrected import
 
 
 @dataclass
