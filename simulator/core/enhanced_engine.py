@@ -386,7 +386,7 @@ class EnhancedSimulationEngine:
         rmc.set_position(nav.position.latitude, nav.position.longitude)
         rmc.set_speed(nav.sog)
         rmc.set_course(nav.cog)
-        rmc.set_date(NMEADate.from_datetime(current_time))
+        rmc.set_date(NMEADate.from_date(current_time.date()))
         rmc.set_magnetic_variation(0.0, 'E')
         
         return rmc
