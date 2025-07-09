@@ -8,12 +8,16 @@ from pathlib import Path
 from dataclasses import dataclass, asdict
 import random
 
-from nmea_lib.types import Position, create_vessel_state
+from nmea_lib.types import (
+    Position, create_vessel_state, NMEATime, NMEADate, Distance, DistanceUnit,
+    Speed, SpeedUnit, Bearing, BearingType
+)
 from nmea_lib.types.vessel import VesselState, VesselClass, ShipType, NavigationStatus
+from nmea_lib.types.enums import DataStatus
+from nmea_lib.base import GpsFixQuality
 from nmea_lib.sentences.aivdm import AISMessageGenerator
 from nmea_lib.sentences.gga import GGASentence
 from nmea_lib.sentences.rmc import RMCSentence
-from nmea_lib.types import NMEATime, NMEADate
 from simulator.generators.vessel import EnhancedVesselGenerator
 
 
@@ -131,7 +135,7 @@ class CompleteScenarioGenerator:
                 ship_type=template['ship_type'],
                 sog=random.uniform(5.0, 20.0),
                 cog=random.uniform(0.0, 360.0),
-                heading=random.uniform(0.0, 360.0),
+                heading=int(random.uniform(0.0, 360.0)), # Ensure heading is int
                 nav_status=NavigationStatus.UNDER_WAY_USING_ENGINE
             )
             
@@ -232,6 +236,15 @@ class CompleteScenarioGenerator:
                             
                             if should_send:
                                 try:
+                                    # Skip Type 4 and 21 if we only have VesselState objects,
+                                    # as these types require BaseStationData and AidToNavigationData respectively.
+                                    if msg_type == 4 and isinstance(vessel, VesselState):
+                                        # print(f"Skipping AIS type 4 for Vessel {vessel.mmsi}, BaseStationData required.")
+                                        continue
+                                    if msg_type == 21 and isinstance(vessel, VesselState):
+                                        # print(f"Skipping AIS type 21 for Vessel {vessel.mmsi}, AidToNavigationData required.")
+                                        continue
+
                                     sentences, input_data = self.ais_generator.generate_message(msg_type, vessel)
                                     
                                     for sentence in sentences:
@@ -292,22 +305,22 @@ class CompleteScenarioGenerator:
         gga = GGASentence()
         gga.set_time(NMEATime.from_datetime(current_time))
         gga.set_position(nav.position.latitude, nav.position.longitude)
-        gga.set_fix_quality(1)  # GPS fix
-        gga.set_satellites_used(8)
-        gga.set_hdop(1.2)
-        gga.set_altitude(0.0)
-        gga.set_geoid_height(19.6)
+        gga.set_fix_quality(GpsFixQuality.GPS)  # Use enum member
+        gga.set_satellites_in_use(8) # Corrected method name
+        gga.set_horizontal_dilution(1.2)
+        gga.set_altitude(Distance(0.0, DistanceUnit.METERS))
+        gga.set_geoidal_height(Distance(19.6, DistanceUnit.METERS))
         sentences.append(str(gga))
         
         # RMC sentence
         rmc = RMCSentence()
         rmc.set_time(NMEATime.from_datetime(current_time))
-        rmc.set_status('A')  # Active
+        rmc.set_status(DataStatus.ACTIVE)  # Use enum member
         rmc.set_position(nav.position.latitude, nav.position.longitude)
-        rmc.set_speed(nav.sog)
-        rmc.set_course(nav.cog)
+        rmc.set_speed(Speed(nav.sog, SpeedUnit.KNOTS))
+        rmc.set_course(Bearing(nav.cog, BearingType.TRUE))
         rmc.set_date(NMEADate.from_date(current_time.date()))
-        rmc.set_magnetic_variation(0.0, 'E')
+        rmc.set_magnetic_variation(0.0) # Pass only the float value
         sentences.append(str(rmc))
         
         return sentences
@@ -373,7 +386,7 @@ class CompleteScenarioGenerator:
                 file.write(f"  Base Station Report\\n")
             elif ais_msg_type == 5:
                 file.write(f"  Static and Voyage Data\\n")
-                file.write(f"  Call Sign: {vessel.static_data.call_sign}\\n")
+                file.write(f"  Call Sign: {vessel.static_data.callsign}\\n")
                 file.write(f"  Destination: {vessel.voyage_data.destination}\\n")
                 file.write(f"  Draught: {vessel.voyage_data.draught:.1f}m\\n")
             elif ais_msg_type == 18:
@@ -406,7 +419,7 @@ class CompleteScenarioGenerator:
                 {
                     'mmsi': vessel.mmsi,
                     'name': vessel.static_data.vessel_name,
-                    'call_sign': vessel.static_data.call_sign,
+                    'call_sign': vessel.static_data.callsign, # Corrected attribute
                     'vessel_class': vessel.static_data.vessel_class.value,
                     'ship_type': vessel.static_data.ship_type.value,
                     'dimensions': asdict(vessel.static_data.dimensions)

@@ -37,7 +37,8 @@ def main():
     print("4. Custom configuration")
     
     try:
-        choice = input("Enter choice (1-4) [default: 1]: ").strip() or "1"
+        # choice = input("Enter choice (1-4) [default: 1]: ").strip() or "1" # Disabled for non-interactive run
+        choice = "1" # Default to option 1 for non-interactive run
     except KeyboardInterrupt:
         print("\\nCancelled by user")
         return

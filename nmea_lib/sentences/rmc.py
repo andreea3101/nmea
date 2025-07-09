@@ -205,25 +205,45 @@ class RMCSentence(PositionSentence, TimeSentence, DateSentence):
     def get_time(self) -> Optional[str]:
         """Get time in HHMMSS.SSS format."""
         return self._time.to_nmea() if self._time else None
-    
-    def set_time(self, time_str: str) -> None:
-        """Set time in HHMMSS.SSS format."""
-        if time_str:
-            self._time = NMEATime.from_nmea(time_str)
-        else:
+
+    def set_time(self, time_input: NMEATime | str) -> None:
+        """Set time from NMEATime object or HHMMSS.SSS string."""
+        if isinstance(time_input, NMEATime):
+            self._time = time_input
+        elif isinstance(time_input, str):
+            if time_input:
+                try:
+                    self._time = NMEATime.from_nmea(time_input)
+                except ValueError:
+                    self._time = None # Or handle error appropriately
+            else:
+                self._time = None
+        elif time_input is None:
             self._time = None
-    
+        else:
+            raise TypeError(f"Unsupported type for time_input: {type(time_input)}. Expected NMEATime or str.")
+
     def get_date(self) -> Optional[str]:
         """Get date in DDMMYY format."""
         return self._date.to_nmea() if self._date else None
-    
-    def set_date(self, date_str: str) -> None:
-        """Set date in DDMMYY format."""
-        if date_str:
-            self._date = NMEADate.from_nmea(date_str)
-        else:
+
+    def set_date(self, date_input: NMEADate | str) -> None:
+        """Set date from NMEADate object or DDMMYY string."""
+        if isinstance(date_input, NMEADate):
+            self._date = date_input
+        elif isinstance(date_input, str):
+            if date_input:
+                try:
+                    self._date = NMEADate.from_nmea(date_input)
+                except ValueError:
+                    self._date = None # Or handle error appropriately
+            else:
+                self._date = None
+        elif date_input is None:
             self._date = None
-    
+        else:
+            raise TypeError(f"Unsupported type for date_input: {type(date_input)}. Expected NMEADate or str.")
+
     def get_latitude(self) -> Optional[float]:
         """Get latitude in decimal degrees."""
         return self._position.latitude if self._position else None
