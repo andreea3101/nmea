@@ -109,6 +109,10 @@ class Sentence(ABC):
         for char in sentence_body:
             checksum ^= ord(char)
         return f"{checksum:02X}"
+
+    def __str__(self) -> str:
+        """Return the NMEA sentence string representation."""
+        return self.to_sentence()
     
     def validate_checksum(self, nmea_sentence: str) -> bool:
         """Validate NMEA sentence checksum."""

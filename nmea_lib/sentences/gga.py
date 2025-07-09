@@ -189,14 +189,24 @@ class GGASentence(PositionSentence, TimeSentence):
     def get_time(self) -> Optional[str]:
         """Get time in HHMMSS.SSS format."""
         return self._time.to_nmea() if self._time else None
-    
-    def set_time(self, time_str: str) -> None:
-        """Set time in HHMMSS.SSS format."""
-        if time_str:
-            self._time = NMEATime.from_nmea(time_str)
-        else:
+
+    def set_time(self, time_input: NMEATime | str) -> None:
+        """Set time from NMEATime object or HHMMSS.SSS string."""
+        if isinstance(time_input, NMEATime):
+            self._time = time_input
+        elif isinstance(time_input, str):
+            if time_input:
+                try:
+                    self._time = NMEATime.from_nmea(time_input)
+                except ValueError:
+                    self._time = None # Or handle error appropriately
+            else:
+                self._time = None
+        elif time_input is None:
             self._time = None
-    
+        else:
+            raise TypeError(f"Unsupported type for time_input: {type(time_input)}. Expected NMEATime or str.")
+
     def get_latitude(self) -> Optional[float]:
         """Get latitude in decimal degrees."""
         return self._position.latitude if self._position else None
