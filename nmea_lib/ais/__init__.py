@@ -18,19 +18,18 @@ from .constants import (
 )
 
 __all__ = [
-    'AISMessageType',
-    'NavigationStatus', 
-    'ShipType',
-    'EPFDType',
-    'AidType',
-    'VesselClass',
-    'AIS_MESSAGE_INTERVALS',
-    'AIS_MESSAGE_LENGTHS',
-    'AIS_6BIT_ASCII',
-    'AIS_ASCII_6BIT',
-    'MMSI_RANGES',
-    'AIS_CHANNELS',
-    'AIS_MAX_VALUES',
-    'AIS_NOT_AVAILABLE',
+    "AISMessageType",
+    "NavigationStatus",
+    "ShipType",
+    "EPFDType",
+    "AidType",
+    "VesselClass",
+    "AIS_MESSAGE_INTERVALS",
+    "AIS_MESSAGE_LENGTHS",
+    "AIS_6BIT_ASCII",
+    "AIS_ASCII_6BIT",
+    "MMSI_RANGES",
+    "AIS_CHANNELS",
+    "AIS_MAX_VALUES",
+    "AIS_NOT_AVAILABLE",
 ]
-

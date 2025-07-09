@@ -11,8 +11,4 @@ from ..base import SentenceId
 SentenceFactory.register_sentence(SentenceId.GGA, GGASentence)
 SentenceFactory.register_sentence(SentenceId.RMC, RMCSentence)
 
-__all__ = [
-    'GGASentence',
-    'RMCSentence'
-]
-
+__all__ = ["GGASentence", "RMCSentence"]

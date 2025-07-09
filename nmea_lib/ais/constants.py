@@ -6,6 +6,7 @@ from typing import Dict, List
 
 class AISMessageType(IntEnum):
     """AIS message types supported by the simulator."""
+
     POSITION_REPORT_CLASS_A = 1
     POSITION_REPORT_SCHEDULED_CLASS_A = 2
     POSITION_REPORT_RESPONSE_CLASS_A = 3
@@ -19,6 +20,7 @@ class AISMessageType(IntEnum):
 
 class NavigationStatus(IntEnum):
     """Navigation status values for AIS messages."""
+
     UNDER_WAY_USING_ENGINE = 0
     AT_ANCHOR = 1
     NOT_UNDER_COMMAND = 2
@@ -39,8 +41,9 @@ class NavigationStatus(IntEnum):
 
 class ShipType(IntEnum):
     """Ship and cargo type values."""
+
     NOT_AVAILABLE = 0
-    
+
     # Wing In Ground (WIG) craft
     WIG_ALL_SHIPS = 20
     WIG_HAZARDOUS_CAT_A = 21
@@ -52,29 +55,29 @@ class ShipType(IntEnum):
     WIG_RESERVED_3 = 27
     WIG_RESERVED_4 = 28
     WIG_NO_ADDITIONAL_INFO = 29
-    
+
     # Fishing vessels
     FISHING = 30
-    
+
     # Towing vessels
     TOWING = 31
     TOWING_LENGTH_EXCEEDS_200M = 32
-    
+
     # Dredging or underwater operations
     DREDGING_OR_UNDERWATER_OPS = 33
-    
+
     # Diving operations
     DIVING_OPS = 34
-    
+
     # Military operations
     MILITARY_OPS = 35
-    
+
     # Sailing
     SAILING = 36
-    
+
     # Pleasure craft
     PLEASURE_CRAFT = 37
-    
+
     # High speed craft (HSC)
     HSC_ALL_SHIPS = 40
     HSC_HAZARDOUS_CAT_A = 41
@@ -86,28 +89,28 @@ class ShipType(IntEnum):
     HSC_RESERVED_3 = 47
     HSC_RESERVED_4 = 48
     HSC_NO_ADDITIONAL_INFO = 49
-    
+
     # Pilot vessel
     PILOT_VESSEL = 50
-    
+
     # Search and rescue vessel
     SEARCH_AND_RESCUE = 51
-    
+
     # Tug
     TUG = 52
-    
+
     # Port tender
     PORT_TENDER = 53
-    
+
     # Anti-pollution equipment
     ANTI_POLLUTION = 54
-    
+
     # Law enforcement
     LAW_ENFORCEMENT = 55
-    
+
     # Medical transport
     MEDICAL_TRANSPORT = 58
-    
+
     # Passenger ships
     PASSENGER_ALL_SHIPS = 60
     PASSENGER_HAZARDOUS_CAT_A = 61
@@ -119,7 +122,7 @@ class ShipType(IntEnum):
     PASSENGER_RESERVED_3 = 67
     PASSENGER_RESERVED_4 = 68
     PASSENGER_NO_ADDITIONAL_INFO = 69
-    
+
     # Cargo ships
     CARGO_ALL_SHIPS = 70
     CARGO_HAZARDOUS_CAT_A = 71
@@ -131,7 +134,7 @@ class ShipType(IntEnum):
     CARGO_RESERVED_3 = 77
     CARGO_RESERVED_4 = 78
     CARGO_NO_ADDITIONAL_INFO = 79
-    
+
     # Tanker
     TANKER_ALL_SHIPS = 80
     TANKER_HAZARDOUS_CAT_A = 81
@@ -143,7 +146,7 @@ class ShipType(IntEnum):
     TANKER_RESERVED_3 = 87
     TANKER_RESERVED_4 = 88
     TANKER_NO_ADDITIONAL_INFO = 89
-    
+
     # Other types
     OTHER_ALL_SHIPS = 90
     OTHER_HAZARDOUS_CAT_A = 91
@@ -159,6 +162,7 @@ class ShipType(IntEnum):
 
 class EPFDType(IntEnum):
     """Electronic Position Fixing Device types."""
+
     UNDEFINED = 0
     GPS = 1
     GLONASS = 2
@@ -173,6 +177,7 @@ class EPFDType(IntEnum):
 
 class AidType(IntEnum):
     """Aid to Navigation types."""
+
     DEFAULT = 0
     REFERENCE_POINT = 1
     RACON = 2
@@ -209,30 +214,31 @@ class AidType(IntEnum):
 
 class VesselClass(Enum):
     """Vessel class for AIS transmission."""
+
     CLASS_A = "A"
     CLASS_B = "B"
 
 
 # AIS message transmission intervals (in seconds)
 AIS_MESSAGE_INTERVALS: Dict[int, float] = {
-    1: 2.0,     # Position Report Class A - every 2-10 seconds (using 2s)
-    2: 2.0,     # Position Report Scheduled Class A
-    3: 2.0,     # Position Report Response Class A
-    4: 10.0,    # Base Station Report - every 10 seconds
-    5: 360.0,   # Static & Voyage Data - every 6 minutes
-    18: 3.0,    # Position Report Class B - every 3-10 seconds (using 3s)
-    19: 30.0,   # Extended Class B Report - every 30 seconds
+    1: 2.0,  # Position Report Class A - every 2-10 seconds (using 2s)
+    2: 2.0,  # Position Report Scheduled Class A
+    3: 2.0,  # Position Report Response Class A
+    4: 10.0,  # Base Station Report - every 10 seconds
+    5: 360.0,  # Static & Voyage Data - every 6 minutes
+    18: 3.0,  # Position Report Class B - every 3-10 seconds (using 3s)
+    19: 30.0,  # Extended Class B Report - every 30 seconds
     21: 180.0,  # Aids-to-Navigation - every 3 minutes
     24: 360.0,  # Static Data Report Class B - every 6 minutes
 }
 
 # AIS message bit lengths
 AIS_MESSAGE_LENGTHS: Dict[int, int] = {
-    1: 168,   # Type 1: Position Report Class A
-    2: 168,   # Type 2: Position Report Scheduled Class A
-    3: 168,   # Type 3: Position Report Response Class A
-    4: 168,   # Type 4: Base Station Report
-    5: 424,   # Type 5: Static & Voyage Data
+    1: 168,  # Type 1: Position Report Class A
+    2: 168,  # Type 2: Position Report Scheduled Class A
+    3: 168,  # Type 3: Position Report Response Class A
+    4: 168,  # Type 4: Base Station Report
+    5: 424,  # Type 5: Static & Voyage Data
     18: 168,  # Type 18: Position Report Class B
     19: 312,  # Type 19: Extended Class B Report
     21: 272,  # Type 21: Aids-to-Navigation (minimum)
@@ -241,17 +247,78 @@ AIS_MESSAGE_LENGTHS: Dict[int, int] = {
 
 # 6-bit ASCII encoding table for AIVDM/AIVDO payload armoring
 # As described in https://gpsd.gitlab.io/gpsd/AIVDM.html#_aivdmaivdo_payload_armoring (Table 2)
-# This table maps 6-bit binary values (0-63) to the ASCII characters used in the AIVDM sentence payload.
+# This table maps 6-bit binary values (0-63) to the ASCII characters used
+# in the AIVDM sentence payload.
 AIS_6BIT_ASCII: List[str] = [
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?',  # 0-15
-    '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',  # 16-31
-    'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',                                     # 32-39
-    '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',  # 40-55
-    'p', 'q', 'r', 's', 't', 'u', 'v', 'w'                                      # 56-63
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    ":",
+    ";",
+    "<",
+    "=",
+    ">",
+    "?",  # 0-15
+    "@",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",  # 16-31
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",  # 32-39
+    "`",
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",  # 40-55
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",  # 56-63
 ]
 
 # Reverse lookup for 6-bit ASCII decoding
-AIS_ASCII_6BIT: Dict[str, int] = {char: idx for idx, char in enumerate(AIS_6BIT_ASCII)}
+AIS_ASCII_6BIT: Dict[str, int] = {
+    char: idx for idx, char in enumerate(AIS_6BIT_ASCII)}
 
 # Note: The ITU-R M.1371 standard (e.g., Table 45 in Annex 8 of M.1371-5) defines a different
 # 6-bit ASCII table used for encoding text fields *within* the binary AIS message body (e.g., ship name).
@@ -262,41 +329,40 @@ AIS_ASCII_6BIT: Dict[str, int] = {char: idx for idx, char in enumerate(AIS_6BIT_
 
 # Default MMSI ranges
 MMSI_RANGES = {
-    'ship': (200000000, 799999999),
-    'coastal_station': (1000000, 9999999),
-    'group_ship': (800000000, 899999999),
-    'navigation_aid': (990000000, 999999999),
-    'search_rescue': (970000000, 979999999),
-    'craft_parent_ship': (980000000, 989999999),
+    "ship": (200000000, 799999999),
+    "coastal_station": (1000000, 9999999),
+    "group_ship": (800000000, 899999999),
+    "navigation_aid": (990000000, 999999999),
+    "search_rescue": (970000000, 979999999),
+    "craft_parent_ship": (980000000, 989999999),
 }
 
 # Channel designators for AIVDM sentences
-AIS_CHANNELS = ['A', 'B']
+AIS_CHANNELS = ["A", "B"]
 
 # Maximum values for various AIS fields
 AIS_MAX_VALUES = {
-    'mmsi': 999999999,
-    'latitude': 91.0,   # 91 degrees = not available
-    'longitude': 181.0, # 181 degrees = not available
-    'sog': 102.3,       # 102.3 knots = not available
-    'cog': 360.0,       # 360 degrees = not available
-    'heading': 511,     # 511 = not available
-    'rot': 128,         # 128 = not available
-    'draught': 25.5,    # 25.5 meters = not available
+    "mmsi": 999999999,
+    "latitude": 91.0,  # 91 degrees = not available
+    "longitude": 181.0,  # 181 degrees = not available
+    "sog": 102.3,  # 102.3 knots = not available
+    "cog": 360.0,  # 360 degrees = not available
+    "heading": 511,  # 511 = not available
+    "rot": 128,  # 128 = not available
+    "draught": 25.5,  # 25.5 meters = not available
 }
 
 # Default values for unavailable data
 AIS_NOT_AVAILABLE = {
-    'latitude': 91.0,
-    'longitude': 181.0,
-    'sog': 102.3,
-    'cog': 360.0,
-    'heading': 511,
-    'rot': 128,
-    'draught': 25.5,
-    'eta_month': 0,
-    'eta_day': 0,
-    'eta_hour': 24,
-    'eta_minute': 60,
+    "latitude": 91.0,
+    "longitude": 181.0,
+    "sog": 102.3,
+    "cog": 360.0,
+    "heading": 511,
+    "rot": 128,
+    "draught": 25.5,
+    "eta_month": 0,
+    "eta_day": 0,
+    "eta_hour": 24,
+    "eta_minute": 60,
 }
-
