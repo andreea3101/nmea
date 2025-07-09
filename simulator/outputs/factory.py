@@ -5,6 +5,7 @@ from .base import OutputHandler
 from .file import FileOutput
 from .tcp import TCPOutput
 from .udp import UDPOutput
+from .serial_output import SerialOutput # Added import
 from ..config.parser import OutputConfig
 
 
@@ -23,6 +24,8 @@ class OutputFactory:
             return TCPOutput(output_config.config)
         elif output_config.type == 'udp':
             return UDPOutput(output_config.config)
+        elif output_config.type == 'serial': # Added serial type
+            return SerialOutput(output_config.config)
         else:
             raise ValueError(f"Unknown output type: {output_config.type}")
     

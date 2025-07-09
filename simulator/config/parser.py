@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from nmea_lib import TalkerId
 from ..core.engine import SimulationConfig, SentenceConfig
 from ..outputs import FileOutputConfig, TCPOutputConfig, UDPOutputConfig
+from ..outputs.serial_output import SerialOutputConfig # Added import
 
 
 @dataclass
@@ -162,6 +163,43 @@ class ConfigParser:
                 multicast_ttl=int(output_data.get('multicast_ttl', 1)),
                 send_timeout=float(output_data.get('send_timeout', 1.0))
             )
+
+        elif output_type == 'serial':
+            config = SerialOutputConfig(
+                port=str(output_data.get('port', '/dev/ttyS0')),
+                baudrate=int(output_data.get('baudrate', 9600)),
+                bytesize=output_data.get('bytesize', 'EIGHTBITS'), # Keep as string for config flexibility
+                parity=output_data.get('parity', 'PARITY_NONE'),   # Keep as string
+                stopbits=output_data.get('stopbits', 'STOPBITS_ONE'), # Keep as string
+                timeout=output_data.get('timeout'), # Allow None by not providing default here if that's desired
+                write_timeout=output_data.get('write_timeout'), # Allow None
+                rtscts=bool(output_data.get('rtscts', False)),
+                dsrdtr=bool(output_data.get('dsrdtr', False)),
+                xonxoff=bool(output_data.get('xonxoff', False)),
+                exclusive=bool(output_data.get('exclusive', True)),
+                send_interval=float(output_data.get('send_interval', 0.1)),
+                reconnect_delay=float(output_data.get('reconnect_delay', 5.0)),
+                max_reconnect_attempts=int(output_data.get('max_reconnect_attempts', 5)),
+                line_ending=str(output_data.get('line_ending', '\r\n'))
+            )
+            # Handle optional timeout values more carefully:
+            # If timeout/write_timeout is specified in YAML as null/None, it should pass as None.
+            # If it's missing, it will default to None in SerialOutputConfig or its __post_init__ can set a default.
+            # The current SerialOutputConfig defaults them to 1.0, so missing means 1.0.
+            # If we want to allow YAML to explicitly set it to None to override the dataclass default,
+            # we might need to adjust SerialOutputConfig or handle it here.
+            # For now, `output_data.get('timeout')` will pass None if key is missing or value is null.
+            # SerialOutputConfig.__post_init__ will then use its default of 1.0.
+            # If YAML has `timeout: null`, it will be None.
+            if 'timeout' in output_data and output_data['timeout'] is not None:
+                config.timeout = float(output_data['timeout'])
+            elif 'timeout' not in output_data: # Key missing, rely on dataclass default
+                 pass # SerialOutputConfig will use its default of 1.0
+
+            if 'write_timeout' in output_data and output_data['write_timeout'] is not None:
+                config.write_timeout = float(output_data['write_timeout'])
+            elif 'write_timeout' not in output_data: # Key missing, rely on dataclass default
+                 pass # SerialOutputConfig will use its default of 1.0
         
         else:
             raise ValueError(f"Unknown output type: {output_type}")

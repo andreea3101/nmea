@@ -1,7 +1,7 @@
 """Base output handler for NMEA sentences."""
 
 from abc import ABC, abstractmethod
-from datetime import datetime
+import time # Changed from datetime to time
 from typing import Dict, Any
 
 
@@ -12,8 +12,9 @@ class OutputHandler(ABC):
         """Initialize output handler."""
         self.is_running = False
         self.sentences_sent = 0
-        self.start_time: datetime = datetime.now()
-        self.last_sentence_time: datetime = datetime.now()
+        # Changed to use time.time() for consistency with other modules
+        self.start_time: float = time.time()
+        self.last_sentence_time: float = time.time()
     
     @abstractmethod
     def start(self) -> None:
@@ -40,22 +41,24 @@ class OutputHandler(ABC):
     
     def get_status(self) -> Dict[str, Any]:
         """Get output handler status information."""
-        now = datetime.now()
-        uptime = (now - self.start_time).total_seconds() if self.is_running else 0
+        current_time = time.time()
+        uptime = (current_time - self.start_time) if self.is_running and self.start_time else 0
         
         return {
             'running': self.is_running,
             'sentences_sent': self.sentences_sent,
             'uptime_seconds': uptime,
-            'last_sentence_time': self.last_sentence_time.isoformat(),
-            'sentences_per_second': self.sentences_sent / max(1, uptime)
+            # Convert timestamp to ISO format string, or None if not set
+            'last_sentence_time': time.strftime('%Y-%m-%dT%H:%M:%S', time.gmtime(self.last_sentence_time)) if self.last_sentence_time else None,
+            'sentences_per_second': self.sentences_sent / max(1, uptime) if uptime > 0 else 0
         }
     
     def reset_stats(self) -> None:
         """Reset statistics."""
         self.sentences_sent = 0
-        self.start_time = datetime.now()
-        self.last_sentence_time = datetime.now()
+        current_time = time.time()
+        self.start_time = current_time
+        self.last_sentence_time = current_time
     
     def __enter__(self):
         """Context manager entry."""
