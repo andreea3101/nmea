@@ -7,10 +7,10 @@ from .base import (
     DateSentence,
     TalkerId,
     SentenceId,
+    GpsFixQuality,  # GpsFixQuality is in base.py
+    GpsFixStatus,   # GpsFixStatus is in base.py
 )
 from .types import (
-    GpsFixQuality,
-    GpsFixStatus,
     Position,
     Hemisphere,
     NMEATime,
@@ -22,6 +22,9 @@ from .types import (
     SpeedUnit,
     BearingType,
     DistanceUnit,
+    # Enums from types.enums that are re-exported by types/__init__.py
+    # CompassPoint, FaaMode, NavStatus, GsaMode, GsaFixType, DataStatus, ModeIndicator
+    # These are not directly listed in nmea_lib.__all__ but are part of nmea_lib.types.*
 )
 from .parser import SentenceParser, SentenceBuilder
 from .validator import SentenceValidator

@@ -39,8 +39,9 @@ class SentenceParser:
             talker_id = TalkerId.parse(talker_str)
             sentence_id = SentenceId.parse(sentence_str)
         except ValueError as e:
+            # The error from TalkerId.parse or SentenceId.parse will be more specific
             raise ValueError(
-                f"Unsupported sentence type: {talker_str}{sentence_str}"
+                f"Failed to parse TalkerId ('{talker_str}') or SentenceId ('{sentence_str}')"
             ) from e
 
         self.parsed_data = ParsedSentence(

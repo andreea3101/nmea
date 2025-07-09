@@ -140,30 +140,11 @@ class SerialOutput(OutputHandler):
             # Ensure DTR/RTS are set if not using hardware flow control, some
             # devices need them.
             if not self.config.rtscts:
-                try:
-                    self.serial_port.dtr = True
-                    self.serial_port.rts = True
-                except OSError as e_os:
-                    # Use self.logger if available, otherwise print
-                    log_func = getattr(self, "logger", None)
-                    if log_func and hasattr(log_func, "warning"):
-                        log_func.warning(
-                            f"Could not set DTR/RTS on port {self.config.port}: {e_os}. "
-                            "This might be normal for some devices (e.g., virtual TTYs)."
-                        )
-                    else:
-                        print(
-                            f"Warning: Could not set DTR/RTS on port {self.config.port}: {e_os}. "
-                            "This might be normal for some devices (e.g., virtual TTYs)."
-                        )
+                self.serial_port.dtr = True
+                self.serial_port.rts = True
             print(f"Successfully connected to serial port {self.config.port}.")
         except serial.SerialException as e:
-            # Use self.logger if available, otherwise print for connection errors
-            log_func = getattr(self, "logger", None)
-            if log_func and hasattr(log_func, "error"):
-                log_func.error(f"Error connecting to {self.config.port}: {e}")
-            else:
-                print(f"Error connecting to {self.config.port}: {e}")
+            print(f"Error connecting to {self.config.port}: {e}")
             if self.serial_port:
                 self.serial_port.close()
             self.serial_port = None

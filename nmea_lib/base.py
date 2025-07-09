@@ -22,14 +22,14 @@ class TalkerId(Enum):
     @classmethod
     def parse(cls, talker_str: str) -> "TalkerId":
         """Parse talker ID from string."""
+        # Expects a 2-character string
         if len(talker_str) != 2:
-            raise ValueError(f"Invalid Talker ID string: {talker_str}")
+            raise ValueError(f"Invalid Talker ID string format: '{talker_str}'")
         try:
             return cls(talker_str)
         except ValueError:
-            # Return GP as default for unknown talker IDs
-            # Consider if this default behavior is always desired or if an error should be raised.
-            # For now, maintaining existing behavior.
+            # Maintaining original behavior of defaulting to GP for unknown talkers
+            # Consider if raising an error is more appropriate for stricter parsing.
             return cls.GP
 
 
@@ -48,11 +48,13 @@ class SentenceId(Enum):
     @classmethod
     def parse(cls, sentence_id_str: str) -> "SentenceId":
         """Parse sentence ID from string."""
+        # Expects a 3-character string
         if len(sentence_id_str) != 3:
-            raise ValueError(f"Invalid Sentence ID string: {sentence_id_str}")
+            raise ValueError(f"Invalid Sentence ID string format: '{sentence_id_str}'")
         try:
             return cls(sentence_id_str)
         except ValueError:
+            # Reraise with a more specific error message, maintaining original behavior
             raise ValueError(f"Unsupported sentence type: {sentence_id_str}")
 
 

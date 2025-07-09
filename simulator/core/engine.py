@@ -2,13 +2,13 @@
 
 import time
 import threading
-import logging # Added
+import logging  # Added
 from datetime import datetime
 from typing import List, Dict, Optional, Callable
 from dataclasses import dataclass, field
 
 from nmea_lib import GGASentence, RMCSentence, TalkerId, GpsFixQuality
-from nmea_lib.types import DataStatus, ModeIndicator, Distance, DistanceUnit, Position # Added Position
+from nmea_lib.types import DataStatus, ModeIndicator, Distance, DistanceUnit, Position # Position added
 from .time_manager import TimeManager
 from ..generators.position import PositionGenerator, PositionState
 from ..outputs.base import OutputHandler
@@ -120,9 +120,6 @@ class SimulationEngine:
 
         # Logging
         self.logger = logging.getLogger(__name__)
-        # Default level, can be configured by application if needed
-        # self.logger.setLevel(logging.INFO)
-
 
     def add_output_handler(self, handler: OutputHandler) -> None:
         """Add an output handler."""
@@ -148,7 +145,7 @@ class SimulationEngine:
                 handler.start()
             except Exception as e:
                 self.logger.warning(
-                    f"Failed to start output handler {handler}: {e}")
+                    f"Failed to start output handler {handler}: {e}", exc_info=True)
 
         # Start simulation thread
         self.simulation_thread = threading.Thread(
@@ -173,7 +170,7 @@ class SimulationEngine:
             try:
                 handler.stop()
             except Exception as e:
-                self.logger.warning(f"Failed to stop output handler {handler}: {e}")
+                self.logger.warning(f"Failed to stop output handler {handler}: {e}", exc_info=True)
 
     def _simulation_loop(self) -> None:
         """Main simulation loop."""
@@ -211,7 +208,7 @@ class SimulationEngine:
 
             except Exception as e:
                 self.logger.error(f"Error in simulation loop: {e}", exc_info=True)
-                time.sleep(0.1) # Allow other threads to run
+                time.sleep(0.1)  # Allow other threads to run
 
         self.running = False
 
@@ -273,10 +270,10 @@ class SimulationEngine:
                 latitude=position_state.position.latitude,
                 longitude=position_state.position.longitude,
                 fix_quality=GpsFixQuality.GPS,
-                satellites=8,  # Typical value
-                hdop=1.2,  # Good HDOP
-                altitude=Distance(50.0, DistanceUnit.METERS), # Simulate 50m above sea level
-                geoidal_height=Distance(19.6, DistanceUnit.METERS),
+                satellites=8,
+                hdop=1.2,
+                altitude=Distance(50.0, DistanceUnit.METERS),
+                geoidal_height=Distance(19.6, DistanceUnit.METERS)
             )
             return sentence.to_sentence()
         except Exception as e:
@@ -291,17 +288,19 @@ class SimulationEngine:
     ) -> Optional[str]:
         """Generate RMC sentence."""
         try:
-            from nmea_lib.types import NMEATime, NMEADate, Speed, Bearing, SpeedUnit, BearingType
+            # Assuming PositionState has .speed and .heading that are Speed and Bearing objects
+            from nmea_lib.types import Speed, Bearing, SpeedUnit, BearingType # Local import for type construction
+
             sentence = RMCSentence.create(
                 talker_id=config.talker_id,
-                current_time=current_time, # Will be used for NMEATime and NMEADate
+                current_time=current_time,
                 status=DataStatus.ACTIVE,
                 latitude=position_state.position.latitude,
                 longitude=position_state.position.longitude,
-                speed=Speed(position_state.speed.value, SpeedUnit.KNOTS), # Assuming position_state.speed is a Speed object
-                course=Bearing(position_state.heading.value, BearingType.TRUE), # Assuming position_state.heading is a Bearing object
-                magnetic_variation=6.1, # Example: 6.1° East
-                mode_indicator=ModeIndicator.AUTONOMOUS,
+                speed=Speed(position_state.speed.value, SpeedUnit.KNOTS),
+                course=Bearing(position_state.heading.value, BearingType.TRUE),
+                magnetic_variation=6.1,
+                mode_indicator=ModeIndicator.AUTONOMOUS
             )
             return sentence.to_sentence()
         except Exception as e:

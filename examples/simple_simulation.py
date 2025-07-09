@@ -24,9 +24,8 @@ def main():
 
     print(f"Vessel: {config.vessel_name}")
     print(
-        f"Initial position: {
-            config.initial_latitude:.6f}, {
-            config.initial_longitude:.6f}"
+        f"Initial position: {config.initial_latitude:.6f}, "
+        f"{config.initial_longitude:.6f}"
     )
     print(f"Initial speed: {config.initial_speed} knots")
     print(f"Duration: {config.duration_seconds} seconds")

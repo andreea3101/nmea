@@ -12,7 +12,8 @@ from .enums import (
     DataStatus,
     ModeIndicator,
 )
-from ..base import GpsFixQuality, GpsFixStatus # Import from parent module .base
+# Import GpsFixQuality and GpsFixStatus from base to re-export them via nmea_lib.types
+from ..base import GpsFixQuality, GpsFixStatus
 from .vessel import (
     VesselState,
     VesselStaticData,
@@ -39,8 +40,8 @@ __all__ = [
     "SpeedUnit",
     "BearingType",
     "DistanceUnit",
-    "GpsFixQuality", # Added
-    "GpsFixStatus",  # Added
+    "GpsFixQuality",      # Added GpsFixQuality
+    "GpsFixStatus",       # Added GpsFixStatus
     "CompassPoint",
     "FaaMode",
     "NavStatus",

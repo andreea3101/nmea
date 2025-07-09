@@ -50,9 +50,9 @@ def test_message_type_1():
 
         # Check format compliance
         if sentence.startswith("!AIVDM,1,1,,A,") and sentence.count(",") == 6:
-            print("    Format: ✅ Single-part AIVDM")
+            print(f"    Format: ✅ Single-part AIVDM")
         else:
-            print("    Format: ❌ Unexpected format")
+            print(f"    Format: ❌ Unexpected format")
 
     print(f"  Input data: {input_data}")
     print()
@@ -89,9 +89,9 @@ def test_message_type_5():
 
         # Check multi-part format
         if "!AIVDM,2," in sentence:
-            print("    Format: ✅ Multi-part AIVDM")
+            print(f"    Format: ✅ Multi-part AIVDM")
         else:
-            print("    Format: ❌ Expected multi-part")
+            print(f"    Format: ❌ Expected multi-part")
 
     print(f"  Input data keys: {list(input_data.keys())}")
     print()
@@ -125,9 +125,9 @@ def test_message_type_18():
 
         # Check channel
         if ",B," in sentence:
-            print("    Channel: ✅ Channel B")
+            print(f"    Channel: ✅ Channel B")
         else:
-            print("    Channel: ❌ Expected Channel B")
+            print(f"    Channel: ❌ Expected Channel B")
 
         # Extract message type
         msg_type = extract_message_type(sentence)
@@ -155,14 +155,14 @@ def test_6bit_encoding():
             f"  Binary: {binary} -> Encoded: '{encoded}' (Expected: '{expected}')")
 
         if encoded == expected:
-            print("    ✅ Correct")
+            print(f"    ✅ Correct")
         else:
-            print("    ❌ Incorrect")
+            print(f"    ❌ Incorrect")
 
         # Test round-trip
         decoded = AIS6BitEncoder.decode_6bit_to_binary(encoded)
         if decoded.startswith(binary):
-            print("    ✅ Round-trip successful")
+            print(f"    ✅ Round-trip successful")
         else:
             print(f"    ❌ Round-trip failed: {decoded}")
 
@@ -244,9 +244,9 @@ def test_nmea_sample_compliance():
 
                     # Check NMEA format
                     if sentence.startswith("!AIVDM,") and "*" in sentence:
-                        print("      ✅ Valid NMEA format")
+                        print(f"      ✅ Valid NMEA format")
                     else:
-                        print("      ❌ Invalid NMEA format")
+                        print(f"      ❌ Invalid NMEA format")
 
                 print()
 
@@ -285,9 +285,9 @@ def test_checksum_validation():
                 f"    Expected: {expected_checksum}, Calculated: {calculated_hex}")
 
             if expected_checksum.upper() == calculated_hex.upper():
-                print("    ✅ Checksum valid")
+                print(f"    ✅ Checksum valid")
             else:
-                print("    ❌ Checksum invalid")
+                print(f"    ❌ Checksum invalid")
 
         # Validate using our function
         is_valid = validate_aivdm_sentence(sentence)

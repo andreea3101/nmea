@@ -108,11 +108,9 @@ class SimpleNMEASimulator:
             human_f.write("NMEA Simulator Output - Human Readable\n")
             human_f.write("=" * 60 + "\n")
             human_f.write(
-                f"Generated: {
-                    start_time.strftime('%Y-%m-%d %H:%M:%S')}\n"
-            )
-            human_f.write(f"Duration: {duration_minutes} minutes\n")
-            human_f.write(f"Vessels: {len(self.vessels)}\n")
+                (f"Generated: {start_time.strftime('%Y-%m-%d %H:%M:%S')}\n"))
+            human_f.write((f"Duration: {duration_minutes} minutes\n"))
+            human_f.write((f"Vessels: {len(self.vessels)}\n"))
             human_f.write("=" * 60 + "\n\n")
 
             step = 0
@@ -297,7 +295,7 @@ class SimpleNMEASimulator:
     def _generate_ais_type1(self, vessel, current_time):
         """Generate AIS Type 1 position report."""
         # Create simple AIS Type 1 message manually
-        # nav = vessel.navigation_data # Unused after payload_data removal
+        # nav = vessel.navigation_data # Unused as payload_data is commented
 
         # Simple binary encoding for Type 1 message
         # This is a simplified version - real implementation would be more
@@ -321,17 +319,17 @@ class SimpleNMEASimulator:
     def _generate_ais_type5(self, vessel, current_time):
         """Generate AIS Type 5 static and voyage data."""
         # Create simple AIS Type 5 message manually
-        # static = vessel.static_data # Unused after payload_data removal
-        # voyage = vessel.voyage_data # Unused after payload_data removal
+        static = vessel.static_data
+        voyage = vessel.voyage_data
 
-        # payload_data = {
-        #     "mmsi": vessel.mmsi,
-        #     "vessel_name": static.vessel_name,
-        #     "call_sign": static.callsign,
-        #     "ship_type": static.ship_type.value,
-        #     "destination": voyage.destination,
-        #     "draught": voyage.draught,
-        # }
+        payload_data = {
+            "mmsi": vessel.mmsi,
+            "vessel_name": static.vessel_name,
+            "call_sign": static.callsign,
+            "ship_type": static.ship_type.value,
+            "destination": voyage.destination,
+            "draught": voyage.draught,
+        }
 
         # Create simple AIVDM sentences for Type 5 (multi-part)
         sentences = [

@@ -2,7 +2,7 @@
 
 from typing import Optional
 from dataclasses import dataclass
-from datetime import datetime  # Added for type hinting
+from datetime import datetime # Added for type hinting
 from ..base import (
     TalkerId,
     SentenceId,
@@ -314,6 +314,7 @@ class GGASentence(PositionSentence, TimeSentence):
     ) -> "GGASentence":
         """Create a new GGASentence with specified values."""
         instance = cls(talker_id)
+        # Ensure NMEATime object is passed to set_time if that's what it expects
         instance.set_time(NMEATime.from_datetime(current_time))
         instance.set_position(latitude, longitude)
         instance.set_fix_quality(fix_quality)

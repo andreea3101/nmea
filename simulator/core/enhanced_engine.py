@@ -16,8 +16,6 @@ from nmea_lib.sentences.rmc import RMCSentence
 from nmea_lib.sentences.aivdm import AISMessageGenerator
 from nmea_lib.types.vessel import VesselState, BaseStationData, AidToNavigationData
 from nmea_lib.types import (
-    NMEATime,
-    NMEADate,
     Speed,
     Bearing,
     Distance,
@@ -25,8 +23,8 @@ from nmea_lib.types import (
     BearingType,
     DistanceUnit,
 )
-from nmea_lib.base import GpsFixQuality  # Corrected import
-from nmea_lib.types.enums import DataStatus  # Corrected import
+from nmea_lib.base import GpsFixQuality, TalkerId  # Corrected import, Added TalkerId
+from nmea_lib.types.enums import DataStatus, ModeIndicator  # Corrected import, Added ModeIndicator
 
 
 @dataclass
@@ -464,7 +462,7 @@ class EnhancedSimulationEngine:
             satellites=8,
             hdop=1.2,
             altitude=Distance(0.0, DistanceUnit.METERS),
-            geoidal_height=Distance(19.6, DistanceUnit.METERS),
+            geoidal_height=Distance(19.6, DistanceUnit.METERS)
         )
 
     def _create_rmc_sentence(
@@ -473,7 +471,6 @@ class EnhancedSimulationEngine:
         """Create RMC sentence from vessel state."""
         nav = vessel_state.navigation_data
         # Using TalkerId.GP as a default for GPS sentences.
-        # This can be enhanced later if vessels need to specify preferred talker IDs.
         talker_id = TalkerId.GP
 
         return RMCSentence.create(
@@ -484,8 +481,8 @@ class EnhancedSimulationEngine:
             longitude=nav.position.longitude,
             speed=Speed(nav.sog, SpeedUnit.KNOTS),
             course=Bearing(nav.cog, BearingType.TRUE),
-            magnetic_variation=0.0, # Default, can be customized
-            mode_indicator=ModeIndicator.AUTONOMOUS # Default, can be customized
+            magnetic_variation=0.0,
+            mode_indicator=ModeIndicator.AUTONOMOUS
         )
 
     def _send_sentence(self, sentence: str, sentence_type: str):

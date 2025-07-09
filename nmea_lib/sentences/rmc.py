@@ -356,7 +356,7 @@ class RMCSentence(PositionSentence, TimeSentence, DateSentence):
         instance.set_position(latitude, longitude)
         instance.set_speed(speed)
         instance.set_course(course)
-        if magnetic_variation is not None:
+        if magnetic_variation is not None: # Only set if provided
             instance.set_magnetic_variation(magnetic_variation)
         instance.set_mode_indicator(mode_indicator)
         return instance
