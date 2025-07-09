@@ -3,8 +3,7 @@
 import pytest
 import time
 import os
-import pty # For creating virtual serial ports (Unix-like specific)
-import serial # For reading from the virtual serial port
+import pty  # For creating virtual serial ports (Unix-like specific)
 
 from simulator.outputs.serial_output import SerialOutput, SerialOutputConfig
 from simulator.outputs.factory import OutputFactory
@@ -23,11 +22,15 @@ def virtual_serial_ports(scope="function"):
     # flags = fcntl.fcntl(slave_fd, fcntl.F_GETFL)
     # fcntl.fcntl(slave_fd, fcntl.F_SETFL, flags | os.O_NONBLOCK)
     # Note: Making it non-blocking can be tricky with pty.
-    # For simplicity in this initial test, we might rely on timeouts or known data lengths.
+    # For simplicity in this initial test, we might rely on timeouts or known
+    # data lengths.
 
-    print(f"Virtual serial port pair created: Master FD: {master_fd}, Slave: {slave_name} (FD: {slave_fd})")
+    print(
+        f"Virtual serial port pair created: Master FD: {master_fd}, Slave: {slave_name} (FD: {slave_fd})"
+    )
 
-    yield slave_name, master_fd  # Slave name for SerialOutput, master_fd for test to read from
+    # Slave name for SerialOutput, master_fd for test to read from
+    yield slave_name, master_fd
 
     print("Closing virtual serial port pair...")
     os.close(master_fd)
@@ -35,13 +38,18 @@ def virtual_serial_ports(scope="function"):
     print("Virtual serial ports closed.")
 
 
-@pytest.mark.skipif(not hasattr(pty, "openpty"), reason="pty module not available on this system (e.g., Windows)")
+@pytest.mark.skipif(
+    not hasattr(pty, "openpty"),
+    reason="pty module not available on this system (e.g., Windows)",
+)
 class TestSerialOutput:
 
     def test_serial_output_initialization(self, virtual_serial_ports):
         """Test basic initialization of SerialOutput."""
         slave_name, _ = virtual_serial_ports
-        config = SerialOutputConfig(port=slave_name, baudrate=9600, timeout=0.1, write_timeout=0.1)
+        config = SerialOutputConfig(
+            port=slave_name, baudrate=9600, timeout=0.1, write_timeout=0.1
+        )
         handler = SerialOutput(config)
         assert handler.config.port == slave_name
         assert not handler.is_running
@@ -50,7 +58,13 @@ class TestSerialOutput:
     def test_serial_output_start_stop(self, virtual_serial_ports):
         """Test starting and stopping SerialOutput."""
         slave_name, _ = virtual_serial_ports
-        config = SerialOutputConfig(port=slave_name, baudrate=9600, timeout=0.1, write_timeout=0.1, max_reconnect_attempts=0)
+        config = SerialOutputConfig(
+            port=slave_name,
+            baudrate=9600,
+            timeout=0.1,
+            write_timeout=0.1,
+            max_reconnect_attempts=0,
+        )
         handler = SerialOutput(config)
 
         try:
@@ -63,11 +77,14 @@ class TestSerialOutput:
             handler.stop()
 
         assert not handler.is_running
-        # After stop, serial_port object might still exist but should be closed, or set to None
+        # After stop, serial_port object might still exist but should be
+        # closed, or set to None
         assert handler.serial_port is None or not handler.serial_port.is_open
         # Check if the reconnect thread is cleaned up if it was ever started
-        assert handler._reconnect_thread is None or not handler._reconnect_thread.is_alive()
-
+        assert (
+            handler._reconnect_thread is None
+            or not handler._reconnect_thread.is_alive()
+        )
 
     def test_serial_output_send_sentence(self, virtual_serial_ports):
         """Test sending a sentence over SerialOutput."""
@@ -77,8 +94,8 @@ class TestSerialOutput:
             baudrate=9600,
             timeout=0.1,
             write_timeout=0.1,
-            line_ending="\n", # Use simple newline for test reading
-            max_reconnect_attempts=0
+            line_ending="\n",  # Use simple newline for test reading
+            max_reconnect_attempts=0,
         )
         handler = SerialOutput(config)
         test_sentence = "$GPGGA,test_data*CHECKSUM"
@@ -101,7 +118,7 @@ class TestSerialOutput:
             # For pty, direct os.read is the way.
 
             # Give some time for data to be written and available
-            time.sleep(0.2) # Increased sleep
+            time.sleep(0.2)  # Increased sleep
 
             # Read with a timeout (select can be used for non-blocking read with timeout on fd)
             # For simplicity, let's try a direct read with a small buffer.
@@ -117,15 +134,21 @@ class TestSerialOutput:
                 # but os.read() itself doesn't directly support a timeout.
                 # We'll rely on the short sleep and hope the data is there.
 
-                received_data_bytes = os.read(master_fd, 1024) # Read up to 1024 bytes
+                received_data_bytes = os.read(
+                    master_fd, 1024)  # Read up to 1024 bytes
                 # The sentence is sent with config.line_ending, which is "\n" for this test.
                 # os.read will get "$GPGGA,test_data*CHECKSUM\n"
                 # .strip() will remove the trailing "\n"
-                received_data = received_data_bytes.decode('utf-8').strip()
-                print(f"Received on master: '{received_data_bytes.decode('utf-8')}' -> Stripped: '{received_data}'") # Debug print
+                received_data = received_data_bytes.decode("utf-8").strip()
+                print(
+                    f"Received on master: '{
+                        received_data_bytes.decode('utf-8')}' -> Stripped: '{received_data}'"
+                )  # Debug print
                 assert received_data == test_sentence
             except BlockingIOError:
-                pytest.fail("Read from master_fd blocked or no data received in non-blocking mode.")
+                pytest.fail(
+                    "Read from master_fd blocked or no data received in non-blocking mode."
+                )
             except Exception as e:
                 pytest.fail(f"Error reading from master_fd: {e}")
 
@@ -138,15 +161,15 @@ class TestSerialOutput:
 
         # Minimal config data for serial
         raw_config_data = {
-            'outputs': [
+            "outputs": [
                 {
-                    'type': 'serial',
-                    'enabled': True,
-                    'port': slave_name,
-                    'baudrate': 19200,
-                    'timeout': 0.05, # 50ms
-                    'line_ending': "\r\n",
-                    'max_reconnect_attempts': 0
+                    "type": "serial",
+                    "enabled": True,
+                    "port": slave_name,
+                    "baudrate": 19200,
+                    "timeout": 0.05,  # 50ms
+                    "line_ending": "\r\n",
+                    "max_reconnect_attempts": 0,
                 }
             ]
         }
@@ -157,7 +180,7 @@ class TestSerialOutput:
         assert len(parsed_sim_config.output_configs) == 1
 
         output_conf: OutputConfig = parsed_sim_config.output_configs[0]
-        assert output_conf.type == 'serial'
+        assert output_conf.type == "serial"
         assert output_conf.enabled
         assert isinstance(output_conf.config, SerialOutputConfig)
         assert output_conf.config.port == slave_name
@@ -181,25 +204,36 @@ class TestSerialOutput:
                 handler.stop()
             assert handler is None or not handler.is_running
 
-    def test_serial_output_reconnection_logic_disabled(self, virtual_serial_ports):
+    def test_serial_output_reconnection_logic_disabled(
+            self, virtual_serial_ports):
         """Test that reconnection is not attempted if max_reconnect_attempts is 0."""
         invalid_port = "/dev/nonexistentport12345"
-        config = SerialOutputConfig(port=invalid_port, baudrate=9600, max_reconnect_attempts=0, reconnect_delay=0.1)
+        config = SerialOutputConfig(
+            port=invalid_port,
+            baudrate=9600,
+            max_reconnect_attempts=0,
+            reconnect_delay=0.1,
+        )
         handler = SerialOutput(config)
 
-        handler.start() # This should fail to connect
+        handler.start()  # This should fail to connect
         assert not handler.is_running
         assert handler.serial_port is None
 
-        # Give a very short time to see if a reconnect thread might have started (it shouldn't)
+        # Give a very short time to see if a reconnect thread might have
+        # started (it shouldn't)
         time.sleep(0.3)
-        assert handler._reconnect_thread is None or not handler._reconnect_thread.is_alive()
-        handler.stop() # Should be a no-op or clean up event
+        assert (
+            handler._reconnect_thread is None
+            or not handler._reconnect_thread.is_alive()
+        )
+        handler.stop()  # Should be a no-op or clean up event
 
     # More tests could be added:
     # - Reconnection logic when enabled (mocking serial.Serial to fail and then succeed)
     # - Different configurations (parity, stopbits, etc.) - harder to verify via pty without complex reader
     # - Error handling during send (e.g., port disappears) - complex to simulate reliably
+
 
 # To run tests from CLI:
 # Ensure pyserial and pytest are installed.
@@ -219,16 +253,22 @@ class TestSerialOutput:
 # or by extensively mocking `serial.Serial`.
 
 # Add a config for a test that expects failure to open port
-@pytest.mark.skipif(not hasattr(pty, "openpty"), reason="pty module not available on this system")
+
+
+@pytest.mark.skipif(not hasattr(pty, "openpty"),
+                    reason="pty module not available on this system")
 def test_serial_output_start_failure_bad_port(capfd):
     """Test SerialOutput start failure with a clearly invalid port name (not just non-existent)."""
     # Using a port name that is syntactically invalid for pyserial on most systems,
     # or one that pty wouldn't create.
-    # This test is more about pyserial raising an error that SerialOutput handles.
-    config = SerialOutputConfig(port="INVALID_PORT_!@#$", baudrate=9600, max_reconnect_attempts=0)
+    # This test is more about pyserial raising an error that SerialOutput
+    # handles.
+    config = SerialOutputConfig(
+        port="INVALID_PORT_!@#$", baudrate=9600, max_reconnect_attempts=0
+    )
     handler = SerialOutput(config)
 
-    handler.start() # Should attempt to connect, fail, and not start reconnect thread
+    handler.start()  # Should attempt to connect, fail, and not start reconnect thread
 
     assert not handler.is_running
     assert handler.serial_port is None
@@ -237,10 +277,8 @@ def test_serial_output_start_failure_bad_port(capfd):
     # captured = capfd.readouterr()
     # assert "Failed to open serial port" in captured.out or "Error connecting to" in captured.out
 
-    handler.stop() # Should be clean
+    handler.stop()  # Should be clean
 
     # Test with a port that might exist but we can't access (permission errors)
     # This is harder to reliably test without specific environment setup.
     # For now, focusing on non-existent and syntactically invalid.
-
-```

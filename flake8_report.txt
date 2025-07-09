@@ -1,0 +1,229 @@
+./examples/ais_validation.py:148:80: E501 line too long (87 > 79 characters)
+./examples/ais_validation.py:155:80: E501 line too long (83 > 79 characters)
+./examples/ais_validation.py:214:80: E501 line too long (95 > 79 characters)
+./examples/ais_validation.py:214:80: E501 line too long (95 > 79 characters)
+./examples/ais_validation.py:266:80: E501 line too long (87 > 79 characters)
+./examples/ais_validation.py:285:80: E501 line too long (83 > 79 characters)
+./examples/complete_scenario_generator.py:82:80: E501 line too long (83 > 79 characters)
+./examples/complete_scenario_generator.py:92:80: E501 line too long (93 > 79 characters)
+./examples/complete_scenario_generator.py:111:11: F541 f-string is missing placeholders
+./examples/complete_scenario_generator.py:141:80: E501 line too long (85 > 79 characters)
+./examples/complete_scenario_generator.py:186:80: E501 line too long (82 > 79 characters)
+./examples/complete_scenario_generator.py:187:80: E501 line too long (82 > 79 characters)
+./examples/comprehensive_ais_simulation.py:11:80: E501 line too long (85 > 79 characters)
+./examples/comprehensive_ais_simulation.py:54:11: F541 f-string is missing placeholders
+./examples/comprehensive_ais_simulation.py:176:80: E501 line too long (80 > 79 characters)
+./examples/comprehensive_ais_simulation.py:192:80: E501 line too long (99 > 79 characters)
+./examples/comprehensive_ais_simulation.py:217:80: E501 line too long (82 > 79 characters)
+./examples/comprehensive_ais_simulation.py:222:80: E501 line too long (84 > 79 characters)
+./examples/comprehensive_ais_simulation.py:245:80: E501 line too long (81 > 79 characters)
+./examples/comprehensive_ais_simulation.py:304:80: E501 line too long (182 > 79 characters)
+./examples/enhanced_simulation.py:150:23: F541 f-string is missing placeholders
+./examples/enhanced_simulation.py:169:15: F541 f-string is missing placeholders
+./examples/enhanced_simulation.py:182:15: F541 f-string is missing placeholders
+./examples/enhanced_working_simulator.py:220:80: E501 line too long (82 > 79 characters)
+./examples/enhanced_working_simulator.py:223:80: E501 line too long (96 > 79 characters)
+./examples/enhanced_working_simulator.py:288:80: E501 line too long (82 > 79 characters)
+./examples/enhanced_working_simulator.py:290:80: E501 line too long (86 > 79 characters)
+./examples/enhanced_working_simulator.py:300:80: E501 line too long (82 > 79 characters)
+./examples/enhanced_working_simulator.py:312:80: E501 line too long (86 > 79 characters)
+./examples/enhanced_working_simulator.py:336:80: E501 line too long (87 > 79 characters)
+./examples/enhanced_working_simulator.py:344:15: F541 f-string is missing placeholders
+./examples/enhanced_working_simulator.py:346:15: F541 f-string is missing placeholders
+./examples/enhanced_working_simulator.py:510:80: E501 line too long (89 > 79 characters)
+./examples/enhanced_working_simulator.py:527:80: E501 line too long (101 > 79 characters)
+./examples/enhanced_working_simulator.py:619:11: F541 f-string is missing placeholders
+./examples/network_simulation.py:209:15: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:29:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:51:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:52:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:53:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:54:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:57:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:100:80: E501 line too long (88 > 79 characters)
+./examples/position_calculation_demo.py:123:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:141:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:151:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:162:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:181:80: E501 line too long (87 > 79 characters)
+./examples/position_calculation_demo.py:182:80: E501 line too long (84 > 79 characters)
+./examples/position_calculation_demo.py:189:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:190:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:190:80: E501 line too long (85 > 79 characters)
+./examples/position_calculation_demo.py:192:9: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:192:80: E501 line too long (101 > 79 characters)
+./examples/position_calculation_demo.py:194:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:195:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:197:80: E501 line too long (99 > 79 characters)
+./examples/position_calculation_demo.py:200:80: E501 line too long (99 > 79 characters)
+./examples/position_calculation_demo.py:202:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:203:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:207:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:220:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:238:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:253:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:255:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:256:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:260:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:261:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:272:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:274:11: F541 f-string is missing placeholders
+./examples/position_calculation_demo.py:276:80: E501 line too long (93 > 79 characters)
+./examples/position_calculation_demo.py:286:11: F541 f-string is missing placeholders
+./examples/serial_simulation.py:25:80: E501 line too long (96 > 79 characters)
+./examples/serial_simulation.py:28:80: E501 line too long (90 > 79 characters)
+./examples/serial_simulation.py:29:80: E501 line too long (91 > 79 characters)
+./examples/serial_simulation.py:78:80: E501 line too long (82 > 79 characters)
+./examples/serial_simulation.py:81:80: E501 line too long (95 > 79 characters)
+./examples/serial_simulation.py:100:80: E501 line too long (96 > 79 characters)
+./examples/serial_simulation.py:103:80: E501 line too long (112 > 79 characters)
+./examples/serial_simulation.py:106:80: E501 line too long (105 > 79 characters)
+./examples/serial_simulation.py:137:80: E501 line too long (83 > 79 characters)
+./examples/serial_simulation.py:225:15: F541 f-string is missing placeholders
+./examples/simple_simulation.py:61:80: E501 line too long (100 > 79 characters)
+./examples/simple_simulation.py:73:15: F541 f-string is missing placeholders
+./examples/simple_working_simulator.py:93:80: E501 line too long (96 > 79 characters)
+./examples/simple_working_simulator.py:150:80: E501 line too long (82 > 79 characters)
+./examples/simple_working_simulator.py:152:80: E501 line too long (86 > 79 characters)
+./examples/simple_working_simulator.py:162:80: E501 line too long (82 > 79 characters)
+./examples/simple_working_simulator.py:170:80: E501 line too long (86 > 79 characters)
+./examples/simple_working_simulator.py:190:80: E501 line too long (94 > 79 characters)
+./examples/simple_working_simulator.py:199:15: F541 f-string is missing placeholders
+./examples/simple_working_simulator.py:201:15: F541 f-string is missing placeholders
+./examples/simple_working_simulator.py:317:20: F541 f-string is missing placeholders
+./examples/simple_working_simulator.py:338:80: E501 line too long (92 > 79 characters)
+./examples/simple_working_simulator.py:385:80: E501 line too long (89 > 79 characters)
+./examples/simple_working_simulator.py:402:80: E501 line too long (101 > 79 characters)
+./nmea_lib/ais/constants.py:249:80: E501 line too long (95 > 79 characters)
+./nmea_lib/ais/constants.py:323:80: E501 line too long (93 > 79 characters)
+./nmea_lib/ais/constants.py:324:80: E501 line too long (105 > 79 characters)
+./nmea_lib/ais/constants.py:326:80: E501 line too long (106 > 79 characters)
+./nmea_lib/ais/constants.py:327:80: E501 line too long (101 > 79 characters)
+./nmea_lib/ais/messages.py:6:80: E501 line too long (83 > 79 characters)
+./nmea_lib/parser.py:116:80: E501 line too long (86 > 79 characters)
+./nmea_lib/parser.py:191:80: E501 line too long (85 > 79 characters)
+./nmea_lib/sentences/aivdm.py:8:80: E501 line too long (83 > 79 characters)
+./nmea_lib/sentences/aivdm.py:274:80: E501 line too long (92 > 79 characters)
+./nmea_lib/sentences/gga.py:140:80: E501 line too long (87 > 79 characters)
+./nmea_lib/sentences/gga.py:147:80: E501 line too long (86 > 79 characters)
+./nmea_lib/sentences/rmc.py:13:80: E501 line too long (88 > 79 characters)
+./nmea_lib/sentences/rmc.py:22:80: E501 line too long (83 > 79 characters)
+./nmea_lib/types/__init__.py:5:80: E501 line too long (81 > 79 characters)
+./nmea_lib/types/position.py:79:80: E501 line too long (87 > 79 characters)
+./nmea_lib/types/position.py:149:80: E501 line too long (86 > 79 characters)
+./simulator/config/multi_vessel.py:385:80: E501 line too long (84 > 79 characters)
+./simulator/config/multi_vessel.py:539:80: E501 line too long (83 > 79 characters)
+./simulator/config/parser.py:193:80: E501 line too long (80 > 79 characters)
+./simulator/config/parser.py:207:80: E501 line too long (97 > 79 characters)
+./simulator/config/parser.py:208:80: E501 line too long (116 > 79 characters)
+./simulator/config/parser.py:209:80: E501 line too long (88 > 79 characters)
+./simulator/config/parser.py:210:80: E501 line too long (102 > 79 characters)
+./simulator/config/parser.py:212:80: E501 line too long (102 > 79 characters)
+./simulator/config/parser.py:213:80: E501 line too long (80 > 79 characters)
+./simulator/config/parser.py:217:80: E501 line too long (88 > 79 characters)
+./simulator/core/ais_scheduler.py:353:80: E501 line too long (80 > 79 characters)
+./simulator/core/ais_scheduler.py:380:80: E501 line too long (83 > 79 characters)
+./simulator/core/ais_scheduler.py:389:80: E501 line too long (81 > 79 characters)
+./simulator/core/ais_scheduler.py:444:80: E501 line too long (89 > 79 characters)
+./simulator/core/engine.py:235:80: E501 line too long (85 > 79 characters)
+./simulator/core/enhanced_engine.py:17:80: E501 line too long (83 > 79 characters)
+./simulator/core/enhanced_engine.py:289:80: E501 line too long (81 > 79 characters)
+./simulator/core/enhanced_engine.py:308:80: E501 line too long (86 > 79 characters)
+./simulator/core/enhanced_engine.py:311:80: E501 line too long (102 > 79 characters)
+./simulator/core/enhanced_engine.py:405:80: E501 line too long (84 > 79 characters)
+./simulator/core/enhanced_engine.py:431:80: E501 line too long (90 > 79 characters)
+./simulator/core/enhanced_engine.py:446:80: E501 line too long (98 > 79 characters)
+./simulator/core/enhanced_engine.py:491:80: E501 line too long (98 > 79 characters)
+./simulator/core/enhanced_engine.py:531:80: E501 line too long (87 > 79 characters)
+./simulator/core/time_manager.py:39:80: E501 line too long (80 > 79 characters)
+./simulator/core/time_manager.py:60:80: E501 line too long (87 > 79 characters)
+./simulator/core/trace_logger.py:29:80: E501 line too long (80 > 79 characters)
+./simulator/core/trace_logger.py:203:80: E501 line too long (88 > 79 characters)
+./simulator/core/trace_logger.py:327:80: E501 line too long (84 > 79 characters)
+./simulator/core/trace_logger.py:348:80: E501 line too long (88 > 79 characters)
+./simulator/core/trace_logger.py:354:80: E501 line too long (88 > 79 characters)
+./simulator/core/trace_logger.py:463:80: E501 line too long (88 > 79 characters)
+./simulator/generators/position.py:44:80: E501 line too long (90 > 79 characters)
+./simulator/generators/position.py:103:80: E501 line too long (83 > 79 characters)
+./simulator/generators/position.py:221:80: E501 line too long (84 > 79 characters)
+./simulator/generators/position.py:224:80: E501 line too long (99 > 79 characters)
+./simulator/generators/position.py:228:80: E501 line too long (100 > 79 characters)
+./simulator/generators/position.py:229:80: E501 line too long (91 > 79 characters)
+./simulator/generators/scenario_generator.py:1:80: E501 line too long (81 > 79 characters)
+./simulator/generators/scenario_generator.py:23:80: E501 line too long (86 > 79 characters)
+./simulator/generators/scenario_generator.py:274:80: E501 line too long (82 > 79 characters)
+./simulator/generators/scenario_generator.py:281:80: E501 line too long (84 > 79 characters)
+./simulator/generators/scenario_generator.py:295:80: E501 line too long (93 > 79 characters)
+./simulator/generators/scenario_generator.py:301:80: E501 line too long (123 > 79 characters)
+./simulator/generators/scenario_generator.py:306:80: E501 line too long (128 > 79 characters)
+./simulator/generators/scenario_generator.py:339:80: E501 line too long (91 > 79 characters)
+./simulator/generators/scenario_generator.py:339:80: E501 line too long (91 > 79 characters)
+./simulator/generators/scenario_generator.py:350:80: E501 line too long (94 > 79 characters)
+./simulator/generators/scenario_generator.py:477:80: E501 line too long (96 > 79 characters)
+./simulator/generators/scenario_generator.py:497:80: E501 line too long (103 > 79 characters)
+./simulator/generators/scenario_generator.py:501:28: F541 f-string is missing placeholders
+./simulator/generators/scenario_generator.py:514:28: F541 f-string is missing placeholders
+./simulator/generators/scenario_generator.py:516:28: F541 f-string is missing placeholders
+./simulator/generators/scenario_generator.py:524:28: F541 f-string is missing placeholders
+./simulator/generators/scenario_generator.py:535:28: F541 f-string is missing placeholders
+./simulator/generators/scenario_generator.py:566:80: E501 line too long (84 > 79 characters)
+./simulator/generators/vessel.py:127:80: E501 line too long (81 > 79 characters)
+./simulator/generators/vessel.py:133:80: E501 line too long (80 > 79 characters)
+./simulator/generators/vessel.py:141:80: E501 line too long (83 > 79 characters)
+./simulator/generators/vessel.py:195:80: E501 line too long (80 > 79 characters)
+./simulator/generators/vessel.py:209:80: E501 line too long (82 > 79 characters)
+./simulator/generators/vessel.py:440:80: E501 line too long (86 > 79 characters)
+./simulator/outputs/serial_output.py:28:80: E501 line too long (84 > 79 characters)
+./simulator/outputs/serial_output.py:50:80: E501 line too long (89 > 79 characters)
+./simulator/outputs/serial_output.py:77:80: E501 line too long (87 > 79 characters)
+./simulator/outputs/serial_output.py:182:80: E501 line too long (87 > 79 characters)
+./simulator/outputs/serial_output.py:183:80: E501 line too long (87 > 79 characters)
+./simulator/outputs/serial_output.py:188:80: E501 line too long (86 > 79 characters)
+./simulator/outputs/serial_output.py:196:80: E501 line too long (87 > 79 characters)
+./simulator/outputs/serial_output.py:231:80: E501 line too long (81 > 79 characters)
+./simulator/outputs/serial_output.py:233:80: E501 line too long (80 > 79 characters)
+./simulator/outputs/serial_output.py:242:80: E501 line too long (85 > 79 characters)
+./simulator/outputs/serial_output.py:249:80: E501 line too long (83 > 79 characters)
+./simulator/outputs/serial_output.py:278:80: E501 line too long (82 > 79 characters)
+./simulator/outputs/serial_output.py:289:80: E501 line too long (86 > 79 characters)
+./simulator/outputs/serial_output.py:291:80: E501 line too long (81 > 79 characters)
+./simulator/outputs/serial_output.py:297:80: E501 line too long (98 > 79 characters)
+./simulator/outputs/serial_output.py:315:80: E501 line too long (87 > 79 characters)
+./simulator/outputs/tcp.py:42:80: E501 line too long (85 > 79 characters)
+./simulator/outputs/udp.py:143:80: E501 line too long (86 > 79 characters)
+./simulator/outputs/udp.py:147:80: E501 line too long (86 > 79 characters)
+./tests/test_nmea_lib.py:21:80: E501 line too long (85 > 79 characters)
+./tests/test_nmea_lib.py:26:80: E501 line too long (85 > 79 characters)
+./tests/test_nmea_lib.py:31:80: E501 line too long (84 > 79 characters)
+./tests/test_nmea_lib.py:36:80: E501 line too long (86 > 79 characters)
+./tests/test_nmea_lib.py:47:80: E501 line too long (85 > 79 characters)
+./tests/test_nmea_lib.py:58:80: E501 line too long (85 > 79 characters)
+./tests/test_nmea_lib.py:118:80: E501 line too long (84 > 79 characters)
+./tests/test_serial_output.py:20:80: E501 line too long (90 > 79 characters)
+./tests/test_serial_output.py:29:80: E501 line too long (105 > 79 characters)
+./tests/test_serial_output.py:112:80: E501 line too long (81 > 79 characters)
+./tests/test_serial_output.py:115:80: E501 line too long (89 > 79 characters)
+./tests/test_serial_output.py:116:80: E501 line too long (88 > 79 characters)
+./tests/test_serial_output.py:123:80: E501 line too long (95 > 79 characters)
+./tests/test_serial_output.py:128:80: E501 line too long (86 > 79 characters)
+./tests/test_serial_output.py:132:80: E501 line too long (86 > 79 characters)
+./tests/test_serial_output.py:133:80: E501 line too long (88 > 79 characters)
+./tests/test_serial_output.py:139:80: E501 line too long (92 > 79 characters)
+./tests/test_serial_output.py:145:80: E501 line too long (93 > 79 characters)
+./tests/test_serial_output.py:150:80: E501 line too long (91 > 79 characters)
+./tests/test_serial_output.py:209:80: E501 line too long (85 > 79 characters)
+./tests/test_serial_output.py:233:80: E501 line too long (88 > 79 characters)
+./tests/test_serial_output.py:234:80: E501 line too long (107 > 79 characters)
+./tests/test_serial_output.py:235:80: E501 line too long (89 > 79 characters)
+./tests/test_serial_output.py:244:80: E501 line too long (88 > 79 characters)
+./tests/test_serial_output.py:245:80: E501 line too long (97 > 79 characters)
+./tests/test_serial_output.py:246:80: E501 line too long (94 > 79 characters)
+./tests/test_serial_output.py:247:80: E501 line too long (96 > 79 characters)
+./tests/test_serial_output.py:248:80: E501 line too long (89 > 79 characters)
+./tests/test_serial_output.py:249:80: E501 line too long (84 > 79 characters)
+./tests/test_serial_output.py:251:80: E501 line too long (80 > 79 characters)
+./tests/test_serial_output.py:252:80: E501 line too long (90 > 79 characters)
+./tests/test_serial_output.py:261:80: E501 line too long (99 > 79 characters)
+./tests/test_serial_output.py:262:80: E501 line too long (83 > 79 characters)
+./tests/test_serial_output.py:271:80: E501 line too long (86 > 79 characters)
+./tests/test_serial_output.py:278:80: E501 line too long (98 > 79 characters)
