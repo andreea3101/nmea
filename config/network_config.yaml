@@ -53,3 +53,21 @@ outputs:
     broadcast: true
     send_timeout: 1.0
 
+  - type: serial
+    enabled: true # Set to false to disable this output
+    port: "/dev/ttyUSB0"  # Example for Linux. Windows: "COM1", macOS: "/dev/cu.usbserial-XYZ"
+    baudrate: 9600
+    bytesize: "EIGHTBITS" # Or 5, 6, 7, "FIVEBITS", "SIXBITS", "SEVENBITS"
+    parity: "PARITY_NONE" # Or "PARITY_EVEN", "PARITY_ODD", "PARITY_MARK", "PARITY_SPACE"
+    stopbits: "STOPBITS_ONE" # Or 1.5, 2, "STOPBITS_ONE_POINT_FIVE", "STOPBITS_TWO"
+    timeout: 1.0          # Read timeout in seconds (float or null)
+    write_timeout: 1.0    # Write timeout in seconds (float or null)
+    # Optional settings:
+    # rtscts: false         # Enable RTS/CTS hardware flow control
+    # dsrdtr: false         # Enable DSR/DTR hardware flow control
+    # xonxoff: false        # Enable XON/XOFF software flow control
+    # exclusive: true       # Request exclusive access to the port (POSIX only)
+    # send_interval: 0.0    # Minimum seconds between sends (0 for no delay)
+    # reconnect_delay: 5.0  # Seconds to wait before trying to reconnect
+    # max_reconnect_attempts: 5 # Number of reconnect attempts (-1 for infinite)
+    # line_ending: "\r\n"   # Characters to append to each NMEA sentence (e.g., "\n", "\r\n")
