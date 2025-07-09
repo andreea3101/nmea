@@ -10,9 +10,10 @@ class SerialOutputConfig:
 
     port: str = "/dev/ttyS0"  # Default serial port
     baudrate: int = 9600
-    bytesize: serial.SerialBytesize = serial.EIGHTBITS
-    parity: serial.SerialParity = serial.PARITY_NONE
-    stopbits: serial.SerialStopbits = serial.STOPBITS_ONE
+    # Type hints corrected for pyserial constructor expectations
+    bytesize: int = serial.EIGHTBITS
+    parity: str = serial.PARITY_NONE
+    stopbits: float = serial.STOPBITS_ONE
     timeout: Optional[float] = 1.0  # Read timeout
     write_timeout: Optional[float] = 1.0 # Write timeout
     rtscts: bool = False
