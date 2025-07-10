@@ -525,7 +525,7 @@ def create_san_francisco_bay_scenario() -> Dict[str, Any]:
             {
                 'mmsi': 993670001, # AtoN MMSI: 99 + MID (367 for US) + unique number
                 'name': 'SF_ATON_EAST_CHANNEL_BUOY',
-                'aton_type': AidType.STARBOARD_HAND_MARK.value, # Changed AtoNType to AidType
+                'aid_type': AidType.STARBOARD_HAND_MARK.value, # Corrected key from aton_type to aid_type
                 'position': {'latitude': 37.81, 'longitude': -122.36},
                 'epfd_type': EPFDType.GPS.value,
                 'virtual_aton': False,
@@ -537,7 +537,7 @@ def create_san_francisco_bay_scenario() -> Dict[str, Any]:
             {
                 'mmsi': 993670002,
                 'name': 'SF_ATON_BRIDGE_CENTER_VIRTUAL',
-                'aton_type': AidType.REFERENCE_POINT.value, # Changed AtoNType to AidType
+                'aid_type': AidType.REFERENCE_POINT.value, # Corrected key from aton_type to aid_type
                 'position': {'latitude': 37.8197, 'longitude': -122.4783}, # Approx. Golden Gate center
                 'epfd_type': EPFDType.GPS.value,
                 'virtual_aton': True,
