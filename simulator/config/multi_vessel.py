@@ -7,7 +7,7 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 
 from nmea_lib.types import Position
-from nmea_lib.types.vessel import VesselClass, ShipType, NavigationStatus, EPFDType
+from nmea_lib.types.vessel import VesselClass, ShipType, NavigationStatus, EPFDType, AtoNType
 from simulator.generators.vessel import create_default_vessel_config
 
 
@@ -434,10 +434,10 @@ class MultiVesselConfigManager:
 
 # Predefined scenarios
 def create_san_francisco_bay_scenario() -> Dict[str, Any]:
-    """Create a scenario for San Francisco Bay area."""
+    """Create a scenario for San Francisco Bay area, now with Class B and AtoN."""
     return {
-        'name': 'san_francisco_bay',
-        'description': 'Multi-vessel simulation in San Francisco Bay',
+        'name': 'san_francisco_bay_extended',
+        'description': 'Multi-vessel simulation in San Francisco Bay with Class B and AtoN',
         'duration': 3600,  # 1 hour
         'area': {
             'lat_min': 37.7,
@@ -463,7 +463,7 @@ def create_san_francisco_bay_scenario() -> Dict[str, Any]:
                 'initial_speed': 12.0
             },
             {
-                'template': 'fishing_vessel',
+                'template': 'fishing_vessel', # This is Class A as per default templates
                 'mmsi': 367009012,
                 'name': 'PACIFIC DAWN',
                 'position': {'latitude': 37.85, 'longitude': -122.35},
@@ -478,7 +478,7 @@ def create_san_francisco_bay_scenario() -> Dict[str, Any]:
                 }
             },
             {
-                'template': 'pilot_vessel',
+                'template': 'pilot_vessel', # This is Class A
                 'mmsi': 367003456,
                 'name': 'SF PILOT 1',
                 'position': {'latitude': 37.82, 'longitude': -122.42},
@@ -486,16 +486,62 @@ def create_san_francisco_bay_scenario() -> Dict[str, Any]:
                     'pattern': 'circular',
                     'circle': {
                         'center': {'latitude': 37.82, 'longitude': -122.42},
-                        'radius': 500
+                        'radius': 500  # meters
                     }
+                }
+            },
+            # ADDED: Class B Vessel (e.g., pleasure craft)
+            {
+                'template': 'pleasure_craft', # This template is Class B
+                'mmsi': 368000001, # Example Class B MMSI (ensure unique)
+                'name': 'BAY CRUISER',
+                'position': {'latitude': 37.78, 'longitude': -122.38},
+                'initial_heading': 45,
+                'initial_speed': 8.0,
+                # 'vessel_class': VesselClass.CLASS_B, # Template should define this.
+                                                      # If VesselClass is not auto-imported, this might cause an error.
+                                                      # The template 'pleasure_craft' already sets vessel_class = 'B'.
+                'movement': {
+                    'pattern': 'waypoint',
+                    'waypoints': [
+                        {'latitude': 37.78, 'longitude': -122.38},
+                        {'latitude': 37.79, 'longitude': -122.37},
+                        {'latitude': 37.77, 'longitude': -122.36},
+                    ],
+                    'loop': True
                 }
             }
         ],
         'base_stations': [
             {
-                'mmsi': 3669999,
+                'mmsi': 3669999, # Standard USCG Base Station MMSI (MID 366, type 99, number 99)
                 'name': 'SF_BASE_1',
                 'position': {'latitude': 37.8, 'longitude': -122.4}
+            }
+        ],
+        # ADDED: Aids to Navigation
+        'aids_to_navigation': [
+            {
+                'mmsi': 993670001, # AtoN MMSI: 99 + MID (367 for US) + unique number
+                'name': 'SF_ATON_EAST_CHANNEL_BUOY',
+                'aton_type': AtoNType.STARBOARD_HAND_MARK.value, # Example: Starboard hand mark
+                'position': {'latitude': 37.81, 'longitude': -122.36},
+                'epfd_type': EPFDType.GPS.value,
+                'virtual_aton': False,
+                'off_position': False,
+                'dimensions': { # Optional: physical dimensions of the AtoN structure
+                    'to_bow': 2, 'to_stern': 2, 'to_port': 2, 'to_starboard': 2
+                }
+            },
+            {
+                'mmsi': 993670002,
+                'name': 'SF_ATON_BRIDGE_CENTER_VIRTUAL',
+                'aton_type': AtoNType.REFERENCE_POINT.value, # Example: Reference point
+                'position': {'latitude': 37.8197, 'longitude': -122.4783}, # Approx. Golden Gate center
+                'epfd_type': EPFDType.GPS.value,
+                'virtual_aton': True,
+                'off_position': False
+                # No dimensions for virtual AtoN
             }
         ]
     }
