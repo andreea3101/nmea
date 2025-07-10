@@ -94,9 +94,9 @@ class FileOutput(OutputHandler):
             
             # Write sentence, ensuring it ends with a newline
             # Strip any existing newlines from the sentence to prevent double newlines, then add one.
-            formatted_sentence = f"{sentence.strip()}\\n"
-            self.file_handle.write(formatted_sentence)
-            sentence_bytes = len(formatted_sentence.encode('utf-8'))
+            line_to_write = sentence.strip() + '\\n'
+            self.file_handle.write(line_to_write)
+            sentence_bytes = len(line_to_write.encode('utf-8'))
             self.bytes_written += sentence_bytes
             
             # Auto-flush if enabled
