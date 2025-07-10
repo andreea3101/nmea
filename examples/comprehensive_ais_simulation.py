@@ -17,6 +17,7 @@ from simulator.config.multi_vessel import (
 )
 from simulator.outputs.factory import OutputFactory
 from nmea_lib.types import Position
+from nmea_lib.types.vessel import AidToNavigationData, VesselDimensions, EPFDType
 
 
 def signal_handler(signum, frame):
@@ -111,6 +112,51 @@ def main():
             engine.add_base_station(base_station)
             print(f"  {bs_config['name']} (MMSI: {bs_config['mmsi']})")
     
+    print()
+
+    # Add Aids to Navigation
+    if hasattr(scenario, 'aids_to_navigation') and scenario.aids_to_navigation:
+        print("\\nAdding Aids to Navigation:")
+        for aton_config in scenario.aids_to_navigation:
+            try:
+                # Ensure EPFDType is handled correctly, scenario provides int value
+                epfd_value = aton_config.get('epfd_type', EPFDType.GPS.value)
+                if isinstance(epfd_value, EPFDType): # If it's already an enum member
+                    epfd_type_to_use = epfd_value
+                else: # Assume it's an int, convert to EPFDType enum
+                    epfd_type_to_use = EPFDType(epfd_value)
+
+                aton_data = AidToNavigationData(
+                    mmsi=aton_config['mmsi'],
+                    name=aton_config['name'],
+                    aid_type=aton_config['aid_type'], # This should be an int from AidType enum .value
+                    position=Position(
+                        latitude=aton_config['position']['latitude'],
+                        longitude=aton_config['position']['longitude']
+                    ),
+                    dimensions=VesselDimensions(
+                        to_bow=aton_config.get('dimensions', {}).get('to_bow', 0),
+                        to_stern=aton_config.get('dimensions', {}).get('to_stern', 0),
+                        to_port=aton_config.get('dimensions', {}).get('to_port', 0),
+                        to_starboard=aton_config.get('dimensions', {}).get('to_starboard', 0)
+                    ) if 'dimensions' in aton_config else VesselDimensions(),
+                    epfd_type=epfd_type_to_use,
+                    timestamp=aton_config.get('timestamp', 60),
+                    off_position=int(aton_config.get('off_position', 0)),
+                    regional=aton_config.get('regional', 0),
+                    raim=int(aton_config.get('raim', 0)),
+                    virtual_aid=int(aton_config.get('virtual_aid', 0)),
+                    assigned=int(aton_config.get('assigned', 0)),
+                    position_accuracy=int(aton_config.get('position_accuracy', 0))
+                )
+                engine.add_aid_to_navigation(aton_data)
+                print(f"  {aton_config['name']} (MMSI: {aton_config['mmsi']})")
+            except KeyError as e:
+                print(f"  ❌ Error adding AtoN {aton_config.get('name', 'Unknown')}: Missing key {e}")
+            except ValueError as e: # Catch issues with EPFDType conversion
+                print(f"  ❌ Error adding AtoN {aton_config.get('name', 'Unknown')} due to invalid value: {e}")
+            except Exception as e:
+                print(f"  ❌ Error adding AtoN {aton_config.get('name', 'Unknown')}: {type(e).__name__} {e}")
     print()
     
     # Setup output handlers
