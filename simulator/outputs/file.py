@@ -92,9 +92,11 @@ class FileOutput(OutputHandler):
             # Check if rotation is needed
             self._check_rotation()
             
-            # Write sentence
-            self.file_handle.write(sentence)
-            sentence_bytes = len(sentence.encode('utf-8'))
+            # Write sentence, ensuring it ends with a newline
+            # Strip any existing newlines from the sentence to prevent double newlines, then add one.
+            formatted_sentence = f"{sentence.strip()}\\n"
+            self.file_handle.write(formatted_sentence)
+            sentence_bytes = len(formatted_sentence.encode('utf-8'))
             self.bytes_written += sentence_bytes
             
             # Auto-flush if enabled
