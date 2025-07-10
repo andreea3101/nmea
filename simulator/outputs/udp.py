@@ -89,7 +89,9 @@ class UDPOutput(OutputHandler):
             return False
         
         try:
-            sentence_bytes = sentence.encode('utf-8')
+            # Ensure sentence is stripped of existing newlines and terminated with CRLF
+            formatted_sentence = sentence.strip() + '\\r\\n'
+            sentence_bytes = formatted_sentence.encode('utf-8')
             sent_count = 0
             
             for address in self.target_addresses:

@@ -32,10 +32,12 @@ class TCPClient:
         self.errors = 0
     
     def send_sentence(self, sentence: str, timeout: float = 5.0) -> bool:
-        """Send sentence to client."""
+        """Send sentence to client with CRLF line ending."""
         try:
             self.socket.settimeout(timeout)
-            self.socket.sendall(sentence.encode('utf-8'))
+            # Ensure sentence is stripped of existing newlines and terminated with CRLF
+            formatted_sentence = sentence.strip() + '\\r\\n'
+            self.socket.sendall(formatted_sentence.encode('utf-8'))
             self.sentences_sent += 1
             self.last_activity = time.time()
             return True
