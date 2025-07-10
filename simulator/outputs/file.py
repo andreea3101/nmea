@@ -92,11 +92,15 @@ class FileOutput(OutputHandler):
             # Check if rotation is needed
             self._check_rotation()
             
-            # Write sentence, ensuring it ends with a newline
-            # Strip any existing newlines from the sentence to prevent double newlines, then add one.
-            line_to_write = sentence.strip() + '\\n'
-            self.file_handle.write(line_to_write)
-            sentence_bytes = len(line_to_write.encode('utf-8'))
+            # Write sentence using print, which handles newlines automatically
+            line_content = sentence.strip()
+            print(line_content, file=self.file_handle) # print adds its own newline
+
+            # Estimate bytes written (print adds OS-specific newline, so \n is a good estimate for byte count)
+            # For simplicity, we'll count the bytes of the content + 1 for the newline.
+            # A more precise count would be len((line_content + os.linesep).encode('utf-8')),
+            # but this is usually sufficient for logging purposes.
+            sentence_bytes = len(line_content.encode('utf-8')) + 1
             self.bytes_written += sentence_bytes
             
             # Auto-flush if enabled
