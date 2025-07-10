@@ -7,7 +7,8 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 
 from nmea_lib.types import Position
-from nmea_lib.types.vessel import VesselClass, ShipType, NavigationStatus, EPFDType, AtoNType
+from nmea_lib.types.vessel import VesselClass, ShipType, NavigationStatus, EPFDType # AtoNType removed
+from nmea_lib.ais.constants import AidType # Added AidType from constants
 from simulator.generators.vessel import create_default_vessel_config
 
 
@@ -524,7 +525,7 @@ def create_san_francisco_bay_scenario() -> Dict[str, Any]:
             {
                 'mmsi': 993670001, # AtoN MMSI: 99 + MID (367 for US) + unique number
                 'name': 'SF_ATON_EAST_CHANNEL_BUOY',
-                'aton_type': AtoNType.STARBOARD_HAND_MARK.value, # Example: Starboard hand mark
+                'aton_type': AidType.STARBOARD_HAND_MARK.value, # Changed AtoNType to AidType
                 'position': {'latitude': 37.81, 'longitude': -122.36},
                 'epfd_type': EPFDType.GPS.value,
                 'virtual_aton': False,
@@ -536,7 +537,7 @@ def create_san_francisco_bay_scenario() -> Dict[str, Any]:
             {
                 'mmsi': 993670002,
                 'name': 'SF_ATON_BRIDGE_CENTER_VIRTUAL',
-                'aton_type': AtoNType.REFERENCE_POINT.value, # Example: Reference point
+                'aton_type': AidType.REFERENCE_POINT.value, # Changed AtoNType to AidType
                 'position': {'latitude': 37.8197, 'longitude': -122.4783}, # Approx. Golden Gate center
                 'epfd_type': EPFDType.GPS.value,
                 'virtual_aton': True,
