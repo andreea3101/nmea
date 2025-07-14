@@ -1,11 +1,16 @@
 """Unit tests for NMEA library core functionality."""
 
 import unittest
+from datetime import datetime
 from nmea_lib import (
     SentenceValidator, SentenceParser, SentenceFactory,
     GGASentence, RMCSentence, TalkerId, SentenceId,
     Position, NMEATime, NMEADate, Speed, SpeedUnit
 )
+from nmea_lib.ais.constants import AISMessageType
+from nmea_lib.sentences.aivdm import AISMessageGenerator
+from nmea_lib.types.vessel import VesselState, VesselNavigationData, VesselStaticData, VesselVoyageData, Position
+from nmea_lib.types.datetime import NMEADateTime
 
 
 class TestSentenceValidator(unittest.TestCase):
@@ -182,6 +187,56 @@ class TestNMEATime(unittest.TestCase):
         
         self.assertEqual(time_obj.to_nmea(), "120044.123")
         self.assertEqual(time_obj.to_nmea(include_fractional=False), "120044")
+
+
+class TestAIVDMSentence(unittest.TestCase):
+    """Test AIVDM sentence generation."""
+
+    def test_generate_type_9(self):
+        """Test generating a Type 9 Standard SAR Aircraft Position Report."""
+        # Create a mock vessel state for a SAR aircraft
+        nav_data = VesselNavigationData(
+            position=Position(latitude=34.567, longitude=-118.123),
+            sog=250.0,  # Speed in knots
+            cog=123.4,
+            heading=120,
+            nav_status=0,
+            rot=0,
+            timestamp=25,
+            position_accuracy=1,
+            raim=0,
+            radio_status=0
+        )
+        # SAR aircraft specific data
+        nav_data.altitude = 1500  # Altitude in meters
+
+        static_data = VesselStaticData(mmsi=987654321)
+        voyage_data = VesselVoyageData()
+
+        vessel_state = VesselState(
+            static_data=static_data,
+            navigation_data=nav_data,
+            voyage_data=voyage_data,
+            timestamp_sim=NMEADateTime.from_datetime(datetime(2023, 1, 1, 12, 0, 44)).to_datetime(),
+        )
+
+        # Generate the Type 9 message
+        generator = AISMessageGenerator()
+        sentences, _ = generator.generate_message(
+            message_type=AISMessageType.STANDARD_SAR_AIRCRAFT_POSITION_REPORT,
+            vessel_data=vessel_state,
+            channel='A'
+        )
+
+        # Validate the generated sentence
+        self.assertEqual(len(sentences), 1)
+        sentence = sentences[0]
+        self.assertTrue(sentence.startswith("!AIVDM,1,1,,A,"))
+        self.assertTrue(SentenceValidator.is_valid(sentence))
+
+        # Further checks can be added here to decode the payload and verify the data
+        # For example, extract payload, decode from 6-bit, and check fields.
+        # This is a basic test to ensure the generator runs and produces a valid sentence.
 
 
 if __name__ == '__main__':
