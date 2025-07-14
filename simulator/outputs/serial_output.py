@@ -175,7 +175,8 @@ class SerialOutput(OutputHandler):
                 time.sleep(self.config.send_interval - (current_time - self._last_send_time))
 
             try:
-                full_sentence = sentence + self.config.line_ending
+                # Strip sentence then append configured line ending
+                full_sentence = sentence.strip() + self.config.line_ending
                 self.serial_port.write(full_sentence.encode('utf-8'))
                 self.serial_port.flush() # Ensure data is sent
                 self.sentences_sent += 1
