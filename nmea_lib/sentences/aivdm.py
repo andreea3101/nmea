@@ -209,6 +209,12 @@ class AISMessageGenerator:
         }
         
         return all_sentences, combined_input
+
+    def generate_type_9(self, vessel: VesselState, channel: str = 'A') -> Tuple[List[str], Dict[str, Any]]:
+        """Generate Type 9 Standard SAR Aircraft Position Report."""
+        binary_data, input_data = AISBinaryEncoder.encode_type_9(vessel)
+        sentences = AIVDMSentence.from_binary_message(binary_data, channel)
+        return [str(s) for s in sentences], input_data
     
     def generate_message(self, message_type: int, vessel_data: Any, 
                         channel: str = 'A') -> Tuple[List[str], Dict[str, Any]]:
@@ -219,6 +225,7 @@ class AISMessageGenerator:
             3: self.generate_type_3,
             4: self.generate_type_4,
             5: self.generate_type_5,
+            9: self.generate_type_9,
             18: self.generate_type_18,
             19: self.generate_type_19,
             21: self.generate_type_21,
