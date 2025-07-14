@@ -44,31 +44,35 @@ class SimulationConfig:
     enable_trace_logging: bool = False
 
 
+@dataclass
+class SimulationState:
+    """State of the enhanced simulation engine."""
+    running: bool = False
+    simulation_thread: Optional[threading.Thread] = None
+    gps_thread: Optional[threading.Thread] = None
+    ais_thread: Optional[threading.Thread] = None
+
+
 class EnhancedSimulationEngine:
     """Enhanced simulation engine supporting both GPS and AIS."""
-    
+
     def __init__(self, config: SimulationConfig):
         """Initialize enhanced simulation engine."""
         self.config = config
+        self.state: SimulationState = SimulationState()
         # Correctly initialize TimeManager using keyword argument for time_factor
         self.time_manager = TimeManager(time_factor=config.time_factor)
         self.ais_scheduler = AISMessageScheduler()
         self.ais_generator = AISMessageGenerator()
-        
+
         # Vessel management
         self.vessel_generators: Dict[int, EnhancedVesselGenerator] = {}
         self.base_stations: Dict[int, BaseStationData] = {}
         self.aids_to_navigation: Dict[int, AidToNavigationData] = {}
-        
+
         # Output management
         self.output_handlers: List[OutputHandler] = []
-        
-        # Threading
-        self.running = False
-        self.simulation_thread: Optional[threading.Thread] = None
-        self.gps_thread: Optional[threading.Thread] = None
-        self.ais_thread: Optional[threading.Thread] = None
-        
+
         # Statistics
         self.stats = {
             'start_time': None,
@@ -78,11 +82,11 @@ class EnhancedSimulationEngine:
             'errors': 0,
             'vessels_active': 0
         }
-        
+
         # Logging
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(getattr(logging, config.log_level.upper()))
-        
+
         # Trace logging callback
         self.trace_callback: Optional[Callable[[str, Dict[str, Any]], None]] = None
     
@@ -148,19 +152,19 @@ class EnhancedSimulationEngine:
     
     def start(self):
         """Start the simulation."""
-        if self.running:
+        if self.state.running:
             self.logger.warning("Simulation is already running")
             return
-        
-        self.running = True
+
+        self.state.running = True
         self.stats['start_time'] = datetime.now()
         self.stats['vessels_active'] = len(self.vessel_generators)
-        
+
         self.logger.info("Starting enhanced simulation engine")
-        
+
         # Initialize time manager (no start method needed)
         # Time manager automatically tracks time from initialization
-        
+
         # Start output handlers
         for handler in self.output_handlers:
             try:
@@ -171,41 +175,41 @@ class EnhancedSimulationEngine:
 
         # Start simulation threads
         if self.config.enable_gps:
-            self.gps_thread = threading.Thread(target=self._gps_loop, daemon=True)
-            self.gps_thread.start()
+            self.state.gps_thread = threading.Thread(target=self._gps_loop, daemon=True)
+            self.state.gps_thread.start()
             self.logger.info("GPS simulation thread started")
-        
+
         if self.config.enable_ais:
-            self.ais_thread = threading.Thread(target=self._ais_loop, daemon=True)
-            self.ais_thread.start()
+            self.state.ais_thread = threading.Thread(target=self._ais_loop, daemon=True)
+            self.state.ais_thread.start()
             self.logger.info("AIS simulation thread started")
-        
+
         # Start main simulation thread
-        self.simulation_thread = threading.Thread(target=self._simulation_loop, daemon=True)
-        self.simulation_thread.start()
+        self.state.simulation_thread = threading.Thread(target=self._simulation_loop, daemon=True)
+        self.state.simulation_thread.start()
         self.logger.info("Main simulation thread started")
-    
+
     def stop(self):
         """Stop the simulation."""
-        if not self.running:
+        if not self.state.running:
             return
-        
+
         self.logger.info("Stopping simulation engine")
-        self.running = False
-        
+        self.state.running = False
+
         # No explicit stop needed for time manager
         # It will stop tracking when simulation ends
-        
+
         # Wait for threads to finish
-        if self.simulation_thread and self.simulation_thread.is_alive():
-            self.simulation_thread.join(timeout=5.0)
-        
-        if self.gps_thread and self.gps_thread.is_alive():
-            self.gps_thread.join(timeout=5.0)
-        
-        if self.ais_thread and self.ais_thread.is_alive():
-            self.ais_thread.join(timeout=5.0)
-        
+        if self.state.simulation_thread and self.state.simulation_thread.is_alive():
+            self.state.simulation_thread.join(timeout=5.0)
+
+        if self.state.gps_thread and self.state.gps_thread.is_alive():
+            self.state.gps_thread.join(timeout=5.0)
+
+        if self.state.ais_thread and self.state.ais_thread.is_alive():
+            self.state.ais_thread.join(timeout=5.0)
+
         # Stop output handlers
         for handler in self.output_handlers:
             try:
@@ -213,64 +217,65 @@ class EnhancedSimulationEngine:
                 self.logger.info(f"Stopped output handler: {type(handler).__name__}")
             except Exception as e:
                 self.logger.error(f"Error stopping output handler {type(handler).__name__}: {e}")
-        
+
         self.logger.info("Simulation engine stopped")
     
     def _simulation_loop(self):
         """Main simulation loop."""
         start_time = datetime.now()
-        
-        while self.running:
+
+        while self.state.running:
             try:
                 current_time = self.time_manager.get_current_time()
                 elapsed = (datetime.now() - start_time).total_seconds()
-                
+
                 # Check duration limit
                 if self.config.duration and elapsed >= self.config.duration:
                     self.logger.info(f"Simulation duration ({self.config.duration}s) reached")
                     break
-                
+
                 # Update vessel positions
                 self._update_vessel_positions(current_time)
-                
+
                 # Update AIS scheduler intervals based on vessel speeds
                 self._update_ais_intervals()
-                
+
                 # Sleep for update interval
                 time.sleep(self.config.update_interval)
-                
+
             except Exception as e:
                 self.logger.error(f"Error in simulation loop: {e}")
                 self.stats['errors'] += 1
                 time.sleep(1.0)
-        
-        self.running = False
+
+        self.state.running = False
     
     def _gps_loop(self):
         """GPS sentence generation loop."""
         # Initialize last_gps_update to ensure the first update occurs if needed,
         # or handle the first run explicitly. Using None and checking is cleaner.
         last_gps_update: Optional[datetime] = None
-        
-        while self.running:
+
+        while self.state.running:
             try:
                 # Use simulation time for GPS scheduling
                 sim_current_time = self.time_manager.get_current_time()
-                
+
                 # Check if it's time for GPS update based on simulation time
                 if last_gps_update is None or \
-                   (sim_current_time - last_gps_update).total_seconds() >= self.config.gps_update_interval:
+                        (sim_current_time - last_gps_update).total_seconds() >= self.config.gps_update_interval:
                     self._generate_gps_sentences(sim_current_time)
                     last_gps_update = sim_current_time
-                
+
                 # Sleep based on a fraction of GPS interval or a fixed small duration,
                 # ensuring responsiveness without excessive CPU load.
                 # This sleep is in real-time, so it should be small.
                 # Consider the time_factor if very precise real-time alignment of this loop is needed,
                 # but typically, this loop just needs to check periodically.
-                sleep_duration = min(0.1, self.config.gps_update_interval / (self.time_manager.time_factor if self.time_manager.time_factor > 0 else 1.0) / 2)
-                time.sleep(max(0.01, sleep_duration)) # Ensure a minimum sleep
-                
+                sleep_duration = min(0.1, self.config.gps_update_interval / (
+                    self.time_manager.time_factor if self.time_manager.time_factor > 0 else 1.0) / 2)
+                time.sleep(max(0.01, sleep_duration))  # Ensure a minimum sleep
+
             except Exception as e:
                 self.logger.error(f"Error in GPS loop: {e}")
                 self.stats['errors'] += 1
@@ -278,21 +283,21 @@ class EnhancedSimulationEngine:
     
     def _ais_loop(self):
         """AIS sentence generation loop."""
-        while self.running:
+        while self.state.running:
             try:
                 current_time = self.time_manager.get_current_time()
-                
+
                 # Get due AIS messages
                 due_messages = self.ais_scheduler.get_due_messages(current_time)
-                
+
                 for vessel_mmsi, message_type in due_messages:
                     self._generate_ais_message(vessel_mmsi, message_type, current_time)
-                
+
                 # Clean up old schedules periodically
                 self.ais_scheduler.cleanup_old_schedules(current_time)
-                
+
                 time.sleep(self.config.ais_update_interval)
-                
+
             except Exception as e:
                 self.logger.error(f"Error in AIS loop: {e}")
                 self.stats['errors'] += 1
@@ -462,12 +467,12 @@ class EnhancedSimulationEngine:
     
     def is_running(self) -> bool:
         """Check if simulation is running."""
-        return self.running
-    
+        return self.state.running
+
     def wait_for_completion(self):
         """Wait for simulation to complete."""
-        if self.simulation_thread:
-            self.simulation_thread.join()
+        if self.state.simulation_thread:
+            self.state.simulation_thread.join()
 
 
 # Utility functions

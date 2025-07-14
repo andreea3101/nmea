@@ -8,6 +8,28 @@ from ..types import Position, NMEATime, Distance, DistanceUnit
 
 
 @dataclass
+class GGASatelliteInfo:
+    """Satellite information for GGA sentence."""
+    fix_quality: GpsFixQuality = GpsFixQuality.INVALID
+    satellites_in_use: int = 0
+    horizontal_dilution: Optional[float] = None
+
+
+@dataclass
+class GGAAltitudeInfo:
+    """Altitude information for GGA sentence."""
+    altitude: Optional[Distance] = None
+    geoidal_height: Optional[Distance] = None
+
+
+@dataclass
+class GGADgpsInfo:
+    """DGPS information for GGA sentence."""
+    dgps_age: Optional[float] = None
+    dgps_station_id: Optional[str] = None
+
+
+@dataclass
 class GGASentence(PositionSentence, TimeSentence):
     """
     GGA - Global Positioning System Fix Data
@@ -57,13 +79,9 @@ class GGASentence(PositionSentence, TimeSentence):
         # Default values
         self._time: Optional[NMEATime] = None
         self._position: Optional[Position] = None
-        self._fix_quality: GpsFixQuality = GpsFixQuality.INVALID
-        self._satellites_in_use: int = 0
-        self._horizontal_dilution: Optional[float] = None
-        self._altitude: Optional[Distance] = None
-        self._geoidal_height: Optional[Distance] = None
-        self._dgps_age: Optional[float] = None
-        self._dgps_station_id: Optional[str] = None
+        self.satellite_info: GGASatelliteInfo = GGASatelliteInfo()
+        self.altitude_info: GGAAltitudeInfo = GGAAltitudeInfo()
+        self.dgps_info: GGADgpsInfo = GGADgpsInfo()
     
     @classmethod
     def from_sentence(cls, nmea_sentence: str) -> 'GGASentence':
@@ -90,62 +108,62 @@ class GGASentence(PositionSentence, TimeSentence):
                 self._time = NMEATime.from_nmea(time_str)
             except ValueError:
                 self._time = None
-        
+
         # Position
         lat_str = parser.get_field(self.LATITUDE)
         lat_hem = parser.get_field(self.LAT_HEMISPHERE)
         lon_str = parser.get_field(self.LONGITUDE)
         lon_hem = parser.get_field(self.LON_HEMISPHERE)
-        
+
         if all([lat_str, lat_hem, lon_str, lon_hem]):
             try:
                 self._position = Position.from_nmea(lat_str, lat_hem, lon_str, lon_hem)
             except ValueError:
                 self._position = None
-        
+
         # Fix quality
         fix_quality_val = parser.get_int_field(self.FIX_QUALITY)
         if fix_quality_val is not None:
             try:
-                self._fix_quality = GpsFixQuality(fix_quality_val)
+                self.satellite_info.fix_quality = GpsFixQuality(fix_quality_val)
             except ValueError:
-                self._fix_quality = GpsFixQuality.INVALID
-        
+                self.satellite_info.fix_quality = GpsFixQuality.INVALID
+
         # Satellites in use
-        self._satellites_in_use = parser.get_int_field(self.SATELLITES_IN_USE) or 0
-        
+        self.satellite_info.satellites_in_use = parser.get_int_field(self.SATELLITES_IN_USE) or 0
+
         # Horizontal dilution
-        self._horizontal_dilution = parser.get_float_field(self.HORIZONTAL_DILUTION)
-        
+        self.satellite_info.horizontal_dilution = parser.get_float_field(self.HORIZONTAL_DILUTION)
+
         # Altitude
         altitude_val = parser.get_float_field(self.ALTITUDE)
         altitude_unit = parser.get_field(self.ALTITUDE_UNITS)
         if altitude_val is not None:
             unit = DistanceUnit.METERS if altitude_unit == "M" else DistanceUnit.METERS
-            self._altitude = Distance(altitude_val, unit)
-        
+            self.altitude_info.altitude = Distance(altitude_val, unit)
+
         # Geoidal height
         geoidal_val = parser.get_float_field(self.GEOIDAL_HEIGHT)
         geoidal_unit = parser.get_field(self.HEIGHT_UNITS)
         if geoidal_val is not None:
             unit = DistanceUnit.METERS if geoidal_unit == "M" else DistanceUnit.METERS
-            self._geoidal_height = Distance(geoidal_val, unit)
-        
+            self.altitude_info.geoidal_height = Distance(geoidal_val, unit)
+
         # DGPS data
-        self._dgps_age = parser.get_float_field(self.DGPS_AGE)
+        self.dgps_info.dgps_age = parser.get_float_field(self.DGPS_AGE)
         dgps_id = parser.get_field(self.DGPS_STATION_ID)
-        self._dgps_station_id = dgps_id if dgps_id else None
+        self.dgps_info.dgps_station_id = dgps_id if dgps_id else None
     
     def to_sentence(self) -> str:
         """Convert to NMEA sentence string."""
         builder = SentenceBuilder(self.talker_id, self.sentence_id)
-        
+
         # Time
         if self._time:
             builder.add_field(self._time.to_nmea())
         else:
             builder.add_field("")
-        
+
         # Position
         if self._position:
             lat_str, lat_hem, lon_str, lon_hem = self._position.to_nmea()
@@ -155,36 +173,36 @@ class GGASentence(PositionSentence, TimeSentence):
             builder.add_field(lon_hem)
         else:
             builder.add_field("").add_field("").add_field("").add_field("")
-        
+
         # Fix quality
-        builder.add_field(self._fix_quality.value)
-        
+        builder.add_field(self.satellite_info.fix_quality.value)
+
         # Satellites in use
-        builder.add_field(self._satellites_in_use if self._satellites_in_use > 0 else "")
-        
+        builder.add_field(self.satellite_info.satellites_in_use if self.satellite_info.satellites_in_use > 0 else "")
+
         # Horizontal dilution
-        builder.add_float_field(self._horizontal_dilution, 1)
-        
+        builder.add_float_field(self.satellite_info.horizontal_dilution, 1)
+
         # Altitude
-        if self._altitude:
-            builder.add_float_field(self._altitude.value, 1)
+        if self.altitude_info.altitude:
+            builder.add_float_field(self.altitude_info.altitude.value, 1)
             builder.add_field("M")
         else:
             builder.add_field("").add_field("")
-        
+
         # Geoidal height
-        if self._geoidal_height:
-            builder.add_float_field(self._geoidal_height.value, 1)
+        if self.altitude_info.geoidal_height:
+            builder.add_float_field(self.altitude_info.geoidal_height.value, 1)
             builder.add_field("M")
         else:
             builder.add_field("").add_field("")
-        
+
         # DGPS data
-        builder.add_float_field(self._dgps_age, 1)
-        builder.add_field(self._dgps_station_id or "")
-        
+        builder.add_float_field(self.dgps_info.dgps_age, 1)
+        builder.add_field(self.dgps_info.dgps_station_id or "")
+
         return builder.build()
-    
+
     # Property accessors
     def get_time(self) -> Optional[str]:
         """Get time in HHMMSS.SSS format."""
@@ -199,7 +217,7 @@ class GGASentence(PositionSentence, TimeSentence):
                 try:
                     self._time = NMEATime.from_nmea(time_input)
                 except ValueError:
-                    self._time = None # Or handle error appropriately
+                    self._time = None  # Or handle error appropriately
             else:
                 self._time = None
         elif time_input is None:
@@ -210,68 +228,68 @@ class GGASentence(PositionSentence, TimeSentence):
     def get_latitude(self) -> Optional[float]:
         """Get latitude in decimal degrees."""
         return self._position.latitude if self._position else None
-    
+
     def get_longitude(self) -> Optional[float]:
         """Get longitude in decimal degrees."""
         return self._position.longitude if self._position else None
-    
+
     def set_position(self, latitude: float, longitude: float) -> None:
         """Set position coordinates."""
         self._position = Position(latitude, longitude)
-    
+
     def get_fix_quality(self) -> GpsFixQuality:
         """Get GPS fix quality."""
-        return self._fix_quality
-    
+        return self.satellite_info.fix_quality
+
     def set_fix_quality(self, quality: GpsFixQuality) -> None:
         """Set GPS fix quality."""
-        self._fix_quality = quality
-    
+        self.satellite_info.fix_quality = quality
+
     def get_satellites_in_use(self) -> int:
         """Get number of satellites in use."""
-        return self._satellites_in_use
-    
+        return self.satellite_info.satellites_in_use
+
     def set_satellites_in_use(self, count: int) -> None:
         """Set number of satellites in use."""
-        self._satellites_in_use = max(0, count)
-    
+        self.satellite_info.satellites_in_use = max(0, count)
+
     def get_horizontal_dilution(self) -> Optional[float]:
         """Get horizontal dilution of precision."""
-        return self._horizontal_dilution
-    
+        return self.satellite_info.horizontal_dilution
+
     def set_horizontal_dilution(self, hdop: Optional[float]) -> None:
         """Set horizontal dilution of precision."""
-        self._horizontal_dilution = hdop
-    
+        self.satellite_info.horizontal_dilution = hdop
+
     def get_altitude(self) -> Optional[Distance]:
         """Get antenna altitude."""
-        return self._altitude
-    
+        return self.altitude_info.altitude
+
     def set_altitude(self, altitude: Distance) -> None:
         """Set antenna altitude."""
-        self._altitude = altitude
-    
+        self.altitude_info.altitude = altitude
+
     def get_geoidal_height(self) -> Optional[Distance]:
         """Get geoidal separation."""
-        return self._geoidal_height
-    
+        return self.altitude_info.geoidal_height
+
     def set_geoidal_height(self, height: Distance) -> None:
         """Set geoidal separation."""
-        self._geoidal_height = height
-    
+        self.altitude_info.geoidal_height = height
+
     def get_dgps_age(self) -> Optional[float]:
         """Get age of DGPS data in seconds."""
-        return self._dgps_age
-    
+        return self.dgps_info.dgps_age
+
     def set_dgps_age(self, age: Optional[float]) -> None:
         """Set age of DGPS data in seconds."""
-        self._dgps_age = age
-    
+        self.dgps_info.dgps_age = age
+
     def get_dgps_station_id(self) -> Optional[str]:
         """Get DGPS station ID."""
-        return self._dgps_station_id
-    
+        return self.dgps_info.dgps_station_id
+
     def set_dgps_station_id(self, station_id: Optional[str]) -> None:
         """Set DGPS station ID."""
-        self._dgps_station_id = station_id
+        self.dgps_info.dgps_station_id = station_id
 

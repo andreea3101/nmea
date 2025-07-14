@@ -22,10 +22,18 @@ class PositionState:
         return f"PositionState({self.position}, {self.speed.value:.1f}kts, {self.heading.value:.1f}°)"
 
 
+@dataclass
+class MovementParameters:
+    """Parameters for controlling movement variation."""
+    speed_variation: float = 2.0  # knots
+    course_variation: float = 10.0  # degrees
+    position_noise: float = 0.00001  # degrees (about 1 meter)
+
+
 class PositionGenerator:
     """Generates realistic GPS position data."""
     
-    def __init__(self, initial_position: Position, initial_speed: float = 0.0, 
+    def __init__(self, initial_position: Position, initial_speed: float = 0.0,
                  initial_heading: float = 0.0, start_time: Optional[datetime] = None):
         """
         Initialize position generator.
@@ -43,9 +51,7 @@ class PositionGenerator:
         self.current_heading = Bearing(initial_heading, BearingType.TRUE)
         
         # Movement parameters
-        self.speed_variation = 2.0  # knots
-        self.course_variation = 10.0  # degrees
-        self.position_noise = 0.00001  # degrees (about 1 meter)
+        self.movement_params: MovementParameters = MovementParameters()
         
         # Track history
         self.initial_timestamp = start_time or datetime.now()
@@ -63,13 +69,13 @@ class PositionGenerator:
         self.random = random.Random()
         self.random.seed(42)  # Reproducible results
     
-    def set_movement_parameters(self, speed_variation: float = 2.0, 
+    def set_movement_parameters(self, speed_variation: float = 2.0,
                               course_variation: float = 10.0,
                               position_noise: float = 0.00001) -> None:
         """Set movement variation parameters."""
-        self.speed_variation = max(0.0, speed_variation)
-        self.course_variation = max(0.0, course_variation)
-        self.position_noise = max(0.0, position_noise)
+        self.movement_params.speed_variation = max(0.0, speed_variation)
+        self.movement_params.course_variation = max(0.0, course_variation)
+        self.movement_params.position_noise = max(0.0, position_noise)
     
     def update_position(self, elapsed_seconds: float, timestamp: datetime) -> PositionState:
         """
@@ -120,33 +126,33 @@ class PositionGenerator:
     def _apply_movement_variation(self) -> None:
         """Apply realistic variations to speed and heading."""
         # Speed variation
-        if self.speed_variation > 0:
-            speed_change = self.random.gauss(0, self.speed_variation / 3)
+        if self.movement_params.speed_variation > 0:
+            speed_change = self.random.gauss(0, self.movement_params.speed_variation / 3)
             new_speed = max(0, self.current_speed.value + speed_change * 0.1)
             self.current_speed = Speed(new_speed, SpeedUnit.KNOTS)
-        
+
         # Course variation
-        if self.course_variation > 0:
-            course_change = self.random.gauss(0, self.course_variation / 3)
+        if self.movement_params.course_variation > 0:
+            course_change = self.random.gauss(0, self.movement_params.course_variation / 3)
             new_heading = (self.current_heading.value + course_change * 0.1) % 360
             self.current_heading = Bearing(new_heading, BearingType.TRUE)
-    
+
     def _add_gps_noise(self, position: Position) -> Position:
         """Add realistic GPS noise to position."""
-        if self.position_noise <= 0:
+        if self.movement_params.position_noise <= 0:
             return position
-        
+
         # Add Gaussian noise to lat/lon
-        lat_noise = self.random.gauss(0, self.position_noise)
-        lon_noise = self.random.gauss(0, self.position_noise)
-        
+        lat_noise = self.random.gauss(0, self.movement_params.position_noise)
+        lon_noise = self.random.gauss(0, self.movement_params.position_noise)
+
         new_lat = position.latitude + lat_noise
         new_lon = position.longitude + lon_noise
-        
+
         # Ensure coordinates remain valid
         new_lat = max(-90, min(90, new_lat))
         new_lon = max(-180, min(180, new_lon))
-        
+
         return Position(new_lat, new_lon)
     
     def set_speed(self, speed_knots: float) -> None:

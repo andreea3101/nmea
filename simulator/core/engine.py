@@ -38,29 +38,33 @@ class SentenceConfig:
 
 
 @dataclass
-class SimulationConfig:
-    """Configuration for the simulation."""
-    
-    # Time settings
-    start_time: Optional[datetime] = None
-    time_factor: float = 1.0
-    duration_seconds: Optional[float] = None
-    
-    # Vessel settings
+class VesselSettings:
+    """Vessel settings for the simulation."""
     vessel_name: str = "SimVessel"
     initial_latitude: float = 37.7749
     initial_longitude: float = -122.4194
     initial_speed: float = 0.0
     initial_heading: float = 0.0
-    
-    # Movement settings
+
+
+@dataclass
+class MovementSettings:
+    """Movement settings for the simulation."""
     speed_variation: float = 2.0
     course_variation: float = 10.0
     position_noise: float = 0.00001
-    
-    # Sentence configuration
+
+
+@dataclass
+class SimulationConfig:
+    """Configuration for the simulation."""
+    start_time: Optional[datetime] = None
+    time_factor: float = 1.0
+    duration_seconds: Optional[float] = None
+    vessel_settings: VesselSettings = field(default_factory=VesselSettings)
+    movement_settings: MovementSettings = field(default_factory=MovementSettings)
     sentences: List[SentenceConfig] = field(default_factory=list)
-    
+
     def __post_init__(self):
         """Initialize default sentence configuration."""
         if not self.sentences:
@@ -70,52 +74,61 @@ class SimulationConfig:
             ]
 
 
+@dataclass
+class SimulationState:
+    """State of the simulation."""
+    running: bool = False
+    simulation_thread: Optional[threading.Thread] = None
+    stop_event: threading.Event = field(default_factory=threading.Event)
+
+
+@dataclass
+class SimulationStatistics:
+    """Statistics of the simulation."""
+    total_sentences_generated: int = 0
+    sentences_by_type: Dict[str, int] = field(default_factory=dict)
+    simulation_start_time: Optional[datetime] = None
+
+
 class SimulationEngine:
     """Main NMEA simulation engine."""
-    
+
     def __init__(self, config: SimulationConfig):
         """Initialize simulation engine."""
         self.config = config
-        
+        self.state: SimulationState = SimulationState()
+        self.stats: SimulationStatistics = SimulationStatistics()
+
         # Core components
         self.time_manager = TimeManager(
             start_time=config.start_time,
             time_factor=config.time_factor
         )
-        
+
         from nmea_lib.types import Position
-        initial_position = Position(config.initial_latitude, config.initial_longitude)
+        initial_position = Position(config.vessel_settings.initial_latitude,
+                                    config.vessel_settings.initial_longitude)
         self.position_generator = PositionGenerator(
             initial_position=initial_position,
-            initial_speed=config.initial_speed,
-            initial_heading=config.initial_heading
+            initial_speed=config.vessel_settings.initial_speed,
+            initial_heading=config.vessel_settings.initial_heading
         )
-        
+
         # Set movement parameters
         self.position_generator.set_movement_parameters(
-            speed_variation=config.speed_variation,
-            course_variation=config.course_variation,
-            position_noise=config.position_noise
+            speed_variation=config.movement_settings.speed_variation,
+            course_variation=config.movement_settings.course_variation,
+            position_noise=config.movement_settings.position_noise
         )
-        
+
         # Output handlers
         self.output_handlers: List[OutputHandler] = []
-        
+
         # Sentence generators
         self.sentence_generators: Dict[str, Callable] = {
             "GGA": self._generate_gga_sentence,
             "RMC": self._generate_rmc_sentence,
         }
-        
-        # Control
-        self.running = False
-        self.simulation_thread: Optional[threading.Thread] = None
-        self.stop_event = threading.Event()
-        
-        # Statistics
-        self.total_sentences_generated = 0
-        self.sentences_by_type: Dict[str, int] = {}
-        self.simulation_start_time: Optional[datetime] = None
     
     def add_output_handler(self, handler: OutputHandler) -> None:
         """Add an output handler."""
@@ -128,36 +141,36 @@ class SimulationEngine:
     
     def start(self) -> None:
         """Start the simulation."""
-        if self.running:
+        if self.state.running:
             return
-        
-        self.running = True
-        self.stop_event.clear()
-        self.simulation_start_time = datetime.now()
-        
+
+        self.state.running = True
+        self.state.stop_event.clear()
+        self.stats.simulation_start_time = datetime.now()
+
         # Start output handlers
         for handler in self.output_handlers:
             try:
                 handler.start()
             except Exception as e:
                 print(f"Warning: Failed to start output handler {handler}: {e}")
-        
+
         # Start simulation thread
-        self.simulation_thread = threading.Thread(target=self._simulation_loop, daemon=True)
-        self.simulation_thread.start()
-    
+        self.state.simulation_thread = threading.Thread(target=self._simulation_loop, daemon=True)
+        self.state.simulation_thread.start()
+
     def stop(self) -> None:
         """Stop the simulation."""
-        if not self.running:
+        if not self.state.running:
             return
-        
-        self.running = False
-        self.stop_event.set()
-        
+
+        self.state.running = False
+        self.state.stop_event.set()
+
         # Wait for simulation thread to finish
-        if self.simulation_thread:
-            self.simulation_thread.join(timeout=5.0)
-        
+        if self.state.simulation_thread:
+            self.state.simulation_thread.join(timeout=5.0)
+
         # Stop output handlers
         for handler in self.output_handlers:
             try:
@@ -168,36 +181,36 @@ class SimulationEngine:
     def _simulation_loop(self) -> None:
         """Main simulation loop."""
         last_update_time = self.time_manager.get_current_time()
-        
-        while self.running and not self.stop_event.is_set():
+
+        while self.state.running and not self.state.stop_event.is_set():
             try:
                 current_time = self.time_manager.get_current_time()
                 elapsed = (current_time - last_update_time).total_seconds()
-                
+
                 # Update position
                 position_state = self.position_generator.update_position(elapsed, current_time)
-                
+
                 # Generate sentences
                 self._generate_sentences(current_time, position_state)
-                
+
                 # Check duration limit
                 if self.config.duration_seconds:
                     sim_elapsed = (current_time - self.time_manager.start_time).total_seconds()
                     if sim_elapsed >= self.config.duration_seconds:
                         print(f"Simulation duration limit reached: {self.config.duration_seconds}s")
                         break
-                
+
                 last_update_time = current_time
-                
+
                 # Sleep until next update
                 self.time_manager.sleep_until_next_update(0.1)  # 10Hz update rate
-                
+
             except Exception as e:
                 print(f"Error in simulation loop: {e}")
                 time.sleep(0.1)
-        
-        self.running = False
-    
+
+        self.state.running = False
+
     def _generate_sentences(self, current_time: datetime, position_state: PositionState) -> None:
         """Generate NMEA sentences based on configuration."""
         for sentence_config in self.config.sentences:
@@ -210,15 +223,15 @@ class SimulationEngine:
                         if sentence:
                             # Send to all output handlers
                             self._send_sentence(sentence)
-                            
+
                             # Update statistics
-                            self.total_sentences_generated += 1
-                            self.sentences_by_type[sentence_config.sentence_type] = (
-                                self.sentences_by_type.get(sentence_config.sentence_type, 0) + 1
+                            self.stats.total_sentences_generated += 1
+                            self.stats.sentences_by_type[sentence_config.sentence_type] = (
+                                    self.stats.sentences_by_type.get(sentence_config.sentence_type, 0) + 1
                             )
-                    
+
                     sentence_config.mark_updated(current_time)
-                    
+
                 except Exception as e:
                     print(f"Error generating {sentence_config.sentence_type} sentence: {e}")
     
@@ -304,14 +317,14 @@ class SimulationEngine:
         """Get simulation status."""
         current_time = self.time_manager.get_current_time()
         position_state = self.position_generator.get_current_state(current_time)
-        
+
         # Calculate runtime
         runtime = 0.0
-        if self.simulation_start_time:
-            runtime = (datetime.now() - self.simulation_start_time).total_seconds()
-        
+        if self.stats.simulation_start_time:
+            runtime = (datetime.now() - self.stats.simulation_start_time).total_seconds()
+
         return {
-            'running': self.running,
+            'running': self.state.running,
             'simulation_time': current_time.isoformat(),
             'time_factor': self.time_manager.time_factor,
             'position': {
@@ -321,16 +334,16 @@ class SimulationEngine:
                 'heading_degrees': position_state.heading.value
             },
             'statistics': {
-                'total_sentences': self.total_sentences_generated,
-                'sentences_by_type': self.sentences_by_type.copy(),
+                'total_sentences': self.stats.total_sentences_generated,
+                'sentences_by_type': self.stats.sentences_by_type.copy(),
                 'runtime_seconds': runtime,
-                'sentences_per_second': self.total_sentences_generated / max(1, runtime)
+                'sentences_per_second': self.stats.total_sentences_generated / max(1, runtime)
             },
             'output_handlers': [handler.get_status() for handler in self.output_handlers]
         }
-    
+
     def __str__(self) -> str:
         """String representation."""
-        status = "RUNNING" if self.running else "STOPPED"
-        return f"SimulationEngine({status}, {len(self.output_handlers)} outputs, {self.total_sentences_generated} sentences)"
+        status = "RUNNING" if self.state.running else "STOPPED"
+        return f"SimulationEngine({status}, {len(self.output_handlers)} outputs, {self.stats.total_sentences_generated} sentences)"
 

@@ -35,45 +35,57 @@ class MessageReference:
 
 
 @dataclass
-class ScenarioGenerationConfig:
-    """Configuration for scenario generation."""
-    # Time settings
+class TimeSettings:
+    """Time settings for scenario generation."""
     start_time: datetime
     duration_minutes: int = 60
     time_step_seconds: float = 1.0
-    
-    # Output settings
+
+
+@dataclass
+class OutputSettings:
+    """Output settings for scenario generation."""
     output_dir: str = "generated_scenario"
     nmea_filename: str = "nmea_output.txt"
     reference_filename: str = "reference_data.json"
     human_readable_filename: str = "human_readable.txt"
     csv_filename: str = "message_summary.csv"
-    
-    # Generation settings
+
+
+@dataclass
+class GenerationSettings:
+    """Generation settings for scenario generation."""
     include_gps: bool = True
     include_ais: bool = True
     gps_interval_seconds: float = 1.0
     ais_intervals: Dict[int, float] = None  # Message type -> interval
-    
-    # Vessel settings
-    vessel_count: int = 5
-    area_bounds: Dict[str, float] = None  # lat_min, lat_max, lon_min, lon_max
-    
+
     def __post_init__(self):
         if self.ais_intervals is None:
             # Default AIS intervals (ITU-R M.1371)
             self.ais_intervals = {
-                1: 10.0,    # Position report Class A
-                2: 10.0,    # Position report Class A (assigned schedule)
-                3: 10.0,    # Position report Class A (response to interrogation)
-                4: 10.0,    # Base station report
-                5: 360.0,   # Static and voyage data (6 minutes)
-                18: 30.0,   # Position report Class B
-                19: 30.0,   # Extended Class B position report
+                1: 10.0,  # Position report Class A
+                2: 10.0,  # Position report Class A (assigned schedule)
+                3: 10.0,  # Position report Class A (response to interrogation)
+                4: 10.0,  # Base station report
+                5: 360.0,  # Static and voyage data (6 minutes)
+                18: 30.0,  # Position report Class B
+                19: 30.0,  # Extended Class B position report
                 21: 180.0,  # Aid to navigation (3 minutes)
-                24: 360.0   # Static data report Class B (6 minutes)
+                24: 360.0  # Static data report Class B (6 minutes)
             }
-        
+
+
+@dataclass
+class ScenarioGenerationConfig:
+    """Configuration for scenario generation."""
+    time_settings: TimeSettings
+    output_settings: OutputSettings
+    generation_settings: GenerationSettings
+    vessel_count: int = 5
+    area_bounds: Dict[str, float] = None  # lat_min, lat_max, lon_min, lon_max
+
+    def __post_init__(self):
         if self.area_bounds is None:
             # Default to San Francisco Bay area
             self.area_bounds = {
@@ -86,7 +98,7 @@ class ScenarioGenerationConfig:
 
 class CompleteScenarioGenerator:
     """Generates complete NMEA scenarios with reference data for validation."""
-    
+
     def __init__(self, config: ScenarioGenerationConfig):
         """Initialize scenario generator."""
         self.config = config
@@ -95,10 +107,10 @@ class CompleteScenarioGenerator:
         self.vessel_generators: Dict[int, EnhancedVesselGenerator] = {}
         self.reference_data: List[MessageReference] = []
         self.message_count = 0
-        
+
         # Create output directory
-        Path(self.config.output_dir).mkdir(exist_ok=True)
-        
+        Path(self.config.output_settings.output_dir).mkdir(exist_ok=True)
+
         # Initialize vessels
         self._create_vessels()
     
@@ -175,65 +187,67 @@ class CompleteScenarioGenerator:
     def generate_scenario(self) -> Dict[str, str]:
         """Generate complete scenario with all output files."""
         print(f"Generating scenario with {self.config.vessel_count} vessels...")
-        print(f"Duration: {self.config.duration_minutes} minutes")
-        print(f"Output directory: {self.config.output_dir}")
-        
+        print(f"Duration: {self.config.time_settings.duration_minutes} minutes")
+        print(f"Output directory: {self.config.output_settings.output_dir}")
+
         # Open output files
-        nmea_file_path = Path(self.config.output_dir) / self.config.nmea_filename
-        human_readable_path = Path(self.config.output_dir) / self.config.human_readable_filename
-        
+        nmea_file_path = Path(self.config.output_settings.output_dir) / self.config.output_settings.nmea_filename
+        human_readable_path = Path(
+            self.config.output_settings.output_dir) / self.config.output_settings.human_readable_filename
+
         with open(nmea_file_path, 'w') as nmea_file, \
-             open(human_readable_path, 'w') as human_file:
-            
+                open(human_readable_path, 'w') as human_file:
+
             # Write headers
             human_file.write("NMEA 0183 Scenario Generation - Human Readable Output\\n")
             human_file.write("=" * 80 + "\\n")
             human_file.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\\n")
-            human_file.write(f"Scenario duration: {self.config.duration_minutes} minutes\\n")
+            human_file.write(f"Scenario duration: {self.config.time_settings.duration_minutes} minutes\\n")
             human_file.write(f"Vessels: {self.config.vessel_count}\\n")
             human_file.write("=" * 80 + "\\n\\n")
-            
+
             # Generate time series
-            current_time = self.config.start_time
-            end_time = current_time + timedelta(minutes=self.config.duration_minutes)
-            
+            current_time = self.config.time_settings.start_time
+            end_time = current_time + timedelta(minutes=self.config.time_settings.duration_minutes)
+
             # Track last message times for each vessel and message type
             last_message_times: Dict[Tuple[int, int], datetime] = {}
             last_gps_time = current_time
-            
+
             step_count = 0
             while current_time < end_time:
                 step_count += 1
-                
+
                 # Update vessel positions
                 self._update_vessel_positions(current_time)
-                
+
                 # Generate GPS messages
-                if self.config.include_gps and \
-                   (current_time - last_gps_time).total_seconds() >= self.config.gps_interval_seconds:
-                    
+                if self.config.generation_settings.include_gps and \
+                        (
+                                current_time - last_gps_time).total_seconds() >= self.config.generation_settings.gps_interval_seconds:
+
                     for vessel in self.vessels:
                         gps_sentences = self._generate_gps_sentences(vessel, current_time)
                         for sentence in gps_sentences:
                             nmea_file.write(sentence + "\\n")
                             self._add_reference_data(sentence, 'GPS', current_time, vessel.mmsi)
                             self._write_human_readable(human_file, sentence, 'GPS', current_time, vessel)
-                    
+
                     last_gps_time = current_time
-                
+
                 # Generate AIS messages
-                if self.config.include_ais:
+                if self.config.generation_settings.include_ais:
                     for vessel in self.vessels:
-                        for msg_type, interval in self.config.ais_intervals.items():
+                        for msg_type, interval in self.config.generation_settings.ais_intervals.items():
                             key = (vessel.mmsi, msg_type)
-                            
+
                             if key not in last_message_times:
                                 last_message_times[key] = current_time
                                 should_send = True
                             else:
                                 time_since_last = (current_time - last_message_times[key]).total_seconds()
                                 should_send = time_since_last >= interval
-                            
+
                             if should_send:
                                 try:
                                     # Skip Type 4 and 21 if we only have VesselState objects,
@@ -246,41 +260,43 @@ class CompleteScenarioGenerator:
                                         continue
 
                                     sentences, input_data = self.ais_generator.generate_message(msg_type, vessel)
-                                    
+
                                     for sentence in sentences:
                                         nmea_file.write(sentence + "\\n")
                                         self._add_reference_data(
-                                            sentence, 'AIS', current_time, vessel.mmsi, 
+                                            sentence, 'AIS', current_time, vessel.mmsi,
                                             msg_type, input_data
                                         )
                                         self._write_human_readable(
-                                            human_file, sentence, 'AIS', current_time, vessel, 
+                                            human_file, sentence, 'AIS', current_time, vessel,
                                             msg_type, input_data
                                         )
-                                    
+
                                     last_message_times[key] = current_time
-                                    
+
                                 except Exception as e:
                                     print(f"Error generating AIS type {msg_type} for vessel {vessel.mmsi}: {e}")
-                
+
                 # Progress indicator
                 if step_count % 100 == 0:
-                    progress = (current_time - self.config.start_time).total_seconds() / (self.config.duration_minutes * 60) * 100
+                    progress = (current_time - self.config.time_settings.start_time).total_seconds() / (
+                                self.config.time_settings.duration_minutes * 60) * 100
                     print(f"Progress: {progress:.1f}% - Generated {self.message_count} messages")
-                
+
                 # Advance time
-                current_time += timedelta(seconds=self.config.time_step_seconds)
-        
+                current_time += timedelta(seconds=self.config.time_settings.time_step_seconds)
+
         # Save reference data and summary
         self._save_reference_data()
         self._save_csv_summary()
-        
+
         # Return file paths
         return {
             'nmea_file': str(nmea_file_path),
-            'reference_file': str(Path(self.config.output_dir) / self.config.reference_filename),
+            'reference_file': str(
+                Path(self.config.output_settings.output_dir) / self.config.output_settings.reference_filename),
             'human_readable': str(human_readable_path),
-            'csv_summary': str(Path(self.config.output_dir) / self.config.csv_filename)
+            'csv_summary': str(Path(self.config.output_settings.output_dir) / self.config.output_settings.csv_filename)
         }
     
     def _update_vessel_positions(self, current_time: datetime):
@@ -289,9 +305,9 @@ class CompleteScenarioGenerator:
             if vessel.mmsi in self.vessel_generators:
                 generator = self.vessel_generators[vessel.mmsi]
                 updated_state = generator.update_vessel_state(
-                    self.config.time_step_seconds, current_time
+                    self.config.time_settings.time_step_seconds, current_time
                 )
-                
+
                 # Update vessel state
                 vessel.navigation_data = updated_state.navigation_data
                 vessel.timestamp = current_time
@@ -405,13 +421,13 @@ class CompleteScenarioGenerator:
     
     def _save_reference_data(self):
         """Save reference data to JSON file."""
-        reference_path = Path(self.config.output_dir) / self.config.reference_filename
-        
+        reference_path = Path(self.config.output_settings.output_dir) / self.config.output_settings.reference_filename
+
         # Convert to serializable format
         data = {
             'generation_config': {
-                'start_time': self.config.start_time.isoformat(),
-                'duration_minutes': self.config.duration_minutes,
+                'start_time': self.config.time_settings.start_time.isoformat(),
+                'duration_minutes': self.config.time_settings.duration_minutes,
                 'vessel_count': self.config.vessel_count,
                 'area_bounds': self.config.area_bounds
             },
@@ -419,7 +435,7 @@ class CompleteScenarioGenerator:
                 {
                     'mmsi': vessel.mmsi,
                     'name': vessel.static_data.vessel_name,
-                    'call_sign': vessel.static_data.callsign, # Corrected attribute
+                    'call_sign': vessel.static_data.callsign,  # Corrected attribute
                     'vessel_class': vessel.static_data.vessel_class.value,
                     'ship_type': vessel.static_data.ship_type.value,
                     'dimensions': asdict(vessel.static_data.dimensions)
@@ -434,7 +450,7 @@ class CompleteScenarioGenerator:
                 'message_types': {}
             }
         }
-        
+
         # Count AIS message types
         for ref in self.reference_data:
             if ref.message_type == 'AIS' and ref.ais_message_type:
@@ -442,37 +458,37 @@ class CompleteScenarioGenerator:
                 if msg_type not in data['statistics']['message_types']:
                     data['statistics']['message_types'][msg_type] = 0
                 data['statistics']['message_types'][msg_type] += 1
-        
+
         with open(reference_path, 'w') as f:
             json.dump(data, f, indent=2)
-        
+
         print(f"Reference data saved to: {reference_path}")
-    
+
     def _save_csv_summary(self):
         """Save message summary to CSV file."""
-        csv_path = Path(self.config.output_dir) / self.config.csv_filename
-        
+        csv_path = Path(self.config.output_settings.output_dir) / self.config.output_settings.csv_filename
+
         with open(csv_path, 'w', newline='') as f:
             writer = csv.writer(f)
-            
+
             # Header
             writer.writerow([
                 'Timestamp', 'Message_Type', 'Vessel_MMSI', 'AIS_Message_Type',
                 'Latitude', 'Longitude', 'Speed_Knots', 'Course_Degrees',
                 'Sentence'
             ])
-            
+
             # Data rows
             for ref in self.reference_data:
                 # Extract position data if available
                 lat, lon, speed, course = '', '', '', ''
-                
+
                 if ref.decoded_fields:
                     lat = ref.decoded_fields.get('latitude', '')
                     lon = ref.decoded_fields.get('longitude', '')
                     speed = ref.decoded_fields.get('sog', '')
                     course = ref.decoded_fields.get('cog', '')
-                
+
                 writer.writerow([
                     ref.timestamp,
                     ref.message_type,
@@ -484,16 +500,16 @@ class CompleteScenarioGenerator:
                     course,
                     ref.sentence
                 ])
-        
+
         print(f"CSV summary saved to: {csv_path}")
 
 
 def create_default_config(output_dir: str = "generated_scenario") -> ScenarioGenerationConfig:
     """Create default scenario generation configuration."""
     return ScenarioGenerationConfig(
-        start_time=datetime.now(),
-        duration_minutes=30,
-        output_dir=output_dir,
+        time_settings=TimeSettings(start_time=datetime.now(), duration_minutes=30),
+        output_settings=OutputSettings(output_dir=output_dir),
+        generation_settings=GenerationSettings(),
         vessel_count=5
     )
 

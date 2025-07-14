@@ -31,6 +31,21 @@ class MovementPattern:
     random_walk_bounds: Tuple[float, float, float, float] = None  # lat_min, lat_max, lon_min, lon_max
 
 
+@dataclass
+class VesselMovementTracking:
+    """Tracks vessel movement and history."""
+    position_history: List[Tuple[datetime, Position]] = None
+    max_history: int = 1000
+    last_course_change: datetime = None
+    course_change_interval: timedelta = timedelta(minutes=5)
+
+    def __post_init__(self):
+        if self.position_history is None:
+            self.position_history = []
+        if self.last_course_change is None:
+            self.last_course_change = datetime.now()
+
+
 class EnhancedVesselGenerator:
     """Enhanced position generator that creates complete vessel states."""
     
@@ -39,17 +54,10 @@ class EnhancedVesselGenerator:
         self.vessel_config = vessel_config
         self.vessel_state = self._create_initial_vessel_state()
         self.movement_pattern = self._create_movement_pattern()
-        
-        # Movement tracking
-        self.position_history: List[Tuple[datetime, Position]] = []
-        self.max_history = 1000
+        self.movement_tracking = VesselMovementTracking()
         
         # Random number generator for reproducible results
         self.rng = random.Random(vessel_config.get('seed', 42))
-        
-        # Navigation state tracking
-        self.last_course_change = datetime.now()
-        self.course_change_interval = timedelta(minutes=5)  # Change course every 5 minutes
         
     def _create_initial_vessel_state(self) -> VesselState:
         """Create initial vessel state from configuration."""
@@ -158,34 +166,34 @@ class EnhancedVesselGenerator:
         # Update simulation timestamp
         self.vessel_state.timestamp_sim = current_time
         self.vessel_state.last_update = datetime.now()
-        
+
         # Add to position history
-        self.position_history.append((current_time, nav.position))
-        if len(self.position_history) > self.max_history:
-            self.position_history.pop(0)
-        
+        self.movement_tracking.position_history.append((current_time, nav.position))
+        if len(self.movement_tracking.position_history) > self.movement_tracking.max_history:
+            self.movement_tracking.position_history.pop(0)
+
         return self.vessel_state
-    
+
     def _apply_movement_variation(self, elapsed_seconds: float, current_time: datetime):
         """Apply realistic movement variations."""
         nav = self.vessel_state.navigation_data
-        
+
         # Speed variation (Gaussian noise)
         base_speed = self.vessel_config.get('initial_speed', 0.0)
         speed_noise = self.rng.gauss(0, self.movement_pattern.speed_variation * 0.1)
         nav.sog = max(0, base_speed + speed_noise)
-        
+
         # Course variation (periodic changes)
-        if current_time - self.last_course_change > self.course_change_interval:
+        if current_time - self.movement_tracking.last_course_change > self.movement_tracking.course_change_interval:
             base_course = self.vessel_config.get('initial_heading', 0.0)
             course_noise = self.rng.gauss(0, self.movement_pattern.course_variation)
             nav.cog = (base_course + course_noise) % 360.0
             nav.heading = int(nav.cog) % 360
-            self.last_course_change = current_time
-        
+            self.movement_tracking.last_course_change = current_time
+
         # Rate of turn (based on course changes)
-        if len(self.position_history) > 1:
-            prev_time, prev_pos = self.position_history[-1]
+        if len(self.movement_tracking.position_history) > 1:
+            prev_time, prev_pos = self.movement_tracking.position_history[-1]
             time_diff = (current_time - prev_time).total_seconds()
             if time_diff > 0:
                 # Calculate rate of turn based on course change
@@ -331,32 +339,32 @@ class EnhancedVesselGenerator:
     
     def get_position_history(self) -> List[Tuple[datetime, Position]]:
         """Get position history."""
-        return self.position_history.copy()
-    
+        return self.movement_tracking.position_history.copy()
+
     def get_average_speed(self) -> float:
         """Calculate average speed over recent history."""
-        if len(self.position_history) < 2:
+        if len(self.movement_tracking.position_history) < 2:
             return self.vessel_state.navigation_data.sog
-        
+
         total_distance = 0.0
         total_time = 0.0
-        
-        for i in range(1, min(len(self.position_history), 10)):  # Last 10 positions
-            prev_time, prev_pos = self.position_history[i-1]
-            curr_time, curr_pos = self.position_history[i]
-            
+
+        for i in range(1, min(len(self.movement_tracking.position_history), 10)):  # Last 10 positions
+            prev_time, prev_pos = self.movement_tracking.position_history[i - 1]
+            curr_time, curr_pos = self.movement_tracking.position_history[i]
+
             distance = prev_pos.distance_to(curr_pos)  # meters
             time_diff = (curr_time - prev_time).total_seconds()
-            
+
             if time_diff > 0:
                 total_distance += distance
                 total_time += time_diff
-        
+
         if total_time > 0:
             # Convert m/s to knots
             avg_speed_ms = total_distance / total_time
             return avg_speed_ms / 0.514444
-        
+
         return self.vessel_state.navigation_data.sog
     
     def set_destination(self, destination: str, eta: Optional[VesselETA] = None):
