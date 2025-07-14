@@ -24,25 +24,35 @@ class TraceEntry:
     errors: Optional[List[str]] = None
 
 
+@dataclass
+class LoggerState:
+    """State of the AIS trace logger."""
+    log_file: Optional[str] = None
+    enable_console: bool = False
+    max_queue_size: int = 10000
+    log_queue: Queue = None
+    running: bool = False
+    log_thread: Optional[threading.Thread] = None
+    file_handle: Optional[TextIO] = None
+
+    def __post_init__(self):
+        if self.log_queue is None:
+            self.log_queue = Queue(maxsize=self.max_queue_size)
+
+
 class AISTraceLogger:
     """Comprehensive trace logging for AIS message generation and processing."""
-    
-    def __init__(self, log_file: Optional[str] = None, 
+
+    def __init__(self, log_file: Optional[str] = None,
                  enable_console: bool = False,
                  max_queue_size: int = 10000):
         """Initialize AIS trace logger."""
-        self.log_file = log_file
-        self.enable_console = enable_console
-        self.max_queue_size = max_queue_size
-        
-        # Logging queue for thread-safe operation
-        self.log_queue: Queue = Queue(maxsize=max_queue_size)
-        self.running = False
-        self.log_thread: Optional[threading.Thread] = None
-        
-        # File handle
-        self.file_handle: Optional[TextIO] = None
-        
+        self.state: LoggerState = LoggerState(
+            log_file=log_file,
+            enable_console=enable_console,
+            max_queue_size=max_queue_size
+        )
+
         # Statistics
         self.stats = {
             'entries_logged': 0,
@@ -52,45 +62,45 @@ class AISTraceLogger:
             'vessels': set(),
             'errors': 0
         }
-        
+
         # Setup logging
         self.logger = logging.getLogger(f"{__name__}.AISTraceLogger")
     
     def start(self):
         """Start the trace logging system."""
-        if self.running:
+        if self.state.running:
             return
-        
-        self.running = True
+
+        self.state.running = True
         self.stats['start_time'] = datetime.now()
-        
+
         # Open log file if specified
-        if self.log_file:
-            self.file_handle = open(self.log_file, 'w', encoding='utf-8')
-            self.logger.info(f"Opened trace log file: {self.log_file}")
-        
+        if self.state.log_file:
+            self.state.file_handle = open(self.state.log_file, 'w', encoding='utf-8')
+            self.logger.info(f"Opened trace log file: {self.state.log_file}")
+
         # Start logging thread
-        self.log_thread = threading.Thread(target=self._log_worker, daemon=True)
-        self.log_thread.start()
-        
+        self.state.log_thread = threading.Thread(target=self._log_worker, daemon=True)
+        self.state.log_thread.start()
+
         self.logger.info("AIS trace logger started")
-    
+
     def stop(self):
         """Stop the trace logging system."""
-        if not self.running:
+        if not self.state.running:
             return
-        
-        self.running = False
-        
+
+        self.state.running = False
+
         # Wait for log thread to finish
-        if self.log_thread and self.log_thread.is_alive():
-            self.log_thread.join(timeout=5.0)
-        
+        if self.state.log_thread and self.state.log_thread.is_alive():
+            self.state.log_thread.join(timeout=5.0)
+
         # Close file handle
-        if self.file_handle:
-            self.file_handle.close()
-            self.file_handle = None
-        
+        if self.state.file_handle:
+            self.state.file_handle.close()
+            self.state.file_handle = None
+
         self.logger.info("AIS trace logger stopped")
     
     def log_message_generation(self, vessel_mmsi: int, message_type: int,
@@ -200,20 +210,20 @@ class AISTraceLogger:
     def _queue_entry(self, entry: TraceEntry):
         """Queue a trace entry for logging."""
         try:
-            self.log_queue.put_nowait(entry)
+            self.state.log_queue.put_nowait(entry)
         except:
             # Queue is full, drop the entry
             self.stats['entries_dropped'] += 1
-    
+
     def _log_worker(self):
         """Worker thread for processing log entries."""
-        while self.running or not self.log_queue.empty():
+        while self.state.running or not self.state.log_queue.empty():
             try:
                 # Get entry from queue with timeout
-                entry = self.log_queue.get(timeout=1.0)
+                entry = self.state.log_queue.get(timeout=1.0)
                 self._write_entry(entry)
-                self.log_queue.task_done()
-                
+                self.state.log_queue.task_done()
+
             except Empty:
                 continue
             except Exception as e:
@@ -225,26 +235,26 @@ class AISTraceLogger:
             # Update statistics
             self.stats['entries_logged'] += 1
             self.stats['vessels'].add(entry.vessel_mmsi)
-            
+
             if entry.message_type:
                 msg_type = entry.message_type
                 if msg_type not in self.stats['message_types']:
                     self.stats['message_types'][msg_type] = 0
                 self.stats['message_types'][msg_type] += 1
-            
+
             # Convert to JSON
             entry_dict = asdict(entry)
             json_line = json.dumps(entry_dict, separators=(',', ':'))
-            
+
             # Write to file
-            if self.file_handle:
-                self.file_handle.write(json_line + '\n')
-                self.file_handle.flush()
-            
+            if self.state.file_handle:
+                self.state.file_handle.write(json_line + '\n')
+                self.state.file_handle.flush()
+
             # Write to console if enabled
-            if self.enable_console:
+            if self.state.enable_console:
                 print(f"TRACE: {json_line}")
-                
+
         except Exception as e:
             self.logger.error(f"Error writing trace entry: {e}")
     
@@ -262,8 +272,8 @@ class AISTraceLogger:
     
     def flush(self):
         """Flush any pending log entries."""
-        if self.file_handle:
-            self.file_handle.flush()
+        if self.state.file_handle:
+            self.state.file_handle.flush()
 
 
 class TraceAnalyzer:

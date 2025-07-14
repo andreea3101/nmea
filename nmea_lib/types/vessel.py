@@ -61,6 +61,14 @@ class VesselETA:
 
 
 @dataclass
+class VesselMetadata:
+    """Additional metadata for a vessel."""
+    imo_number: Optional[int] = None
+    flag_state: str = ""
+    owner: str = ""
+
+
+@dataclass
 class VesselStaticData:
     """Static vessel information for AIS."""
     mmsi: int
@@ -70,12 +78,8 @@ class VesselStaticData:
     dimensions: VesselDimensions = field(default_factory=VesselDimensions)
     epfd_type: EPFDType = EPFDType.GPS
     vessel_class: VesselClass = VesselClass.CLASS_A
-    
-    # Additional metadata
-    imo_number: Optional[int] = None
-    flag_state: str = ""
-    owner: str = ""
-    
+    metadata: VesselMetadata = field(default_factory=VesselMetadata)
+
     def validate(self) -> bool:
         """Validate static data fields."""
         if not (200000000 <= self.mmsi <= 999999999):
@@ -108,21 +112,25 @@ class VesselVoyageData:
 
 
 @dataclass
+class VesselRadioStatus:
+    """Radio status information for a vessel."""
+    position_accuracy: int = 0  # 0 = low accuracy, 1 = high accuracy
+    raim: int = 0  # RAIM flag (0 = not in use, 1 = in use)
+    radio_status: int = 0  # Radio status
+
+
+@dataclass
 class VesselNavigationData:
     """Dynamic navigation data for AIS."""
     position: Position
-    sog: float = 0.0                    # Speed over ground (knots)
-    cog: float = 0.0                    # Course over ground (degrees)
-    heading: int = 511                  # True heading (degrees, 511 = not available)
+    sog: float = 0.0  # Speed over ground (knots)
+    cog: float = 0.0  # Course over ground (degrees)
+    heading: int = 511  # True heading (degrees, 511 = not available)
     nav_status: NavigationStatus = NavigationStatus.DEFAULT
-    rot: int = 128                      # Rate of turn (-128 to 127, 128 = not available)
-    timestamp: int = 60                 # UTC second (0-59, 60 = not available)
-    
-    # Additional navigation fields
-    position_accuracy: int = 0          # 0 = low accuracy, 1 = high accuracy
-    raim: int = 0                      # RAIM flag (0 = not in use, 1 = in use)
-    radio_status: int = 0              # Radio status
-    
+    rot: int = 128  # Rate of turn (-128 to 127, 128 = not available)
+    timestamp: int = 60  # UTC second (0-59, 60 = not available)
+    radio_status: VesselRadioStatus = field(default_factory=VesselRadioStatus)
+
     def validate(self) -> bool:
         """Validate navigation data fields."""
         if not (0.0 <= self.sog <= 102.3):
@@ -154,6 +162,17 @@ class BaseStationData:
 
 
 @dataclass
+class AidToNavigationStatus:
+    """Status information for an aid to navigation."""
+    off_position: int = 0  # 0 = on position, 1 = off position
+    regional: int = 0  # Regional reserved bits
+    raim: int = 0
+    virtual_aid: int = 0  # 0 = real aid, 1 = virtual aid
+    assigned: int = 0  # 0 = autonomous mode, 1 = assigned mode
+    position_accuracy: int = 0  # Position accuracy flag
+
+
+@dataclass
 class AidToNavigationData:
     """Aid to Navigation information for AIS Type 21 messages."""
     mmsi: int
@@ -163,13 +182,8 @@ class AidToNavigationData:
     dimensions: VesselDimensions = field(default_factory=VesselDimensions)
     epfd_type: EPFDType = EPFDType.GPS
     timestamp: int = 60
-    off_position: int = 0               # 0 = on position, 1 = off position
-    regional: int = 0                   # Regional reserved bits
-    raim: int = 0
-    virtual_aid: int = 0                # 0 = real aid, 1 = virtual aid
-    assigned: int = 0                   # 0 = autonomous mode, 1 = assigned mode
-    position_accuracy: int = 0          # Position accuracy flag
-    
+    status: AidToNavigationStatus = field(default_factory=AidToNavigationStatus)
+
     def validate(self) -> bool:
         """Validate aid to navigation data."""
         if not (990000000 <= self.mmsi <= 999999999):
@@ -280,22 +294,22 @@ class VesselState:
 # Factory functions for creating vessel states
 def create_vessel_state(mmsi: int, vessel_name: str, position: Position,
                        vessel_class: VesselClass = VesselClass.CLASS_A,
-                       **kwargs) -> VesselState:
+                       **kwargs) -> "VesselState":
     """Create a vessel state with default values."""
     static_data = VesselStaticData(
         mmsi=mmsi,
         vessel_name=vessel_name,
         vessel_class=vessel_class,
-        **{k: v for k, v in kwargs.items() if k in VesselStaticData.__dataclass_fields__}
+        **{k: v for k, v in kwargs.items() if k in [f.name for f in fields(VesselStaticData)]}
     )
-    
+
     navigation_data = VesselNavigationData(
         position=position,
-        **{k: v for k, v in kwargs.items() if k in VesselNavigationData.__dataclass_fields__}
+        **{k: v for k, v in kwargs.items() if k in [f.name for f in fields(VesselNavigationData)]}
     )
-    
+
     voyage_data = VesselVoyageData(
-        **{k: v for k, v in kwargs.items() if k in VesselVoyageData.__dataclass_fields__}
+        **{k: v for k, v in kwargs.items() if k in [f.name for f in fields(VesselVoyageData)]}
     )
     
     return VesselState(

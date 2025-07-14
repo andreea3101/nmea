@@ -5,75 +5,69 @@ from typing import Optional # Added Optional
 import serial
 
 @dataclass
-class SerialOutputConfig:
-    """Configuration for Serial output."""
-
-    port: str = "/dev/ttyS0"  # Default serial port
+class SerialPortSettings:
+    """Settings for the serial port."""
+    port: str = "/dev/ttyS0"
     baudrate: int = 9600
-    # Type hints corrected for pyserial constructor expectations
     bytesize: int = serial.EIGHTBITS
     parity: str = serial.PARITY_NONE
     stopbits: float = serial.STOPBITS_ONE
-    timeout: Optional[float] = 1.0  # Read timeout
-    write_timeout: Optional[float] = 1.0 # Write timeout
+    timeout: Optional[float] = 1.0
+    write_timeout: Optional[float] = 1.0
     rtscts: bool = False
     dsrdtr: bool = False
     xonxoff: bool = False
-    exclusive: bool = True # Exclusive access to the port
-    send_interval: float = 0.1 # Minimum interval between sends, in seconds
-    reconnect_delay: float = 5.0 # Delay before attempting to reconnect, in seconds
-    max_reconnect_attempts: int = 5 # Maximum number of reconnect attempts (-1 for infinite)
-    line_ending: str = "\r\n" # Characters to append to each sentence
+    exclusive: bool = True
 
-    # Fields for pyserial-specific settings that might not be common
-    # These are advanced settings and might not be needed for basic operation
-    # For example: inter_byte_timeout, dsr_timeout, rts_level, cts_level
-    # serial_kwargs: Dict[str, Any] = field(default_factory=dict)
+
+@dataclass
+class SerialConnectionSettings:
+    """Settings for the serial connection."""
+    send_interval: float = 0.1
+    reconnect_delay: float = 5.0
+    max_reconnect_attempts: int = 5
+    line_ending: str = "\r\n"
+
+
+@dataclass
+class SerialOutputConfig:
+    """Configuration for Serial output."""
+    port_settings: SerialPortSettings
+    connection_settings: SerialConnectionSettings
 
     def __post_init__(self):
         # Validate common settings
-        if not self.port:
+        if not self.port_settings.port:
             raise ValueError("Serial port must be specified.")
-        if self.baudrate <= 0:
+        if self.port_settings.baudrate <= 0:
             raise ValueError("Baudrate must be a positive integer.")
-        if self.timeout is not None and self.timeout < 0:
+        if self.port_settings.timeout is not None and self.port_settings.timeout < 0:
             raise ValueError("Timeout cannot be negative.")
-        if self.write_timeout is not None and self.write_timeout < 0:
+        if self.port_settings.write_timeout is not None and self.port_settings.write_timeout < 0:
             raise ValueError("Write timeout cannot be negative.")
 
         # Convert string representations of serial settings to their pyserial equivalents
-        # This allows configuration from YAML/JSON using strings like "EIGHTBITS", "PARITY_ODD", etc.
-        if isinstance(self.bytesize, str):
-            self.bytesize = getattr(serial, self.bytesize.upper(), serial.EIGHTBITS)
-        if isinstance(self.parity, str):
-            self.parity = getattr(serial, f"PARITY_{self.parity.upper()}", serial.PARITY_NONE)
-        if isinstance(self.stopbits, str):
-            self.stopbits = getattr(serial, f"STOPBITS_{self.stopbits.upper().replace('.', '_')}", serial.STOPBITS_ONE)
+        if isinstance(self.port_settings.bytesize, str):
+            self.port_settings.bytesize = getattr(serial, self.port_settings.bytesize.upper(), serial.EIGHTBITS)
+        if isinstance(self.port_settings.parity, str):
+            self.port_settings.parity = getattr(serial, f"PARITY_{self.port_settings.parity.upper()}",
+                                                serial.PARITY_NONE)
+        if isinstance(self.port_settings.stopbits, str):
+            self.port_settings.stopbits = getattr(serial,
+                                                  f"STOPBITS_{self.port_settings.stopbits.upper().replace('.', '_')}",
+                                                  serial.STOPBITS_ONE)
 
         # Line ending validation
-        if not isinstance(self.line_ending, str):
+        if not isinstance(self.connection_settings.line_ending, str):
             raise ValueError("Line ending must be a string (e.g., '\\r\\n', '\\n').")
         try:
-            self.line_ending.encode('ascii') # Check if it's valid ASCII
+            self.connection_settings.line_ending.encode('ascii')  # Check if it's valid ASCII
         except UnicodeEncodeError:
             raise ValueError("Line ending contains non-ASCII characters.")
 
     def get_serial_options(self) -> dict:
         """Returns a dictionary of options suitable for pyserial.Serial constructor."""
-        return {
-            "port": self.port,
-            "baudrate": self.baudrate,
-            "bytesize": self.bytesize,
-            "parity": self.parity,
-            "stopbits": self.stopbits,
-            "timeout": self.timeout,
-            "write_timeout": self.write_timeout,
-            "rtscts": self.rtscts,
-            "dsrdtr": self.dsrdtr,
-            "xonxoff": self.xonxoff,
-            "exclusive": self.exclusive,
-            # **self.serial_kwargs # If using advanced settings
-        }
+        return asdict(self.port_settings)
 
 from .base import OutputHandler
 import time # For reconnect delays and send intervals

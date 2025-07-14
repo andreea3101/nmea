@@ -9,6 +9,21 @@ from ..types.enums import DataStatus, ModeIndicator, CompassPoint
 
 
 @dataclass
+class RMCMovement:
+    """Movement data for RMC sentence."""
+    speed: Optional[Speed] = None
+    course: Optional[Bearing] = None
+    magnetic_variation: Optional[float] = None
+
+
+@dataclass
+class RMCStatus:
+    """Status data for RMC sentence."""
+    status: DataStatus = DataStatus.VOID
+    mode_indicator: ModeIndicator = ModeIndicator.NOT_VALID
+
+
+@dataclass
 class RMCSentence(PositionSentence, TimeSentence, DateSentence):
     """
     RMC - Recommended Minimum Navigation Information
@@ -53,14 +68,10 @@ class RMCSentence(PositionSentence, TimeSentence, DateSentence):
         
         # Default values
         self._time: Optional[NMEATime] = None
-        self._status: DataStatus = DataStatus.VOID
         self._position: Optional[Position] = None
-        self._speed: Optional[Speed] = None
-        self._course: Optional[Bearing] = None
         self._date: Optional[NMEADate] = None
-        self._magnetic_variation: Optional[float] = None
-        self._variation_direction: Optional[CompassPoint] = None
-        self._mode_indicator: ModeIndicator = ModeIndicator.NOT_VALID
+        self.movement: RMCMovement = RMCMovement()
+        self.status: RMCStatus = RMCStatus()
     
     @classmethod
     def from_sentence(cls, nmea_sentence: str) -> 'RMCSentence':
@@ -87,37 +98,37 @@ class RMCSentence(PositionSentence, TimeSentence, DateSentence):
                 self._time = NMEATime.from_nmea(time_str)
             except ValueError:
                 self._time = None
-        
+
         # Status
         status_str = parser.get_field(self.STATUS)
         if status_str:
             try:
-                self._status = DataStatus(status_str.upper())
+                self.status.status = DataStatus(status_str.upper())
             except ValueError:
-                self._status = DataStatus.VOID
-        
+                self.status.status = DataStatus.VOID
+
         # Position
         lat_str = parser.get_field(self.LATITUDE)
         lat_hem = parser.get_field(self.LAT_HEMISPHERE)
         lon_str = parser.get_field(self.LONGITUDE)
         lon_hem = parser.get_field(self.LON_HEMISPHERE)
-        
+
         if all([lat_str, lat_hem, lon_str, lon_hem]):
             try:
                 self._position = Position.from_nmea(lat_str, lat_hem, lon_str, lon_hem)
             except ValueError:
                 self._position = None
-        
+
         # Speed over ground
         speed_val = parser.get_float_field(self.SPEED_OVER_GROUND)
         if speed_val is not None:
-            self._speed = Speed(speed_val, SpeedUnit.KNOTS)
-        
+            self.movement.speed = Speed(speed_val, SpeedUnit.KNOTS)
+
         # Course over ground
         course_val = parser.get_float_field(self.COURSE_OVER_GROUND)
         if course_val is not None:
-            self._course = Bearing(course_val, BearingType.TRUE)
-        
+            self.movement.course = Bearing(course_val, BearingType.TRUE)
+
         # Date
         date_str = parser.get_field(self.DATE)
         if date_str:
@@ -125,42 +136,41 @@ class RMCSentence(PositionSentence, TimeSentence, DateSentence):
                 self._date = NMEADate.from_nmea(date_str)
             except ValueError:
                 self._date = None
-        
+
         # Magnetic variation
         variation_val = parser.get_float_field(self.MAGNETIC_VARIATION)
         variation_dir = parser.get_field(self.VARIATION_DIRECTION)
-        
+
         if variation_val is not None and variation_dir:
             try:
-                self._variation_direction = CompassPoint(variation_dir.upper())
+                variation_direction = CompassPoint(variation_dir.upper())
                 # Apply sign based on direction (East is positive, West is negative)
-                self._magnetic_variation = (variation_val if self._variation_direction == CompassPoint.EAST 
-                                          else -variation_val)
+                self.movement.magnetic_variation = (variation_val if variation_direction == CompassPoint.EAST
+                                                     else -variation_val)
             except ValueError:
-                self._magnetic_variation = None
-                self._variation_direction = None
-        
+                self.movement.magnetic_variation = None
+
         # Mode indicator
         mode_str = parser.get_field(self.MODE_INDICATOR)
         if mode_str:
             try:
-                self._mode_indicator = ModeIndicator(mode_str.upper())
+                self.status.mode_indicator = ModeIndicator(mode_str.upper())
             except ValueError:
-                self._mode_indicator = ModeIndicator.NOT_VALID
+                self.status.mode_indicator = ModeIndicator.NOT_VALID
     
     def to_sentence(self) -> str:
         """Convert to NMEA sentence string."""
         builder = SentenceBuilder(self.talker_id, self.sentence_id)
-        
+
         # Time
         if self._time:
             builder.add_field(self._time.to_nmea())
         else:
             builder.add_field("")
-        
+
         # Status
-        builder.add_field(self._status.value)
-        
+        builder.add_field(self.status.status.value)
+
         # Position
         if self._position:
             lat_str, lat_hem, lon_str, lon_hem = self._position.to_nmea()
@@ -170,37 +180,38 @@ class RMCSentence(PositionSentence, TimeSentence, DateSentence):
             builder.add_field(lon_hem)
         else:
             builder.add_field("").add_field("").add_field("").add_field("")
-        
+
         # Speed over ground
-        if self._speed:
-            builder.add_float_field(self._speed.value, 1)
+        if self.movement.speed:
+            builder.add_float_field(self.movement.speed.value, 1)
         else:
             builder.add_field("")
-        
+
         # Course over ground
-        if self._course:
-            builder.add_float_field(self._course.value, 1)
+        if self.movement.course:
+            builder.add_float_field(self.movement.course.value, 1)
         else:
             builder.add_field("")
-        
+
         # Date
         if self._date:
             builder.add_field(self._date.to_nmea())
         else:
             builder.add_field("")
-        
+
         # Magnetic variation
-        if self._magnetic_variation is not None and self._variation_direction:
-            builder.add_float_field(abs(self._magnetic_variation), 1)
-            builder.add_field(self._variation_direction.value)
+        if self.movement.magnetic_variation is not None:
+            variation_direction = CompassPoint.EAST if self.movement.magnetic_variation >= 0 else CompassPoint.WEST
+            builder.add_float_field(abs(self.movement.magnetic_variation), 1)
+            builder.add_field(variation_direction.value)
         else:
             builder.add_field("").add_field("")
-        
+
         # Mode indicator
-        builder.add_field(self._mode_indicator.value)
-        
+        builder.add_field(self.status.mode_indicator.value)
+
         return builder.build()
-    
+
     # Property accessors
     def get_time(self) -> Optional[str]:
         """Get time in HHMMSS.SSS format."""
@@ -215,7 +226,7 @@ class RMCSentence(PositionSentence, TimeSentence, DateSentence):
                 try:
                     self._time = NMEATime.from_nmea(time_input)
                 except ValueError:
-                    self._time = None # Or handle error appropriately
+                    self._time = None  # Or handle error appropriately
             else:
                 self._time = None
         elif time_input is None:
@@ -236,7 +247,7 @@ class RMCSentence(PositionSentence, TimeSentence, DateSentence):
                 try:
                     self._date = NMEADate.from_nmea(date_input)
                 except ValueError:
-                    self._date = None # Or handle error appropriately
+                    self._date = None  # Or handle error appropriately
             else:
                 self._date = None
         elif date_input is None:
@@ -247,62 +258,58 @@ class RMCSentence(PositionSentence, TimeSentence, DateSentence):
     def get_latitude(self) -> Optional[float]:
         """Get latitude in decimal degrees."""
         return self._position.latitude if self._position else None
-    
+
     def get_longitude(self) -> Optional[float]:
         """Get longitude in decimal degrees."""
         return self._position.longitude if self._position else None
-    
+
     def set_position(self, latitude: float, longitude: float) -> None:
         """Set position coordinates."""
         self._position = Position(latitude, longitude)
-    
+
     def get_status(self) -> DataStatus:
         """Get data status."""
-        return self._status
-    
+        return self.status.status
+
     def set_status(self, status: DataStatus) -> None:
         """Set data status."""
-        self._status = status
-    
+        self.status.status = status
+
     def get_speed(self) -> Optional[Speed]:
         """Get speed over ground."""
-        return self._speed
-    
+        return self.movement.speed
+
     def set_speed(self, speed: Speed) -> None:
         """Set speed over ground."""
-        self._speed = speed
-    
+        self.movement.speed = speed
+
     def get_course(self) -> Optional[Bearing]:
         """Get course over ground."""
-        return self._course
-    
+        return self.movement.course
+
     def set_course(self, course: Bearing) -> None:
         """Set course over ground."""
-        self._course = course
-    
+        self.movement.course = course
+
     def get_magnetic_variation(self) -> Optional[float]:
         """Get magnetic variation in degrees (positive=East, negative=West)."""
-        return self._magnetic_variation
-    
+        return self.movement.magnetic_variation
+
     def set_magnetic_variation(self, variation: Optional[float]) -> None:
         """Set magnetic variation in degrees (positive=East, negative=West)."""
-        self._magnetic_variation = variation
-        if variation is not None:
-            self._variation_direction = CompassPoint.EAST if variation >= 0 else CompassPoint.WEST
-        else:
-            self._variation_direction = None
-    
+        self.movement.magnetic_variation = variation
+
     def get_mode_indicator(self) -> ModeIndicator:
         """Get mode indicator."""
-        return self._mode_indicator
-    
+        return self.status.mode_indicator
+
     def set_mode_indicator(self, mode: ModeIndicator) -> None:
         """Set mode indicator."""
-        self._mode_indicator = mode
-    
+        self.status.mode_indicator = mode
+
     def is_valid_fix(self) -> bool:
         """Check if the sentence represents a valid GPS fix."""
-        return (self._status == DataStatus.ACTIVE and 
+        return (self.status.status == DataStatus.ACTIVE and
                 self._position is not None and
-                self._mode_indicator != ModeIndicator.NOT_VALID)
+                self.status.mode_indicator != ModeIndicator.NOT_VALID)
 
