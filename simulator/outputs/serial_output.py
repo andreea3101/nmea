@@ -8,7 +8,7 @@ import serial
 class SerialOutputConfig:
     """Configuration for Serial output."""
 
-    port: str = "/dev/ttyS0"  # Default serial port
+    port: str = "/dev/pts/5"  # Default serial port
     baudrate: int = 9600
     # Type hints corrected for pyserial constructor expectations
     bytesize: int = serial.EIGHTBITS
@@ -52,7 +52,7 @@ class SerialOutputConfig:
 
         # Line ending validation
         if not isinstance(self.line_ending, str):
-            raise ValueError("Line ending must be a string (e.g., '\\r\\n', '\\n').")
+            raise ValueError("Line ending must be a string (e.g., '\r\n', '\n').")
         try:
             self.line_ending.encode('ascii') # Check if it's valid ASCII
         except UnicodeEncodeError:
