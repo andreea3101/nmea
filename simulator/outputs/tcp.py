@@ -36,7 +36,7 @@ class TCPClient:
         try:
             self.socket.settimeout(timeout)
             # Ensure sentence is stripped of existing newlines and terminated with CRLF
-            formatted_sentence = sentence.strip() + '\\r\\n'
+            formatted_sentence = sentence.strip() + '\r\n'
             self.socket.sendall(formatted_sentence.encode('utf-8'))
             self.sentences_sent += 1
             self.last_activity = time.time()
