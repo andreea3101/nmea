@@ -90,7 +90,7 @@ class UDPOutput(OutputHandler):
         
         try:
             # Ensure sentence is stripped of existing newlines and terminated with CRLF
-            formatted_sentence = sentence.strip() + '\\r\\n'
+            formatted_sentence = sentence.strip() + '\r\n'
             sentence_bytes = formatted_sentence.encode('utf-8')
             sent_count = 0
             
