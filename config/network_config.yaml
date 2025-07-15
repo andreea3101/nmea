@@ -55,7 +55,7 @@ outputs:
 
   - type: serial
     enabled: true # Set to false to disable this output
-    port: "/dev/ttyUSB0"  # Example for Linux. Windows: "COM1", macOS: "/dev/cu.usbserial-XYZ"
+    port: "/dev/pts/5"  # Example for Linux. Windows: "COM1", macOS: "/dev/cu.usbserial-XYZ"
     baudrate: 9600
     bytesize: "EIGHTBITS" # Or 5, 6, 7, "FIVEBITS", "SIXBITS", "SEVENBITS"
     parity: "PARITY_NONE" # Or "PARITY_EVEN", "PARITY_ODD", "PARITY_MARK", "PARITY_SPACE"
