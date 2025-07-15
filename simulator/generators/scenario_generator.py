@@ -186,12 +186,12 @@ class CompleteScenarioGenerator:
              open(human_readable_path, 'w') as human_file:
             
             # Write headers
-            human_file.write("NMEA 0183 Scenario Generation - Human Readable Output\\n")
-            human_file.write("=" * 80 + "\\n")
-            human_file.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\\n")
-            human_file.write(f"Scenario duration: {self.config.duration_minutes} minutes\\n")
-            human_file.write(f"Vessels: {self.config.vessel_count}\\n")
-            human_file.write("=" * 80 + "\\n\\n")
+            human_file.write("NMEA 0183 Scenario Generation - Human Readable Output\n")
+            human_file.write("=" * 80 + "\n")
+            human_file.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            human_file.write(f"Scenario duration: {self.config.duration_minutes} minutes\n")
+            human_file.write(f"Vessels: {self.config.vessel_count}\n")
+            human_file.write("=" * 80 + "\n\n")
             
             # Generate time series
             current_time = self.config.start_time
@@ -215,7 +215,7 @@ class CompleteScenarioGenerator:
                     for vessel in self.vessels:
                         gps_sentences = self._generate_gps_sentences(vessel, current_time)
                         for sentence in gps_sentences:
-                            nmea_file.write(sentence + "\\n")
+                            nmea_file.write(sentence)
                             self._add_reference_data(sentence, 'GPS', current_time, vessel.mmsi)
                             self._write_human_readable(human_file, sentence, 'GPS', current_time, vessel)
                     
@@ -248,7 +248,7 @@ class CompleteScenarioGenerator:
                                     sentences, input_data = self.ais_generator.generate_message(msg_type, vessel)
                                     
                                     for sentence in sentences:
-                                        nmea_file.write(sentence + "\\n")
+                                        nmea_file.write(sentence + "\n")
                                         self._add_reference_data(
                                             sentence, 'AIS', current_time, vessel.mmsi, 
                                             msg_type, input_data
@@ -366,42 +366,42 @@ class CompleteScenarioGenerator:
         
         if msg_type == 'GPS':
             if sentence.startswith('$GPGGA'):
-                file.write(f"GPS Fix Data - Vessel {vessel.mmsi} ({vessel.static_data.vessel_name})\\n")
-                file.write(f"  Position: {vessel.navigation_data.position.latitude:.6f}, {vessel.navigation_data.position.longitude:.6f}\\n")
-                file.write(f"  Sentence: {sentence}\\n")
+                file.write(f"GPS Fix Data - Vessel {vessel.mmsi} ({vessel.static_data.vessel_name})\n")
+                file.write(f"  Position: {vessel.navigation_data.position.latitude:.6f}, {vessel.navigation_data.position.longitude:.6f}\n")
+                file.write(f"  Sentence: {sentence}\n")
             elif sentence.startswith('$GPRMC'):
-                file.write(f"GPS Recommended Minimum - Vessel {vessel.mmsi}\\n")
-                file.write(f"  Speed: {vessel.navigation_data.sog:.1f} knots, Course: {vessel.navigation_data.cog:.1f}°\\n")
-                file.write(f"  Sentence: {sentence}\\n")
+                file.write(f"GPS Recommended Minimum - Vessel {vessel.mmsi}\n")
+                file.write(f"  Speed: {vessel.navigation_data.sog:.1f} knots, Course: {vessel.navigation_data.cog:.1f}°\n")
+                file.write(f"  Sentence: {sentence}\n")
         
         elif msg_type == 'AIS':
-            file.write(f"AIS Type {ais_msg_type} - Vessel {vessel.mmsi} ({vessel.static_data.vessel_name})\\n")
+            file.write(f"AIS Type {ais_msg_type} - Vessel {vessel.mmsi} ({vessel.static_data.vessel_name})\n")
             
             if ais_msg_type in [1, 2, 3]:
-                file.write(f"  Position Report Class A\\n")
-                file.write(f"  Position: {vessel.navigation_data.position.latitude:.6f}, {vessel.navigation_data.position.longitude:.6f}\\n")
-                file.write(f"  Speed: {vessel.navigation_data.sog:.1f} knots, Course: {vessel.navigation_data.cog:.1f}°\\n")
-                file.write(f"  Heading: {vessel.navigation_data.heading}°\\n")
+                file.write(f"  Position Report Class A\n")
+                file.write(f"  Position: {vessel.navigation_data.position.latitude:.6f}, {vessel.navigation_data.position.longitude:.6f}\n")
+                file.write(f"  Speed: {vessel.navigation_data.sog:.1f} knots, Course: {vessel.navigation_data.cog:.1f}°\n")
+                file.write(f"  Heading: {vessel.navigation_data.heading}°\n")
             elif ais_msg_type == 4:
-                file.write(f"  Base Station Report\\n")
+                file.write(f"  Base Station Report\n")
             elif ais_msg_type == 5:
-                file.write(f"  Static and Voyage Data\\n")
-                file.write(f"  Call Sign: {vessel.static_data.callsign}\\n")
-                file.write(f"  Destination: {vessel.voyage_data.destination}\\n")
-                file.write(f"  Draught: {vessel.voyage_data.draught:.1f}m\\n")
+                file.write(f"  Static and Voyage Data\n")
+                file.write(f"  Call Sign: {vessel.static_data.callsign}\n")
+                file.write(f"  Destination: {vessel.voyage_data.destination}\n")
+                file.write(f"  Draught: {vessel.voyage_data.draught:.1f}m\n")
             elif ais_msg_type == 18:
-                file.write(f"  Position Report Class B\\n")
-                file.write(f"  Position: {vessel.navigation_data.position.latitude:.6f}, {vessel.navigation_data.position.longitude:.6f}\\n")
-                file.write(f"  Speed: {vessel.navigation_data.sog:.1f} knots\\n")
+                file.write(f"  Position Report Class B\n")
+                file.write(f"  Position: {vessel.navigation_data.position.latitude:.6f}, {vessel.navigation_data.position.longitude:.6f}\n")
+                file.write(f"  Speed: {vessel.navigation_data.sog:.1f} knots\n")
             elif ais_msg_type == 24:
-                file.write(f"  Static Data Report Class B\\n")
+                file.write(f"  Static Data Report Class B\n")
             
-            file.write(f"  Sentence: {sentence}\\n")
+            file.write(f"  Sentence: {sentence}\n")
             
             if input_data:
-                file.write(f"  Input Data: {json.dumps(input_data, indent=4)}\\n")
+                file.write(f"  Input Data: {json.dumps(input_data, indent=4)}\n")
         
-        file.write("\\n")
+        file.write("\n")
     
     def _save_reference_data(self):
         """Save reference data to JSON file."""
@@ -519,7 +519,7 @@ if __name__ == "__main__":
     
     files = generate_complete_scenario(config)
     
-    print("\\nGenerated files:")
+    print("\nGenerated files:")
     for file_type, file_path in files.items():
         print(f"  {file_type}: {file_path}")
 
