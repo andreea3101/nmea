@@ -121,22 +121,6 @@ class AISBinaryEncoder:
             rot_ais = max(-127, rot_ais)
         
         return AISBinaryEncoder._encode_bits(rot_ais, 8)
-
-    @staticmethod
-    def _encode_altitude(alt: int) -> str:
-        """Encode altitude for SAR aircraft (meters)."""
-        if alt >= 4095:
-            return AISBinaryEncoder._encode_bits(4095, 12)  # Not available or >= 4094m
-        return AISBinaryEncoder._encode_bits(alt, 12)
-
-    @staticmethod
-    def _encode_sog_sar(sog: float) -> str:
-        """Encode speed over ground for SAR aircraft (knots)."""
-        if sog >= 1023:
-            return AISBinaryEncoder._encode_bits(1023, 10)  # Not available or >= 1022 knots
-        sog_int = int(round(sog))
-        sog_int = max(0, min(1022, sog_int))
-        return AISBinaryEncoder._encode_bits(sog_int, 10)
     
     @staticmethod
     def encode_type_1(vessel: VesselState) -> Tuple[str, Dict[str, Any]]:
@@ -181,49 +165,6 @@ class AISBinaryEncoder:
         
         return binary, input_data
     
-    @staticmethod
-    def encode_type_9(vessel: VesselState) -> Tuple[str, Dict[str, Any]]:
-        """Encode AIS Type 9: Standard SAR Aircraft Position Report."""
-        nav = vessel.navigation_data
-
-        # Build binary message
-        binary = ""
-        binary += AISBinaryEncoder._encode_bits(9, 6)  # Message type
-        binary += AISBinaryEncoder._encode_bits(0, 2)  # Repeat indicator
-        binary += AISBinaryEncoder._encode_bits(vessel.mmsi, 30)  # MMSI
-        binary += AISBinaryEncoder._encode_altitude(nav.altitude)  # Altitude
-        binary += AISBinaryEncoder._encode_sog_sar(nav.sog)  # Speed over ground
-        binary += AISBinaryEncoder._encode_bits(nav.position_accuracy, 1)  # Position accuracy
-        binary += AISBinaryEncoder._encode_longitude(nav.position.longitude)  # Longitude
-        binary += AISBinaryEncoder._encode_latitude(nav.position.latitude)  # Latitude
-        binary += AISBinaryEncoder._encode_cog(nav.cog)  # Course over ground
-        binary += AISBinaryEncoder._encode_heading(nav.heading)  # True heading
-        binary += AISBinaryEncoder._encode_bits(nav.timestamp, 6)  # Time stamp
-        binary += AISBinaryEncoder._encode_bits(0, 8)  # Regional reserved
-        binary += AISBinaryEncoder._encode_bits(0, 1)  # DTE
-        binary += AISBinaryEncoder._encode_bits(0, 3)  # Spare
-        binary += AISBinaryEncoder._encode_bits(0, 1)  # Assigned mode
-        binary += AISBinaryEncoder._encode_bits(nav.raim, 1)  # RAIM
-        binary += AISBinaryEncoder._encode_bits(nav.radio_status, 20)  # Radio status
-
-        # Input data for trace logging
-        input_data = {
-            'message_type': 9,
-            'mmsi': vessel.mmsi,
-            'altitude': nav.altitude,
-            'sog': nav.sog,
-            'position_accuracy': nav.position_accuracy,
-            'longitude': nav.position.longitude,
-            'latitude': nav.position.latitude,
-            'cog': nav.cog,
-            'heading': nav.heading,
-            'timestamp': nav.timestamp,
-            'raim': nav.raim,
-            'radio_status': nav.radio_status
-        }
-
-        return binary, input_data
-
     @staticmethod
     def encode_type_2(vessel: VesselState) -> Tuple[str, Dict[str, Any]]:
         """Encode AIS Type 2: Position Report Scheduled Class A."""
