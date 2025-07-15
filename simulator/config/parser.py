@@ -166,7 +166,7 @@ class ConfigParser:
 
         elif output_type == 'serial':
             config = SerialOutputConfig(
-                port=str(output_data.get('port', '/dev/ttyS0')),
+                port=str(output_data.get('port', '/dev/pts/5')),
                 baudrate=int(output_data.get('baudrate', 9600)),
                 bytesize=output_data.get('bytesize', 'EIGHTBITS'), # Keep as string for config flexibility
                 parity=output_data.get('parity', 'PARITY_NONE'),   # Keep as string
@@ -243,4 +243,3 @@ class SimulatorConfig:
         ]
         
         return config
-
