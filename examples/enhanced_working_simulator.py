@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
 """
 Enhanced Working NMEA+AIS Simulator
-
-This example demonstrates the complete NMEA simulator with:
-1. Fixed newline issues (no more \\n in output)
-2. TCP/UDP network output support
-3. Complete scenario generation with reference data
-4. Human-readable output for debugging
 """
 
 import sys
@@ -227,7 +221,6 @@ class EnhancedNMEASimulator:
         
         with open(nmea_file, 'w') as nmea_f, open(human_file, 'w') as human_f:
             
-            # Write headers (FIXED: using actual newlines, not \\n)
             human_f.write("NMEA Simulator Output - Human Readable\n")
             human_f.write("=" * 60 + "\n")
             human_f.write(f"Generated: {start_time.strftime('%Y-%m-%d %H:%M:%S')}\n")
@@ -509,12 +502,6 @@ def main():
     print("=" * 70)
     print("ENHANCED NMEA+AIS SIMULATOR WITH NETWORK SUPPORT")
     print("=" * 70)
-    print()
-    print("This simulator generates NMEA sentences with:")
-    print("✅ Fixed newline output (no more \\\\n)")
-    print("✅ TCP/UDP network streaming")
-    print("✅ Reference data for decoder validation")
-    print("✅ Human-readable explanations")
     print()
     
     # Get user input
