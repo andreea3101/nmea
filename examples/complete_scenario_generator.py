@@ -8,15 +8,16 @@ exactly like the nmea-sample file, with reference data for decoder validation.
 
 import sys
 import os
-from datetime import datetime, timedelta
+import json
+import traceback
+from datetime import datetime
 from pathlib import Path
 
 # Add the project root to Python path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from simulator.generators.scenario_generator import (
-    ScenarioGenerationConfig, 
-    CompleteScenarioGenerator,
+    ScenarioGenerationConfig,
     generate_complete_scenario
 )
 
@@ -37,10 +38,9 @@ def main():
     print("4. Custom configuration")
     
     try:
-        # choice = input("Enter choice (1-4) [default: 1]: ").strip() or "1" # Disabled for non-interactive run
-        choice = "1" # Default to option 1 for non-interactive run
+        choice = input("Enter choice (1-4) [default: 1]: ").strip() or "1"
     except KeyboardInterrupt:
-        print("\\nCancelled by user")
+        print("\nCancelled by user")
         return
     
     # Create configuration based on choice
@@ -52,7 +52,7 @@ def main():
             vessel_count=3,
             time_step_seconds=1.0
         )
-        print("\\nGenerating quick test scenario...")
+        print("\nGenerating quick test scenario...")
         
     elif choice == "2":
         config = ScenarioGenerationConfig(
@@ -62,7 +62,7 @@ def main():
             vessel_count=5,
             time_step_seconds=1.0
         )
-        print("\\nGenerating standard scenario...")
+        print("\nGenerating standard scenario...")
         
     elif choice == "3":
         config = ScenarioGenerationConfig(
@@ -72,10 +72,10 @@ def main():
             vessel_count=8,
             time_step_seconds=1.0
         )
-        print("\\nGenerating extended scenario...")
+        print("\nGenerating extended scenario...")
         
     elif choice == "4":
-        print("\\nCustom configuration:")
+        print("\nCustom configuration:")
         try:
             duration = int(input("Duration in minutes [30]: ") or "30")
             vessel_count = int(input("Number of vessels [5]: ") or "5")
@@ -88,7 +88,7 @@ def main():
                 vessel_count=vessel_count,
                 time_step_seconds=1.0
             )
-            print(f"\\nGenerating custom scenario ({duration} min, {vessel_count} vessels)...")
+            print(f"\nGenerating custom scenario ({duration} min, {vessel_count} vessels)...")
             
         except (ValueError, KeyboardInterrupt):
             print("Invalid input or cancelled. Using default configuration.")
@@ -122,7 +122,7 @@ def main():
         
         generation_time = (end_time - start_time).total_seconds()
         
-        print("\\n" + "=" * 80)
+        print("\n" + "=" * 80)
         print("SCENARIO GENERATION COMPLETE")
         print("=" * 80)
         print(f"Generation time: {generation_time:.1f} seconds")
@@ -144,7 +144,7 @@ def main():
         # Show sample content
         nmea_file = files['nmea_file']
         if Path(nmea_file).exists():
-            print("Sample NMEA output (first 10 lines):")
+            print("\nSample NMEA output (first 10 lines):")
             with open(nmea_file, 'r') as f:
                 for i, line in enumerate(f):
                     if i >= 10:
@@ -155,7 +155,6 @@ def main():
         # Show statistics
         reference_file = files['reference_file']
         if Path(reference_file).exists():
-            import json
             with open(reference_file, 'r') as f:
                 data = json.load(f)
                 stats = data.get('statistics', {})
@@ -181,8 +180,7 @@ def main():
         print("each AIS message, allowing you to verify your decoder's accuracy.")
         
     except Exception as e:
-        print(f"\\nError generating scenario: {e}")
-        import traceback
+        print(f"\nError generating scenario: {e}")
         traceback.print_exc()
         return 1
     
@@ -191,4 +189,3 @@ def main():
 
 if __name__ == "__main__":
     exit(main())
-
